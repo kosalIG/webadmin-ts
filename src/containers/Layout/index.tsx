@@ -30,14 +30,14 @@ const Index: React.FC = () => {
                         }
                     >
                         <Switch>
-                            <div style={{ minHeight: `82vh` }}>
-                                <>
+                            <React.Fragment>
+                                <div style={{ minHeight: `82vh` }}>
                                     {route.map((r) => (
                                         <Route key={r.id} exact={r.exact} path={r.path} component={r.component} />
                                     ))}
                                     <Redirect from="/" to="/dashboard" />
-                                </>
-                            </div>
+                                </div>
+                            </React.Fragment>
                         </Switch>
                     </Suspense>
                     <Footer style={{ textAlign: 'center' }}>PAGE ADMIN CORE ©2020 Created by KOSAL</Footer>

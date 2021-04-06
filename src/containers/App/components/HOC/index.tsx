@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppCont } from 'util/appContext';
 import { UserLogin } from 'util/interface';
 
@@ -8,17 +8,28 @@ interface Hoc {
 }
 function wrapComponent(Components: React.FC<Hoc>): React.FC {
     const childComponent = () => {
-        const [user, setUser] = useState<UserLogin | null>(null);
+        const [user, setUser] = useState(null);
         const [isAuth, setIsAuth] = useState<boolean>(true);
+
+        useEffect(() => {
+            const jUser = localStorage.getItem('user');
+            if (jUser) {
+                setUser(JSON.parse(jUser));
+                setIsAuth(true);
+            }
+        }, []);
+
         // Login
-        function login(): void {
-            setUser({ id: '001', fullName: 'kosal', gender: 'M' });
+        function login(data: any): void {
+            localStorage.setItem('user', JSON.stringify(data));
+            setUser(data);
             setIsAuth(true);
         }
 
         // Login out
         function logout(): void {
             setUser(null);
+            localStorage.clear();
             setIsAuth(false);
         }
 

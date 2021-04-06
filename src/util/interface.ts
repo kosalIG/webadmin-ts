@@ -23,6 +23,6 @@ export interface UserLogin {
 export interface AppContext {
     user?: UserLogin | null;
     isAuth: boolean;
-    login: () => void;
+    login: (data: any) => void;
     logout: () => void;
 }

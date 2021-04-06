@@ -4,7 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { LoginUIProps } from '../../interface';
 import { WrapCard, CardLogo } from '../../style';
 
-const Index: React.FC<LoginUIProps> = ({ onFinish }) => {
+const Index: React.FC<LoginUIProps> = ({ onFinish, loading = false }) => {
     return (
         <WrapCard>
             <Row>
@@ -14,19 +14,19 @@ const Index: React.FC<LoginUIProps> = ({ onFinish }) => {
                 <Col xs={24} md={24} lg={24}>
                     <Form onFinish={onFinish} name="normal_login" initialValues={{ remember: true }}>
                         <Form.Item
-                            name="username"
+                            name="userName"
                             rules={[
                                 { required: true, message: 'Please input your Username!' },
-                                { type: 'email', message: 'Username is not a valid' },
+                                { type: 'email', message: 'UserName is not a valid' },
                             ]}
                         >
                             <Input
                                 prefix={<UserOutlined style={{ color: `rgba(0, 0, 0, 0.25)` }} />}
-                                placeholder="Username"
+                                placeholder="User Name"
                             />
                         </Form.Item>
                         <Form.Item name="password" rules={[{ required: true, message: 'Please input your Password!' }]}>
-                            <Input
+                            <Input.Password
                                 prefix={<LockOutlined style={{ color: `rgba(0, 0, 0, 0.25)` }} />}
                                 type="password"
                                 placeholder="Password"
@@ -39,7 +39,7 @@ const Index: React.FC<LoginUIProps> = ({ onFinish }) => {
                         </Form.Item>
 
                         <Form.Item>
-                            <Button type="primary" htmlType="submit">
+                            <Button loading={loading} type="primary" htmlType="submit">
                                 Log in
                             </Button>
                         </Form.Item>

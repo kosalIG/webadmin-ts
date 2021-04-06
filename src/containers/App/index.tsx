@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
 import styled from 'styled-components';
 import Loading from 'components/Loading';
 import { wrapComponent } from './components';
