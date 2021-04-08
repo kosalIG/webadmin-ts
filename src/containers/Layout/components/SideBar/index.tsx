@@ -11,7 +11,7 @@ interface SideBarProps {
 const Index: React.FC<SideBarProps> = ({ nav, pathname }) => {
     return (
         <div style={{ height: `90vh`, overflow: 'auto' }}>
-            <Menu theme="dark" mode="inline" selectedKeys={[pathname]} defaultSelectedKeys={['dashboard']}>
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={[pathname]}>
                 {nav.map((n) =>
                     n.children ? (
                         <SubMenu key={n.path} icon={n.icon} title={n.name}>

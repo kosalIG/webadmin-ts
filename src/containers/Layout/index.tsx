@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { useState } from 'react';
-import { Switch, Route, useLocation, Redirect } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import Loading from 'components/Loading';
 
 import route from '_route';
@@ -35,7 +35,7 @@ const Index: React.FC = () => {
                                     {route.map((r) => (
                                         <Route key={r.id} exact={r.exact} path={r.path} component={r.component} />
                                     ))}
-                                    <Redirect from="/" to="/dashboard" />
+                                    {/* <Redirect from="/" to="/dashboard" /> */}
                                 </div>
                             </React.Fragment>
                         </Switch>
