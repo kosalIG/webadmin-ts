@@ -9,6 +9,12 @@ const nav: Array<NavProps> = [
         name: 'Dashboard',
         icon: <DashboardOutlined />,
     },
+    {
+        id: 1,
+        path: '/dashboards',
+        name: 'Dashboard',
+        icon: <DashboardOutlined />,
+    },
 ];
 
 export default nav;

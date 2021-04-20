@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState, useEffect, useMemo } from 'react';
+import axios from 'axios';
 import { AppCont } from 'util/appContext';
 import { UserLogin } from 'util/interface';
 
@@ -8,7 +10,7 @@ interface Hoc {
 }
 function wrapComponent(Components: React.FC<Hoc>): React.FC {
     const childComponent = () => {
-        const [user, setUser] = useState(null);
+        const [user, setUser] = useState<any>(null);
         const [isAuth, setIsAuth] = useState<boolean>(true);
 
         useEffect(() => {
@@ -18,6 +20,18 @@ function wrapComponent(Components: React.FC<Hoc>): React.FC {
                 setIsAuth(true);
             }
         }, []);
+
+        // is login success
+        useMemo(() => {
+            if (user?.kongToken) {
+                // AXIOS HEADER
+                axios.defaults.headers.common['Kong-Authorization'] = `Bearer ${user?.kongToken}`;
+                axios.defaults.headers.common['X-Auth-Key'] = user?.token;
+            } else {
+                delete axios.defaults.headers.common['Kong-Authorization'];
+                delete axios.defaults.headers.common['X-Auth-Key'];
+            }
+        }, [user?.kongToken]);
 
         // Login
         function login(data: any): void {

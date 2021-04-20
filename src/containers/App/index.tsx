@@ -1,7 +1,9 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
+import { ApolloProvider } from '@apollo/client/react';
 import Loading from 'components/Loading';
+import { servicePayment } from 'env';
 import { wrapComponent } from './components';
 import Protect from './components/HOC/ProtectRoute';
 
@@ -23,12 +25,14 @@ const App: React.FC<{ isAuth: boolean }> = ({ isAuth }) => {
                 </CustomLoading>
             }
         >
-            <BrowserRouter>
-                <Switch>
-                    <Route path="/login" component={Login} />
-                    <Protect isAuth={isAuth} path="/" component={Layout} />
-                </Switch>
-            </BrowserRouter>
+            <ApolloProvider client={servicePayment}>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/login" component={Login} />
+                        <Protect isAuth={isAuth} path="/" component={Layout} />
+                    </Switch>
+                </BrowserRouter>
+            </ApolloProvider>
         </Suspense>
     );
 };

@@ -1,7 +1,9 @@
 import React from 'react';
 import { PropRoute } from 'util/interface';
 // ============================================================================ COMPONENT ::
-const Dashboard = React.lazy(() => import('containers/Dashboard'));
+const DashboardContainer = React.lazy(() => import('containers/DashboardContainer'));
+const DashboardPickupDriver = React.lazy(() => import('containers/DashboardPickupDriver'));
+const DashboardTransportingDriver = React.lazy(() => import('containers/DashboardTransportingDriver'));
 
 // ============================================================================ ROUTE ::
 
@@ -11,14 +13,21 @@ const route: PropRoute[] = [
         path: '/dashboard',
         exact: true,
         name: 'Dashboard',
-        component: Dashboard,
+        component: DashboardContainer,
     },
     {
-        id: 'dashboard1',
-        path: '/dashboard1',
+        id: 'dashboardPickupDriver',
+        path: '/dashboard/pickup-driver',
         exact: true,
-        name: 'Dashboard',
-        component: Dashboard,
+        name: 'Pickup Driver',
+        component: DashboardPickupDriver,
+    },
+    {
+        id: 'dashboardTransportDriver',
+        path: '/dashboard/transport-driver',
+        exact: true,
+        name: 'Transport Driver',
+        component: DashboardTransportingDriver,
     },
 ];
 
