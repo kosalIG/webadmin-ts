@@ -1,7 +1,49 @@
 import { useEffect } from 'react';
 import { gql } from '@apollo/client';
 import { useAxioss } from 'util/instance';
-import { TotalData } from './interface';
+import { TotalData, TotalRegisterUser } from './interface';
+
+export const RATING_DASHBOARD = gql`
+    query GetRatingDashboard {
+        getRatingFeedbackDashboard {
+            ratingList {
+                driver {
+                    avatar
+                    fullName
+                    mobileNumber
+                    mobileDetail {
+                        countryCode
+                        localNumber
+                    }
+                    driverInfo {
+                        plateNumber
+                    }
+                }
+                rating
+                countRating
+            }
+            feedbackList {
+                driverID
+                customerID
+                customer {
+                    avatar
+                    fullName
+                    mobileNumber
+                }
+                driver {
+                    avatar
+                    fullName
+                }
+                feedbackCategories {
+                    name
+                }
+                description
+                rating
+                createdAt
+            }
+        }
+    }
+`;
 
 export const GET_PAYMENT_DASHBOARD = gql`
     query GetPaymentDashboard {
@@ -31,6 +73,15 @@ export const GET_ORDER_DASHBOARD = gql`
             totalOnTransitDrivers
             totalOnlineDrivers
             totalActiveDrivers
+            inactiveDrivers {
+                inactiveAt
+                driver {
+                    id
+                    fullName
+                    mobileNumber
+                    avatar
+                }
+            }
             totalOrderReport {
                 driverEndedTrip {
                     maxValue
@@ -78,7 +129,7 @@ export function useGetTotalDriver(): TotalData {
     }
 
     const { totalAvailableDriver, totalDriver, ...registerUser } = data || {};
-    const totalRegisterUser = { ...registerUser };
+    const totalRegisterUser: TotalRegisterUser = { ...registerUser };
 
     return { totalAvailableDriver, totalDriver, totalRegisterUser };
 }

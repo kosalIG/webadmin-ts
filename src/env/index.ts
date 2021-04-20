@@ -20,6 +20,7 @@ const v = 'v1';
 // Graph QL uri
 const qwiqPayment = `${baseUrl}/service-payment/${v}`;
 const qwiqOrder = `${baseUrl}/service-order/${v}`;
+const qwiqFeedback = `${baseUrl}/service-feedback/${v}`;
 
 // Graph QL Header
 const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -46,4 +47,10 @@ const serviceOrder = new ApolloClient({
     link: concat(authMiddleware, new HttpLink({ uri: qwiqOrder })),
 });
 
-export { authKey, serviceAuthenticate, serviceProxy, servicePayment, serviceOrder };
+// SERVICE ORDER ==========================================================
+const serviceFeedback = new ApolloClient({
+    cache: new InMemoryCache({ addTypename: false }),
+    link: concat(authMiddleware, new HttpLink({ uri: qwiqFeedback })),
+});
+
+export { authKey, serviceAuthenticate, serviceProxy, servicePayment, serviceOrder, serviceFeedback };

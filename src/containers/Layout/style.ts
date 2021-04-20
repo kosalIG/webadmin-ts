@@ -12,7 +12,7 @@ const WrapSider = styled(Sider)`
 const WrapContent = styled(Content)`
     position: relative;
     top: 65px;
-    height: 100vh;
+    max-height: 95vh !important;
     padding: 15px;
     z-index: 9;
     overflow-y: auto;

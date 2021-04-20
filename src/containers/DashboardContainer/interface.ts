@@ -62,3 +62,42 @@ export interface OrderReportProps {
     totalValue: number;
     values: number[];
 }
+export interface InactiveItem {
+    avatar: string;
+    fullName: string;
+    mobileNumber: string;
+}
+export interface InactiveUser {
+    driver: InactiveItem;
+    inactiveAt: number;
+}
+export interface InactiveProps {
+    records: InactiveUser[];
+}
+export interface TotalRegisterUser {
+    totalDriverAndroid: number;
+    totalDriverIOS: number;
+    totalDriverOther: number;
+    totalRiderAndroid: number;
+    totalRiderIOS: number;
+    totalRiderOther: number;
+}
+export interface FeedbackCategories {
+    name: string;
+}
+export interface FeedbackUser {
+    avatar?: string;
+    fullName: string;
+}
+export interface FeedbackUI {
+    src: string;
+    customer: FeedbackUser;
+    driver: FeedbackUser;
+    feedbackCategories: FeedbackCategories[];
+    rating: number;
+    description: string;
+    createdAt: Date;
+}
+export interface FeedbackUIProps {
+    item: FeedbackUI;
+}

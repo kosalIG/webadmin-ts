@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { themeColor } from 'styles/constants';
-import { TotalOrderReport } from './interface';
+import { TotalOrderReport } from '../../interface';
 
 interface ChartData {
     allDay: string[];
     totalOrderReport: TotalOrderReport;
+    max: number;
 }
 
-function useOrderReport({ allDay, totalOrderReport }: ChartData): { chartData: any } {
+function useOrderReport({ allDay, totalOrderReport, max }: ChartData): { chartData: any; mainChartOpts: any } {
     const chartData = {
         labels: allDay,
         datasets: [
@@ -61,6 +62,55 @@ function useOrderReport({ allDay, totalOrderReport }: ChartData): { chartData: a
             },
         ],
     };
-    return { chartData };
+    const mainChartOpts = {
+        maintainAspectRatio: false,
+        tooltips: {
+            mode: 'x-axis',
+        },
+        legend: {
+            display: true,
+        },
+        scales: {
+            xAxes: [
+                {
+                    gridLines: {
+                        drawOnChartArea: false,
+                    },
+                    type: 'time',
+                    time: {
+                        tooltipFormat: 'dddd, MMMM DD, yyyy',
+                        displayFormats: {
+                            day: 'dd',
+                        },
+                    },
+                },
+            ],
+            yAxes: [
+                {
+                    ticks: {
+                        beginAtZero: true,
+                        maxTicksLimit: 7,
+                        stepSize: Math.ceil(500 / 10),
+                        max: max + 100,
+                    },
+                },
+            ],
+        },
+        elements: {
+            point: {
+                radius: new Date().getDate() === 1 ? 5 : 0,
+                hitRadius: 10,
+                hoverRadius: 4,
+                hoverBorderWidth: 4,
+            },
+        },
+        plugins: {
+            datalabels: {
+                display: false,
+            },
+        },
+    };
+
+    return { chartData, mainChartOpts };
 }
 export default useOrderReport;
