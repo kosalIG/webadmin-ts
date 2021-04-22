@@ -5,9 +5,13 @@ const DashboardContainer = React.lazy(() => import('containers/DashboardContaine
 const DashboardPickupDriver = React.lazy(() => import('containers/DashboardPickupDriver'));
 const DashboardTransportingDriver = React.lazy(() => import('containers/DashboardTransportingDriver'));
 
+// RIDER
+const RiderContainer = React.lazy(() => import('containers/RiderContainer'));
+
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
+    // Dashboard
     {
         id: 'dashboard',
         path: '/dashboard',
@@ -28,6 +32,14 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Transport Driver',
         component: DashboardTransportingDriver,
+    },
+    // RIDER
+    {
+        id: 'riderContainer',
+        path: '/rider',
+        exact: true,
+        name: 'Rriver',
+        component: RiderContainer,
     },
 ];
 
