@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import axios from 'axios';
 import { AppCont } from 'util/appContext';
 import { UserLogin } from 'util/interface';
@@ -11,9 +10,9 @@ interface Hoc {
 function wrapComponent(Components: React.FC<Hoc>): React.FC {
     const childComponent = () => {
         const [user, setUser] = useState<any>(null);
-        const [isAuth, setIsAuth] = useState<boolean>(true);
+        const [isAuth, setIsAuth] = useState<boolean>(false);
 
-        useEffect(() => {
+        useMemo(() => {
             const jUser = localStorage.getItem('user');
             if (jUser) {
                 setUser(JSON.parse(jUser));
