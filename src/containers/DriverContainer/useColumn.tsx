@@ -104,7 +104,7 @@ function useColum(
             render: function action(id: string, rec: any) {
                 return (
                     <Div>
-                        <View to={`/rider/${id}`} navkey="WEB:DRIVER:READ_DETAIL" />
+                        <View to={`/driver/${id}`} navkey="WEB:DRIVER:READ_DETAIL" />
                         <TopDriver useId={id} fullName={rec?.fullName} />
                         <Delete navkey="WEB:DRIVER:DELETE" onConfirm={() => onDelete(id)} />
                     </Div>

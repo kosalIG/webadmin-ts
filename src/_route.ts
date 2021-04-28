@@ -11,6 +11,7 @@ const RiderDetail = React.lazy(() => import('containers/RiderDetail'));
 
 // DRIVER
 const DriverContainer = React.lazy(() => import('containers/DriverContainer'));
+const DriverDetail = React.lazy(() => import('containers/DriverDetail'));
 
 // ============================================================================ ROUTE ::
 
@@ -59,6 +60,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Driver',
         component: DriverContainer,
+    },
+    {
+        id: 'driverDetail',
+        path: '/driver/:id',
+        exact: true,
+        name: 'Driver Detail',
+        component: DriverDetail,
     },
 ];
 
