@@ -13,7 +13,7 @@ const WrapContent = styled(Content)`
     position: relative;
     top: 65px;
     max-height: 95vh !important;
-    padding: 15px;
+    padding: 10px;
     z-index: 9;
     overflow-y: auto;
 `;
