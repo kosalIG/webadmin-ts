@@ -1,24 +1,72 @@
 import React from 'react';
 import { PropRoute } from 'util/interface';
 // ============================================================================ COMPONENT ::
-const Dashboard = React.lazy(() => import('containers/Dashboard'));
+const DashboardContainer = React.lazy(() => import('containers/DashboardContainer'));
+const DashboardPickupDriver = React.lazy(() => import('containers/DashboardPickupDriver'));
+const DashboardTransportingDriver = React.lazy(() => import('containers/DashboardTransportingDriver'));
+
+// RIDER
+const RiderContainer = React.lazy(() => import('containers/RiderContainer'));
+const RiderDetail = React.lazy(() => import('containers/RiderDetail'));
+
+// DRIVER
+const DriverContainer = React.lazy(() => import('containers/DriverContainer'));
+const DriverDetail = React.lazy(() => import('containers/DriverDetail'));
 
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
+    // Dashboard
     {
         id: 'dashboard',
         path: '/dashboard',
         exact: true,
         name: 'Dashboard',
-        component: Dashboard,
+        component: DashboardContainer,
     },
     {
-        id: 'dashboard1',
-        path: '/dashboard1',
+        id: 'dashboardPickupDriver',
+        path: '/dashboard/pickup-driver',
         exact: true,
-        name: 'Dashboard',
-        component: Dashboard,
+        name: 'Pickup Driver',
+        component: DashboardPickupDriver,
+    },
+    {
+        id: 'dashboardTransportDriver',
+        path: '/dashboard/transport-driver',
+        exact: true,
+        name: 'Transport Driver',
+        component: DashboardTransportingDriver,
+    },
+    // RIDER
+    {
+        id: 'riderContainer',
+        path: '/rider',
+        exact: true,
+        name: 'Rider',
+        component: RiderContainer,
+    },
+    {
+        id: 'riderDetail',
+        path: '/rider/:id',
+        exact: true,
+        name: 'Rider Detail',
+        component: RiderDetail,
+    },
+    // Driver
+    {
+        id: 'driver',
+        path: '/driver',
+        exact: true,
+        name: 'Driver',
+        component: DriverContainer,
+    },
+    {
+        id: 'driverDetail',
+        path: '/driver/:id',
+        exact: true,
+        name: 'Driver Detail',
+        component: DriverDetail,
     },
 ];
 

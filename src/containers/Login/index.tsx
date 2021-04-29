@@ -20,7 +20,8 @@ const Index: React.FC = () => {
         }
     }, [data]);
 
-    if (isAuth) return <Redirect to="/" />;
+    if (isAuth) return <Redirect to="/dashboard" />;
+
     return <LoginFrom loading={loading} onFinish={handleLogin} />;
 };
 
