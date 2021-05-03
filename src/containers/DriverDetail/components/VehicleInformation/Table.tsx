@@ -5,7 +5,7 @@ const na = <div style={{ color: 'gray' }}>n/a</div>;
 const TextRight = styled.td`
     text-align: right;
 `;
-const Table: React.FC<{ driverObj: any }> = ({ driverObj }) => {
+const Table: React.FC<{ driverObj: any; colorName: any }> = ({ driverObj, colorName }) => {
     return (
         <table style={{ width: '100%', marginTop: 10 }}>
             <tbody>
@@ -27,7 +27,7 @@ const Table: React.FC<{ driverObj: any }> = ({ driverObj }) => {
                 </tr>
                 <tr>
                     <td>Color: </td>
-                    <TextRight>{driverObj?.color || na}</TextRight>
+                    <TextRight>{colorName?.name || na}</TextRight>
                 </tr>
             </tbody>
         </table>

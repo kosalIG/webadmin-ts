@@ -25,6 +25,13 @@ const route: PropRoute[] = [
         component: DashboardContainer,
     },
     {
+        id: 'dashboards',
+        path: '/',
+        exact: true,
+        name: 'Dashboard',
+        component: DashboardContainer,
+    },
+    {
         id: 'dashboardPickupDriver',
         path: '/dashboard/pickup-driver',
         exact: true,

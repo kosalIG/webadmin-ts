@@ -7,8 +7,7 @@ const authKey =
         : 'P9qLsaAmV7Ru1PwguuwSj2EthPdqHMEF';
 
 // Base URL
-const baseUrl =
-    process.env.NODE_ENV === 'development' ? 'https://gateway.dev.qwiq.io' : 'https://gateway.staging.qwiq.io';
+const baseUrl = process.env.NODE_ENV === 'development' ? 'https://gateway.dev.qwiq.io' : 'https://gateway.dev.qwiq.io';
 
 // API URL
 const serviceAuthenticate = `${baseUrl}/service-authenticate`;
@@ -21,6 +20,8 @@ const v = 'v1';
 const qwiqPayment = `${baseUrl}/service-payment/${v}`;
 const qwiqOrder = `${baseUrl}/service-order/${v}`;
 const qwiqFeedback = `${baseUrl}/service-feedback/${v}`;
+const qwiqWallet = `${baseUrl}/service-wallet/${v}`;
+const s3Url = 'https://qwiq-dev.s3.ap-southeast-1.amazonaws.com/';
 
 // Graph QL Header
 const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -53,4 +54,19 @@ const serviceFeedback = new ApolloClient({
     link: concat(authMiddleware, new HttpLink({ uri: qwiqFeedback })),
 });
 
-export { authKey, serviceAuthenticate, serviceProxy, servicePayment, serviceOrder, serviceFeedback };
+// SERVICE WALLET ==========================================================
+const serviceWallet = new ApolloClient({
+    cache: new InMemoryCache({ addTypename: false }),
+    link: concat(authMiddleware, new HttpLink({ uri: qwiqWallet })),
+});
+
+export {
+    authKey,
+    serviceAuthenticate,
+    serviceProxy,
+    servicePayment,
+    serviceOrder,
+    serviceFeedback,
+    s3Url,
+    serviceWallet,
+};
