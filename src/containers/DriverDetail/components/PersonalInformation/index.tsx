@@ -1,9 +1,15 @@
 import React from 'react';
-import { Divider, Button } from 'antd';
+import { Divider } from 'antd';
 import styled from 'styled-components';
-import { EditFilled } from '@ant-design/icons';
 import { color } from 'styles/constants';
 import Table from './Table';
+import { DriverData, UpdateDriver } from '../../interface';
+
+import Edit from './PersonalModal';
+interface PersonalProps {
+    driverDetail: DriverData | null;
+    updateDriver: UpdateDriver;
+}
 
 const About = styled.div`
     font-size: 11px;
@@ -19,22 +25,19 @@ const Flex = styled.div`
     display: flex;
     justify-content: space-between;
 `;
-const Index: React.FC = () => {
+
+const Index: React.FC<PersonalProps> = ({ driverDetail, updateDriver }) => {
     return (
-        <div>
+        <div style={{ marginTop: 36 }}>
             <Divider style={{ margin: 0 }} plain orientation="left">
                 <About>About</About>
             </Divider>
             <Flex>
                 <Personal>Personal Information</Personal>
-                <div>
-                    <Button icon={<EditFilled />} type="primary" size="small">
-                        Edit
-                    </Button>
-                </div>
+                <Edit driverDetail={driverDetail} updateDriver={updateDriver} />
             </Flex>
             <div>
-                <Table driverObj={{}} />
+                <Table driverObj={driverDetail} />
             </div>
         </div>
     );

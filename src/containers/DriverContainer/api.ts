@@ -58,7 +58,6 @@ export function useGetDriver(): {
 
     // FILTER DRIVER BY VERIFY TYPE
     function onChange(filters: any) {
-        console.log(filters?.driverInfo);
         // Verify Driver
         if (!filters?.driverInfo) {
             setqString((qSt) => ({ ...qSt, verifyDriverLicense: undefined }));
