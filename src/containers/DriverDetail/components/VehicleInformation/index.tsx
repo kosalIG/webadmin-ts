@@ -1,11 +1,16 @@
 import React from 'react';
-import { Divider, Button } from 'antd';
+import { Divider } from 'antd';
 import styled from 'styled-components';
-import { EditFilled } from '@ant-design/icons';
 import { color } from 'styles/constants';
 import Table from './Table';
-
-const About = styled.div`
+import { DriverData, UpdateDriver, VehicleModel } from '../../interface';
+import VehicleUpdate from './VehicleModal';
+interface VehicleProps {
+    driverDetail: DriverData | null;
+    updateDriver: UpdateDriver;
+    vehicleModel: VehicleModel;
+}
+const Vehicle = styled.div`
     font-size: 11px;
     font-weight: bold;
     color: ${color.mute};
@@ -19,22 +24,21 @@ const Flex = styled.div`
     display: flex;
     justify-content: space-between;
 `;
-const Index: React.FC = () => {
+
+const Index: React.FC<VehicleProps> = ({ driverDetail, updateDriver, vehicleModel }) => {
+    const colorName =
+        updateDriver?.colorRecords?.find((item: any) => item.id === driverDetail?.driverInfo?.colorId) || {};
     return (
         <div>
             <Divider style={{ margin: 0 }} plain orientation="left">
-                <About>Vehicle </About>
+                <Vehicle>Vehicle </Vehicle>
             </Divider>
             <Flex>
                 <Personal>Vehicle Information</Personal>
-                <div>
-                    <Button icon={<EditFilled />} type="primary" size="small">
-                        Edit
-                    </Button>
-                </div>
+                <VehicleUpdate driverDetail={driverDetail} updateDriver={updateDriver} vehicleModel={vehicleModel} />
             </Flex>
             <div>
-                <Table driverObj={{}} />
+                <Table colorName={colorName} driverObj={driverDetail} />
             </div>
         </div>
     );
