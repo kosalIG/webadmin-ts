@@ -31,13 +31,7 @@ const Index: React.FC = () => {
                 rowKey={(e: any) => e.id}
                 dataSource={results?.map((e: any, idx: number) => ({ ...e, idx: idx + 1 }))}
             />
-            <Pagination
-                metadata={metadata}
-                onPagin={(offset, limit) => {
-                    setqString({ ...qString, limit, offset });
-                    console.log(limit, offset);
-                }}
-            />
+            <Pagination metadata={metadata} onPagin={(offset, limit) => setqString({ ...qString, limit, offset })} />
         </Card>
     );
 };

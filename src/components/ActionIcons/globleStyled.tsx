@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { themeColor, color } from 'styles/constants';
-import { EyeOutlined, DeleteOutlined, DollarCircleOutlined } from '@ant-design/icons';
+import { EyeOutlined, DeleteOutlined, DollarCircleOutlined, EditOutlined } from '@ant-design/icons';
 
 export const ViewIcon = styled(EyeOutlined)`
     color: ${themeColor.primary} !important;
@@ -37,6 +37,19 @@ export const TopupIcon = styled(DollarCircleOutlined)`
         padding: 3px;
         color: ${color.white} !important;
         background-color: ${themeColor.success} !important;
+        border-radius: 3px;
+    }
+`;
+
+export const EditIcon = styled(EditOutlined)`
+    color: ${themeColor.warning} !important;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 3px;
+    &: hover {
+        padding: 3px;
+        color: ${color.white} !important;
+        background-color: ${themeColor.warning} !important;
         border-radius: 3px;
     }
 `;
