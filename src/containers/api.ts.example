@@ -1,0 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useEffect, useMemo, useState } from 'react';
+import { useAxios, AxiosProps } from 'util/useAxios';
+
+const { instance } = useAxios();
+export function useGetSimple(): any {
+    async function getGroup(params: any) {
+        // setLoading(true);
+        const config: AxiosProps = { url: '/admin/group', params };
+        const { result } = await instance({ config });
+        if (result) {
+            // setData(result);
+        }
+        // setLoading(false);
+    }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardOutlined, TeamOutlined, CarOutlined } from '@ant-design/icons';
+import { DashboardOutlined, TeamOutlined, CarOutlined, AppstoreAddOutlined } from '@ant-design/icons';
 import { NavProps } from 'util/interface';
 
 const nav: Array<NavProps> = [
@@ -20,6 +20,12 @@ const nav: Array<NavProps> = [
         path: '/driver',
         name: 'Driver',
         icon: <CarOutlined />,
+    },
+    {
+        id: 4,
+        path: '/group',
+        name: 'Driver Group',
+        icon: <AppstoreAddOutlined />,
     },
 ];
 

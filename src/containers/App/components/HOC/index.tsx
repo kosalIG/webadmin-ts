@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import axios from 'axios';
 import { AppCont } from 'util/appContext';
 import { UserLogin } from 'util/interface';
+import { serviceAuthenticate, authKey } from 'env';
 
 interface Hoc {
     user?: UserLogin | null;
@@ -46,8 +47,21 @@ function wrapComponent(Components: React.FC<Hoc>): React.FC {
             setIsAuth(false);
         }
 
+        const imageOption = {
+            action: `${serviceAuthenticate}/upload/image?type=QWIQ_image`,
+            name: '',
+            method: 'POST',
+            headers: {
+                'X-APP-BUNDLE-ID': 'com.netobjex.qwiq.driver / com.netobjex.qwiq.user',
+                'X-API-AUTH-KEY': authKey,
+                'Kong-Authorization': user?.kongToken ? `Bearer ${user?.kongToken}` : '',
+                'X-Auth-Key': user?.token,
+            },
+        };
+
         // PROVIDER PROPS
         const props = {
+            imageOption,
             user,
             isAuth,
             login,

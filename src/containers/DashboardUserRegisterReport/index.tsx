@@ -19,7 +19,6 @@ const Index: React.FC = () => {
     useEffect(() => {
         getUser(qString);
     }, [qString]);
-    console.log(lineData);
     return (
         <Card style={{ cursor: 'default' }} hoverable title="User Register report" type="inner">
             <Spin spinning={loading}>

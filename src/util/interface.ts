@@ -21,6 +21,7 @@ export interface UserLogin {
 }
 
 export interface AppContext {
+    imageOption: any;
     user?: UserLogin | null;
     isAuth: boolean;
     login: (data: any) => void;
