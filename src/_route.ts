@@ -13,6 +13,10 @@ const RiderDetail = React.lazy(() => import('containers/RiderDetail'));
 const DriverContainer = React.lazy(() => import('containers/DriverContainer'));
 const DriverDetail = React.lazy(() => import('containers/DriverDetail'));
 
+// DRIVER GROUP
+const GroupDriverContainer = React.lazy(() => import('containers/GroupDriverContainer'));
+const GroupDriverDetail = React.lazy(() => import('containers/GroupDriverDetail'));
+
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -74,6 +78,21 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Driver Detail',
         component: DriverDetail,
+    },
+    // Group Driver
+    {
+        id: 'driverGroup',
+        path: '/group',
+        exact: true,
+        name: 'Driver Group',
+        component: GroupDriverContainer,
+    },
+    {
+        id: 'driverGroupDetail',
+        path: '/group/:id',
+        exact: true,
+        name: 'Driver Detail',
+        component: GroupDriverDetail,
     },
 ];
 
