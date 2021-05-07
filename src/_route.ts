@@ -17,6 +17,9 @@ const DriverDetail = React.lazy(() => import('containers/DriverDetail'));
 const GroupDriverContainer = React.lazy(() => import('containers/GroupDriverContainer'));
 const GroupDriverDetail = React.lazy(() => import('containers/GroupDriverDetail'));
 
+// REFERRAL
+const ReferralContainer = React.lazy(() => import('containers/ReferralContainer'));
+const ReferralDetail = React.lazy(() => import('containers/ReferralDetail'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -93,6 +96,22 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Driver Detail',
         component: GroupDriverDetail,
+    },
+
+    // Referral
+    {
+        id: 'referral',
+        path: '/referral',
+        exact: true,
+        name: 'Referral',
+        component: ReferralContainer,
+    },
+    {
+        id: 'referralDetail',
+        path: '/referral/:id/:type',
+        exact: true,
+        name: 'Referral',
+        component: ReferralDetail,
     },
 ];
 
