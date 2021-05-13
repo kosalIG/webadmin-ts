@@ -23,6 +23,10 @@ const ReferralDetail = React.lazy(() => import('containers/ReferralDetail'));
 
 // DRIVER LOCATION
 const LocationDriver = React.lazy(() => import('containers/LocationDriver'));
+
+// RATING
+const RatingContainer = React.lazy(() => import('containers/RatingContainer'));
+const RatingDetail = React.lazy(() => import('containers/RatingDetail'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -123,6 +127,21 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Driver Location',
         component: LocationDriver,
+    },
+    // Rating
+    {
+        id: 'rating',
+        path: '/rating',
+        exact: true,
+        name: 'Rating',
+        component: RatingContainer,
+    },
+    {
+        id: 'ratingDetail',
+        path: '/rating/:id',
+        exact: true,
+        name: 'Rating detail',
+        component: RatingDetail,
     },
 ];
 

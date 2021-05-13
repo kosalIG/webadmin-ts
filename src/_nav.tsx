@@ -6,6 +6,7 @@ import {
     AppstoreAddOutlined,
     ApartmentOutlined,
     CompassOutlined,
+    StarOutlined,
 } from '@ant-design/icons';
 import { NavProps } from 'util/interface';
 
@@ -45,6 +46,12 @@ const nav: Array<NavProps> = [
         path: '/location-driver',
         name: 'Driver Location',
         icon: <CompassOutlined />,
+    },
+    {
+        id: 7,
+        path: '/rating',
+        name: 'Rating',
+        icon: <StarOutlined />,
     },
 ];
 
