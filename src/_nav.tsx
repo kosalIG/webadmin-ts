@@ -5,6 +5,7 @@ import {
     CarOutlined,
     AppstoreAddOutlined,
     ApartmentOutlined,
+    CompassOutlined,
 } from '@ant-design/icons';
 import { NavProps } from 'util/interface';
 
@@ -38,6 +39,12 @@ const nav: Array<NavProps> = [
         path: '/referral',
         name: 'Referral',
         icon: <ApartmentOutlined />,
+    },
+    {
+        id: 6,
+        path: '/location-driver',
+        name: 'Driver Location',
+        icon: <CompassOutlined />,
     },
 ];
 
