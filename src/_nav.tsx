@@ -67,6 +67,12 @@ const nav: Array<NavProps> = [
                 name: 'Promotion',
                 icon: <DoubleRightOutlined />,
             },
+            {
+                id: 1,
+                path: '/promotion/coupon',
+                name: 'Coupon',
+                icon: <DoubleRightOutlined />,
+            },
         ],
     },
 ];
