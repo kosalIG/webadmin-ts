@@ -7,6 +7,8 @@ import {
     ApartmentOutlined,
     CompassOutlined,
     StarOutlined,
+    NotificationOutlined,
+    DoubleRightOutlined,
 } from '@ant-design/icons';
 import { NavProps } from 'util/interface';
 
@@ -52,6 +54,20 @@ const nav: Array<NavProps> = [
         path: '/rating',
         name: 'Rating',
         icon: <StarOutlined />,
+    },
+    {
+        id: 8,
+        path: '/promotion',
+        name: 'Promotion',
+        icon: <NotificationOutlined />,
+        children: [
+            {
+                id: 1,
+                path: '/promotion/promotion',
+                name: 'Promotion',
+                icon: <DoubleRightOutlined />,
+            },
+        ],
     },
 ];
 

@@ -14,7 +14,6 @@ export function useGetRating(): {
 } {
     const { id } = useParams<{ id: string }>() || {};
     const { state } = useLocation<{ state: ProfileProps }>() || {};
-    console.log(useLocation());
     const [pagin, setPagin] = useState<Metadata>({ limit: 10, offset: 0 });
 
     // GET DATA FROM SERVER

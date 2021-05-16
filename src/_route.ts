@@ -27,6 +27,9 @@ const LocationDriver = React.lazy(() => import('containers/LocationDriver'));
 // RATING
 const RatingContainer = React.lazy(() => import('containers/RatingContainer'));
 const RatingDetail = React.lazy(() => import('containers/RatingDetail'));
+
+// PROMOTION
+const Promotion = React.lazy(() => import('containers/Promotion'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -142,6 +145,15 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Rating detail',
         component: RatingDetail,
+    },
+
+    // Promotion
+    {
+        id: 'promotion',
+        path: '/promotion/promotion',
+        exact: true,
+        name: 'Promotion',
+        component: Promotion,
     },
 ];
 
