@@ -1,18 +1,18 @@
 import React from 'react';
 import { Card, Table } from 'antd';
-
+import '@pathofdev/react-tag-input/build/index.css';
 import useColum from './useColumn';
 import { useGetPromotion } from './api';
 import Pagination from 'components/Pagination';
 import AddNew from './components/AddNew';
-import PromotionWhitelist from './components/PromotionWhitelist';
+import Expand from './components/Expand';
 
 const index: React.FC = () => {
     const { dataObj, loading, pagin, onFilter, onRefetch } = useGetPromotion();
     const { columns } = useColum({ onRefetch });
 
     return (
-        <Card title="Promotion" type="inner">
+        <Card title="Generated Coupon" type="inner">
             <AddNew onRefetch={onRefetch} />
             <Table
                 size="middle"
@@ -25,7 +25,7 @@ const index: React.FC = () => {
                 columns={columns}
                 expandable={{
                     expandedRowRender: function expand(val: any) {
-                        return <PromotionWhitelist id={val?.id} />;
+                        return <Expand onRefetch={onRefetch} data={val} />;
                     },
                 }}
                 scroll={{ x: 3000 }}
