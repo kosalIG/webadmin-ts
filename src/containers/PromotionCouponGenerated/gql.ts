@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const GET_ALL_PROMOTION = gql`
+export const GET_ALL_COUPON = gql`
     query GetPromotions($filter: PromotionFilter!) {
         getPromotions(filter: $filter) {
             data {
@@ -21,22 +21,15 @@ export const GET_ALL_PROMOTION = gql`
                 maxAmount
                 amountPerUsed
                 status
-                promotionCoupon {
-                    totalUsed
-                    totalUsedPerUser
-                    totalUsedPerUserPerDay
-                }
                 promotionCoupons {
                     id
                     coupon
                     status
                 }
-                promotionWhitelists {
-                    id
-                    fullName
-                    countryCode
-                    localNumber
-                    mobileNumber
+                promotionCoupon {
+                    totalUsed
+                    totalUsedPerUser
+                    totalUsedPerUserPerDay
                 }
             }
             metadata {
@@ -50,7 +43,6 @@ export const GET_ALL_PROMOTION = gql`
 
 export const ADD_COUPON = gql`
     mutation CreatePromotion(
-        $coupon: [String!]!
         $name: String!
         $title: String!
         $label: String!
@@ -64,6 +56,7 @@ export const ADD_COUPON = gql`
         $totalUsed: Int!
         $totalUsedPerUser: Int!
         $totalUsedPerUserPerDay: Int!
+        $totalGenerated: Int!
         $expiredDays: Int!
         $maxAmount: Float!
         $amountPerUsed: Float!
@@ -74,13 +67,13 @@ export const ADD_COUPON = gql`
     ) {
         createPromotion(
             input: {
-                isGenerated: false
+                isGenerated: true
                 name: $name
                 title: $title
                 label: $label
-                coupon: $coupon
+                coupon: []
                 value: $value
-                totalGenerated: 0
+                totalGenerated: $totalGenerated
                 terms: $terms
                 description: $description
                 sms: $sms
@@ -176,36 +169,5 @@ export const UPDATE_STATUS = gql`
         updatePromotionCouponStatus(id: $id) {
             id
         }
-    }
-`;
-// ADD WHITE LIST
-export const ADD_WHITELIST = gql`
-    mutation AddPromotionWhitelist($id: Int!, $whitelist: [NewPromotionWhitelist!]!) {
-        addPromotionWhitelist(promotionID: $id, whitelist: $whitelist) {
-            id
-        }
-    }
-`;
-
-// UPDATE WHITE LIST
-export const UPDATE_WHITELIST = gql`
-    mutation UpdatePromotionWhitelist($input: NewPromotionWhitelist!) {
-        updatePromotionWhitelist(input: $input) {
-            id
-        }
-    }
-`;
-
-// DELETE SINGLE WHITE LIST
-export const DELETE_SINGLE = gql`
-    mutation DeletePromotionWhitelist($id: Int!) {
-        deletePromotionWhitelist(id: $id)
-    }
-`;
-
-// DELETE ALL WHITE LIST
-export const DELETE_ALL = gql`
-    mutation DeletePromotionWhitelists($proId: Int!) {
-        deleteAllPromotionWhitelists(promotionID: $proId)
     }
 `;

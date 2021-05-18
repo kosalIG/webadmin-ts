@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Form, FormProps, Row, Col, Input, Tooltip, Select, DatePicker, Radio } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import moment from 'moment';
-import ReactTagInput from '@pathofdev/react-tag-input';
 import styled from 'styled-components';
 import InputNumber from 'components/InputNumber';
-import FormList from './FormList';
 const DivFlex = styled.div`
     display: flex;
 `;
@@ -21,11 +19,9 @@ const layout = {
 interface FormUI extends FormProps {
     valueType?: string;
     isUpdate?: boolean;
-    tags: string[];
-    setTags: (val: string[]) => void;
 }
 
-const Index: React.FC<FormUI> = ({ form, valueType, tags, isUpdate = false, setTags, onFinish }) => {
+const Index: React.FC<FormUI> = ({ form, valueType, isUpdate = false, onFinish }) => {
     const [isValueType, setIsValueType] = useState(false);
 
     useEffect(() => {
@@ -57,21 +53,6 @@ const Index: React.FC<FormUI> = ({ form, valueType, tags, isUpdate = false, setT
         </Form.Item>
     );
 
-    // Check coupon code Duplicates
-    function checkValue(rec: any[]) {
-        return rec.filter((item, idx) => rec.indexOf(item) !== idx);
-    }
-
-    // VALIDATE CP CODE
-    function validate({ rec = [] }) {
-        const pattern = new RegExp('[!@#$%^&*(),.?":{}|<> ក-\u17fe᧠-᧾]', 'gi');
-        const errleng: any = [];
-        rec.map((r, idx: number) => {
-            if (pattern.test(r)) errleng.push(idx + 1);
-            return null;
-        });
-        return errleng;
-    }
     return (
         <Form {...layout} form={form} onFinish={onFinish} scrollToFirstError>
             <Row gutter={{ xs: 8 }}>
@@ -317,46 +298,17 @@ const Index: React.FC<FormUI> = ({ form, valueType, tags, isUpdate = false, setT
                         </Radio.Group>
                     </Form.Item>
                 </Col>
-                <Col md={12} sm={24}>
-                    <Form.Item
-                        label="Coupon code"
-                        name="coupon"
-                        required
-                        rules={[
-                            () => ({
-                                validator(_, val) {
-                                    const err = 'Coupon code is reqired';
-                                    if (isUpdate) return Promise.resolve();
-                                    if (!val) return Promise.reject(err);
-                                    if (val.length) {
-                                        const eLength = validate({ rec: val });
-                                        const tErr = 'Not allow space & special characters';
-                                        if (eLength.length) {
-                                            return Promise.reject(tErr);
-                                        }
-                                        // Validate Duplicate
-                                        const dup = checkValue(val);
-                                        const dupErr = 'Not allow duplicates';
-                                        if (dup.length) return Promise.reject(dupErr);
-
-                                        return Promise.resolve();
-                                    }
-                                    return Promise.reject(err);
-                                },
-                            }),
-                        ]}
-                    >
-                        <ReactTagInput
-                            editable
-                            readOnly={isUpdate}
-                            tags={tags}
-                            removeOnBackspace
-                            onChange={(newTags: any[]) => {
-                                setTags(newTags);
-                            }}
-                        />
-                    </Form.Item>
-                </Col>
+                {!isUpdate && (
+                    <Col md={12} sm={24}>
+                        <Form.Item
+                            label="Total Generated"
+                            name="totalGenerated"
+                            rules={[{ required: true, type: 'number' }]}
+                        >
+                            <InputNumber min={2} placeholder="Total Generated" />
+                        </Form.Item>
+                    </Col>
+                )}
                 <Col md={12} sm={24}>
                     <Form.Item label="Terms" name="terms" rules={[{ required: true }]}>
                         <TextArea placeholder="User Term" rows={3} />
@@ -384,7 +336,6 @@ const Index: React.FC<FormUI> = ({ form, valueType, tags, isUpdate = false, setT
                     </Form.Item>
                 </Col>
             </Row>
-            <FormList />
         </Form>
     );
 };

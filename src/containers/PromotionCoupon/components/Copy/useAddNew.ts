@@ -6,7 +6,15 @@ import { Modals } from '../../interface';
 import { useAddCoupon } from '../../api';
 import { Metadata } from '../../interface';
 
-export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: Metadata) => void }): Modals => {
+export const useAddNew = ({
+    form,
+    dataObj,
+    onRefetch,
+}: {
+    form: any;
+    dataObj: any;
+    onRefetch: (meta?: Metadata) => void;
+}): Modals => {
     const [visible, setVisible] = useState(false);
     const [tags, setTags] = useState<string[]>([]);
     const { createPromotion, data, loading } = useAddCoupon();
@@ -26,14 +34,14 @@ export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: M
 
     // Show modal
     const onShowModal = (): void => {
+        const { startedAt, endedAt, promotionCoupon, ...newObj } = dataObj;
         setVisible(true);
         form.setFieldsValue({
-            valueType: `PERCENTAGE`,
-            status: `INACTIVE`,
-            startedAt: moment(),
+            ...newObj,
+            ...promotionCoupon,
+            coupon: [],
+            startedAt: moment(startedAt),
             endedAt: moment(endedAt),
-            sms: '',
-            name: '',
         });
     };
 

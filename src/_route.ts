@@ -31,6 +31,8 @@ const RatingDetail = React.lazy(() => import('containers/RatingDetail'));
 // PROMOTION
 const Promotion = React.lazy(() => import('containers/Promotion'));
 const PromotionCoupon = React.lazy(() => import('containers/PromotionCoupon'));
+const PromotionCouponGenerated = React.lazy(() => import('containers/PromotionCouponGenerated'));
+const PromotionReferral = React.lazy(() => import('containers/PromotionReferral'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -162,6 +164,20 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Promotion',
         component: PromotionCoupon,
+    },
+    {
+        id: 'promotionCouponGenerated',
+        path: '/promotion/generated-coupon',
+        exact: true,
+        name: 'Coupon Genterated',
+        component: PromotionCouponGenerated,
+    },
+    {
+        id: 'promotionReferral',
+        path: '/promotion/referral',
+        exact: true,
+        name: 'Referral',
+        component: PromotionReferral,
     },
 ];
 

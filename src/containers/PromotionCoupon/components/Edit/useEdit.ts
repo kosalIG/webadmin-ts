@@ -3,13 +3,21 @@ import moment from 'moment';
 import { message } from 'antd';
 
 import { Modals } from '../../interface';
-import { useAddCoupon } from '../../api';
+import { useUpdateCoupon } from '../../api';
 import { Metadata } from '../../interface';
 
-export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: Metadata) => void }): Modals => {
+export const useEdit = ({
+    form,
+    dataObj,
+    onRefetch,
+}: {
+    form: any;
+    dataObj: any;
+    onRefetch: (meta?: Metadata) => void;
+}): Modals => {
     const [visible, setVisible] = useState(false);
     const [tags, setTags] = useState<string[]>([]);
-    const { createPromotion, data, loading } = useAddCoupon();
+    const { updatePromotion, data, loading } = useUpdateCoupon();
 
     const endedAt = new Date();
     endedAt.setHours(23);
@@ -18,7 +26,7 @@ export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: M
 
     useEffect(() => {
         if (data) {
-            message.success('Add new successfully');
+            message.success('Update  successfully');
             onRefetch({ limit: 10, offset: 0 });
             onCancel();
         }
@@ -26,14 +34,20 @@ export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: M
 
     // Show modal
     const onShowModal = (): void => {
+        const { startedAt, endedAt, promotionCoupons, promotionCoupon, ...newObj } = dataObj;
         setVisible(true);
+
+        const tag = promotionCoupons?.map((t: any) => {
+            const { coupon } = t;
+            return coupon;
+        });
+        setTags(tag);
+
         form.setFieldsValue({
-            valueType: `PERCENTAGE`,
-            status: `INACTIVE`,
-            startedAt: moment(),
+            ...newObj,
+            ...promotionCoupon,
+            startedAt: moment(startedAt),
             endedAt: moment(endedAt),
-            sms: '',
-            name: '',
         });
     };
 
@@ -51,7 +65,7 @@ export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: M
 
     // Submit success
     const onFinish = (val: any): void => {
-        createPromotion({
+        updatePromotion({
             variables: {
                 ...val,
                 maxAmount: val?.maxAmount || 0,
@@ -59,9 +73,10 @@ export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: M
                 totalUsedPerUser: val?.totalUsedPerUser || 0,
                 totalUsedPerUserPerDay: val?.totalUsedPerUserPerDay || 0,
                 expiredDays: val?.expiredDays || 0,
+                id: dataObj.id,
                 startedAt: new Date(val?.startedAt),
                 endedAt: new Date(val?.endedAt),
-                createdBy: '123',
+                updatedBy: '123',
             },
         });
     };

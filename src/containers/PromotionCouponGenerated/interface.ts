@@ -22,12 +22,10 @@ export interface UseGetPromotion {
 export interface Modals {
     visible: boolean;
     loading: boolean;
-    tags: string[];
     onShowModal: () => void;
     onCancel: () => void;
     onOk: () => void;
     onFinish: (value: any) => void;
-    setTags: (value: string[]) => void;
 }
 export interface EditForm {
     id: number;

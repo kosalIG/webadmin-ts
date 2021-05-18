@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { message } from 'antd';
-import { ADD_COUPON, GET_ALL_PROMOTION, UPDATE_COUPON, UPDATE_STATUS } from './gql';
+import { ADD_COUPON, GET_ALL_COUPON, UPDATE_COUPON, UPDATE_STATUS } from './gql';
 import { Data, UseGetPromotion, Metadata } from './interface';
-import { DELETE_ALL, DELETE_PROMOTION, DELETE_SINGLE, PUSH_NOTIFI } from './gql';
+import { DELETE_PROMOTION, PUSH_NOTIFI } from './gql';
 
 export function useGetPromotion(): UseGetPromotion {
     // STATE
     const initialState = {
-        qString: { limit: 10, offset: 0, isGenerated: false, type: 'COUPON' },
+        qString: { limit: 10, offset: 0, isGenerated: true, type: 'COUPON' },
     };
     const [qString, setQstring] = useState<any>(initialState.qString);
 
     // GET DATA FROM SERVER
-    const { data, loading, refetch } = useQuery(GET_ALL_PROMOTION, {
+    const { data, loading, refetch } = useQuery(GET_ALL_COUPON, {
         variables: { filter: { ...qString } },
     });
     const { getPromotions } = data || {};
@@ -98,25 +98,4 @@ export function useExpandCouponStatus(): { updatePromotionCouponStatus: (id: any
     }, [error]);
 
     return { data, updatePromotionCouponStatus };
-}
-export function useDeleteWhitelist(): { deletePromotionWhitelist: (variables: any) => void; data: any } {
-    const [deletePromotionWhitelist, { data, error }] = useMutation(DELETE_SINGLE);
-    useEffect(() => {
-        if (error) {
-            message.destroy();
-        }
-    }, [error]);
-
-    return { data, deletePromotionWhitelist };
-}
-
-export function useDeleteAllWhitelist(): { deleteAllPromotionWhitelists: (variables: any) => void; data: any } {
-    const [deleteAllPromotionWhitelists, { data, error }] = useMutation(DELETE_ALL);
-    useEffect(() => {
-        if (error) {
-            message.destroy();
-        }
-    }, [error]);
-
-    return { data, deleteAllPromotionWhitelists };
 }

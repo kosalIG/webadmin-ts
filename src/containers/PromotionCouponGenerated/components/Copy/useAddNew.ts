@@ -6,9 +6,16 @@ import { Modals } from '../../interface';
 import { useAddCoupon } from '../../api';
 import { Metadata } from '../../interface';
 
-export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: Metadata) => void }): Modals => {
+export const useAddNew = ({
+    form,
+    dataObj,
+    onRefetch,
+}: {
+    form: any;
+    dataObj: any;
+    onRefetch: (meta?: Metadata) => void;
+}): Modals => {
     const [visible, setVisible] = useState(false);
-    const [tags, setTags] = useState<string[]>([]);
     const { createPromotion, data, loading } = useAddCoupon();
 
     const endedAt = new Date();
@@ -26,21 +33,19 @@ export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: M
 
     // Show modal
     const onShowModal = (): void => {
+        const { startedAt, endedAt, promotionCoupon, ...newObj } = dataObj;
         setVisible(true);
         form.setFieldsValue({
-            valueType: `PERCENTAGE`,
-            status: `INACTIVE`,
-            startedAt: moment(),
+            ...newObj,
+            ...promotionCoupon,
+            startedAt: moment(startedAt),
             endedAt: moment(endedAt),
-            sms: '',
-            name: '',
         });
     };
 
     // hide modal
     const onCancel = (): void => {
         setVisible(false);
-        setTags([]);
         form.resetFields();
     };
 
@@ -68,12 +73,10 @@ export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: M
 
     return {
         visible,
-        tags,
         loading,
         onShowModal,
         onCancel,
         onOk,
         onFinish,
-        setTags,
     };
 };

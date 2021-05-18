@@ -7,7 +7,7 @@ import { Metadata } from '../../interface';
 
 const Index: React.FC<{ onRefetch: (meta?: Metadata) => void }> = ({ onRefetch }) => {
     const [form] = Form.useForm();
-    const { visible, tags, loading, onShowModal, onCancel, onFinish, onOk, setTags } = useAddNew({
+    const { visible, loading, onShowModal, onCancel, onFinish, onOk } = useAddNew({
         form,
         onRefetch,
     });
@@ -20,7 +20,7 @@ const Index: React.FC<{ onRefetch: (meta?: Metadata) => void }> = ({ onRefetch }
                 </Button>
             </div>
             <Modal
-                title="Add New - Coupon"
+                title="Add New - Coupon Generated"
                 visible={visible}
                 onCancel={onCancel}
                 width={1000}
@@ -28,7 +28,7 @@ const Index: React.FC<{ onRefetch: (meta?: Metadata) => void }> = ({ onRefetch }
                 onOk={onOk}
                 confirmLoading={loading}
             >
-                <FormUI form={form} onFinish={onFinish} tags={tags} setTags={setTags} />
+                <FormUI form={form} onFinish={onFinish} />
             </Modal>
         </div>
     );

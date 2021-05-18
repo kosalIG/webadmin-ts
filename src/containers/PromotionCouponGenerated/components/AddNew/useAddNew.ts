@@ -8,7 +8,6 @@ import { Metadata } from '../../interface';
 
 export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: Metadata) => void }): Modals => {
     const [visible, setVisible] = useState(false);
-    const [tags, setTags] = useState<string[]>([]);
     const { createPromotion, data, loading } = useAddCoupon();
 
     const endedAt = new Date();
@@ -40,7 +39,7 @@ export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: M
     // hide modal
     const onCancel = (): void => {
         setVisible(false);
-        setTags([]);
+
         form.resetFields();
     };
 
@@ -68,12 +67,10 @@ export const useAddNew = ({ form, onRefetch }: { form: any; onRefetch: (meta?: M
 
     return {
         visible,
-        tags,
         loading,
         onShowModal,
         onCancel,
         onOk,
         onFinish,
-        setTags,
     };
 };

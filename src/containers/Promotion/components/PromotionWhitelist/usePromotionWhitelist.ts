@@ -1,7 +1,7 @@
-import { useMutation } from '@apollo/client';
 import { useState, useEffect } from 'react';
-import { ADD_WHITELIST, UPDATE_WHITELIST } from 'containers/Promotion/gql';
+import { useMutation } from '@apollo/client';
 import { message } from 'antd';
+import { ADD_WHITELIST, UPDATE_WHITELIST } from 'containers/Promotion/gql';
 import { EditForm } from '../../interface';
 export function useAddPromotionWhitelist(id: number, onRefetch: (val?: any) => void): any {
     const [visible, setVisible] = useState(false);
