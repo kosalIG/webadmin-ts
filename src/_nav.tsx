@@ -87,6 +87,26 @@ const nav: Array<NavProps> = [
             },
         ],
     },
+    {
+        id: 9,
+        path: '/wallet',
+        name: 'Wallet',
+        icon: <NotificationOutlined />,
+        children: [
+            {
+                id: 1,
+                path: '/wallet/promotion',
+                name: 'Wallet-Promotion',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 2,
+                path: '/wallet/withdwraw',
+                name: 'Wallet-Withdraw',
+                icon: <DoubleRightOutlined />,
+            },
+        ],
+    },
 ];
 
 export default nav;

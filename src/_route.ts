@@ -33,6 +33,11 @@ const Promotion = React.lazy(() => import('containers/Promotion'));
 const PromotionCoupon = React.lazy(() => import('containers/PromotionCoupon'));
 const PromotionCouponGenerated = React.lazy(() => import('containers/PromotionCouponGenerated'));
 const PromotionReferral = React.lazy(() => import('containers/PromotionReferral'));
+
+// WALLET
+const WalletPromotion = React.lazy(() => import('containers/WalletPromotion'));
+const WalletPromotionDetail = React.lazy(() => import('containers/WalletPromotionDetail'));
+const WalletWithdraw = React.lazy(() => import('containers/WalletWithdraw'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -178,6 +183,27 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Referral',
         component: PromotionReferral,
+    },
+    {
+        id: 'walletPromotion',
+        path: '/wallet/promotion',
+        exact: true,
+        name: 'Wallet Promotion',
+        component: WalletPromotion,
+    },
+    {
+        id: 'walletPromotionDetail',
+        path: '/wallet/promotion/:id/:status',
+        exact: true,
+        name: 'Wallet Promotion',
+        component: WalletPromotionDetail,
+    },
+    {
+        id: 'walletWithdraw',
+        path: '/wallet/withdwraw',
+        exact: true,
+        name: 'Wallet Withdraw',
+        component: WalletWithdraw,
     },
 ];
 
