@@ -20,6 +20,24 @@ const GroupDriverDetail = React.lazy(() => import('containers/GroupDriverDetail'
 // REFERRAL
 const ReferralContainer = React.lazy(() => import('containers/ReferralContainer'));
 const ReferralDetail = React.lazy(() => import('containers/ReferralDetail'));
+
+// DRIVER LOCATION
+const LocationDriver = React.lazy(() => import('containers/LocationDriver'));
+
+// RATING
+const RatingContainer = React.lazy(() => import('containers/RatingContainer'));
+const RatingDetail = React.lazy(() => import('containers/RatingDetail'));
+
+// PROMOTION
+const Promotion = React.lazy(() => import('containers/Promotion'));
+const PromotionCoupon = React.lazy(() => import('containers/PromotionCoupon'));
+const PromotionCouponGenerated = React.lazy(() => import('containers/PromotionCouponGenerated'));
+const PromotionReferral = React.lazy(() => import('containers/PromotionReferral'));
+
+// WALLET
+const WalletPromotion = React.lazy(() => import('containers/WalletPromotion'));
+const WalletPromotionDetail = React.lazy(() => import('containers/WalletPromotionDetail'));
+const WalletWithdraw = React.lazy(() => import('containers/WalletWithdraw'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -112,6 +130,80 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Referral',
         component: ReferralDetail,
+    },
+    // Driver location
+    {
+        id: 'driverLocation',
+        path: '/location-driver',
+        exact: true,
+        name: 'Driver Location',
+        component: LocationDriver,
+    },
+    // Rating
+    {
+        id: 'rating',
+        path: '/rating',
+        exact: true,
+        name: 'Rating',
+        component: RatingContainer,
+    },
+    {
+        id: 'ratingDetail',
+        path: '/rating/:id',
+        exact: true,
+        name: 'Rating detail',
+        component: RatingDetail,
+    },
+
+    // Promotion
+    {
+        id: 'promotion',
+        path: '/promotion/promotion',
+        exact: true,
+        name: 'Promotion',
+        component: Promotion,
+    },
+    {
+        id: 'promotionCoupon',
+        path: '/promotion/coupon',
+        exact: true,
+        name: 'Promotion',
+        component: PromotionCoupon,
+    },
+    {
+        id: 'promotionCouponGenerated',
+        path: '/promotion/generated-coupon',
+        exact: true,
+        name: 'Coupon Genterated',
+        component: PromotionCouponGenerated,
+    },
+    {
+        id: 'promotionReferral',
+        path: '/promotion/referral',
+        exact: true,
+        name: 'Referral',
+        component: PromotionReferral,
+    },
+    {
+        id: 'walletPromotion',
+        path: '/wallet/promotion',
+        exact: true,
+        name: 'Wallet Promotion',
+        component: WalletPromotion,
+    },
+    {
+        id: 'walletPromotionDetail',
+        path: '/wallet/promotion/:id/:status',
+        exact: true,
+        name: 'Wallet Promotion',
+        component: WalletPromotionDetail,
+    },
+    {
+        id: 'walletWithdraw',
+        path: '/wallet/withdwraw',
+        exact: true,
+        name: 'Wallet Withdraw',
+        component: WalletWithdraw,
     },
 ];
 

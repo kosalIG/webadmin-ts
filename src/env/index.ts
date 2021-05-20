@@ -21,7 +21,9 @@ const qwiqPayment = `${baseUrl}/service-payment/${v}`;
 const qwiqOrder = `${baseUrl}/service-order/${v}`;
 const qwiqFeedback = `${baseUrl}/service-feedback/${v}`;
 const qwiqWallet = `${baseUrl}/service-wallet/${v}`;
+const qwiqLocation = `${baseUrl}/service-location/${v}`;
 const s3Url = 'https://qwiq-dev.s3.ap-southeast-1.amazonaws.com/';
+const googlekey = 'AIzaSyAMVYqdtOVbI7syYUe6i3dN3oqyA2Vh1c4';
 
 // Graph QL Header
 const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -60,6 +62,12 @@ const serviceWallet = new ApolloClient({
     link: concat(authMiddleware, new HttpLink({ uri: qwiqWallet })),
 });
 
+// SERVICE LOCATION ==========================================================
+const serviceLocation = new ApolloClient({
+    cache: new InMemoryCache({ addTypename: false }),
+    link: concat(authMiddleware, new HttpLink({ uri: qwiqLocation })),
+});
+
 export {
     authKey,
     serviceAuthenticate,
@@ -67,6 +75,8 @@ export {
     servicePayment,
     serviceOrder,
     serviceFeedback,
+    serviceLocation,
     s3Url,
     serviceWallet,
+    googlekey,
 };
