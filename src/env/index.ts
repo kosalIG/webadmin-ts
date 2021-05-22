@@ -17,11 +17,12 @@ const serviceProxy = `${baseUrl}/service-netobjex-proxy`;
 const v = 'v1';
 
 // Graph QL uri
-const qwiqPayment = `${baseUrl}/service-payment/${v}`;
-const qwiqOrder = `${baseUrl}/service-order/${v}`;
-const qwiqFeedback = `${baseUrl}/service-feedback/${v}`;
-const qwiqWallet = `${baseUrl}/service-wallet/${v}`;
-const qwiqLocation = `${baseUrl}/service-location/${v}`;
+export const qwiqPayment = `${baseUrl}/service-payment/${v}`;
+export const qwiqOrder = `${baseUrl}/service-order/${v}`;
+export const qwiqFeedback = `${baseUrl}/service-feedback/${v}`;
+export const qwiqWallet = `${baseUrl}/service-wallet/${v}`;
+export const qwiqLocation = `${baseUrl}/service-location/${v}`;
+export const qwiqAdmin = `${baseUrl}/service-admin/${v}`;
 const s3Url = 'https://qwiq-dev.s3.ap-southeast-1.amazonaws.com/';
 const googlekey = 'AIzaSyAMVYqdtOVbI7syYUe6i3dN3oqyA2Vh1c4';
 
@@ -68,6 +69,12 @@ const serviceLocation = new ApolloClient({
     link: concat(authMiddleware, new HttpLink({ uri: qwiqLocation })),
 });
 
+// SERVICE ADMIN ==========================================================
+const serviceAdmin = new ApolloClient({
+    cache: new InMemoryCache({ addTypename: false }),
+    link: concat(authMiddleware, new HttpLink({ uri: qwiqAdmin })),
+});
+
 export {
     authKey,
     serviceAuthenticate,
@@ -76,6 +83,7 @@ export {
     serviceOrder,
     serviceFeedback,
     serviceLocation,
+    serviceAdmin,
     s3Url,
     serviceWallet,
     googlekey,

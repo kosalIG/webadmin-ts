@@ -9,6 +9,8 @@ import {
     StarOutlined,
     NotificationOutlined,
     DoubleRightOutlined,
+    WalletOutlined,
+    FundViewOutlined,
 } from '@ant-design/icons';
 import { NavProps } from 'util/interface';
 
@@ -91,18 +93,44 @@ const nav: Array<NavProps> = [
         id: 9,
         path: '/wallet',
         name: 'Wallet',
-        icon: <NotificationOutlined />,
+        icon: <WalletOutlined />,
         children: [
             {
                 id: 1,
                 path: '/wallet/promotion',
-                name: 'Wallet-Promotion',
+                name: 'Wallet Promotion',
                 icon: <DoubleRightOutlined />,
             },
             {
                 id: 2,
                 path: '/wallet/withdwraw',
-                name: 'Wallet-Withdraw',
+                name: 'Wallet Withdraw',
+                icon: <DoubleRightOutlined />,
+            },
+        ],
+    },
+    {
+        id: 10,
+        path: '/report',
+        name: 'Report',
+        icon: <FundViewOutlined />,
+        children: [
+            {
+                id: 1,
+                path: '/report/total-order',
+                name: 'Total Order',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 2,
+                path: '/report/payment',
+                name: 'Payment',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 3,
+                path: '/report/activity',
+                name: 'Activity',
                 icon: <DoubleRightOutlined />,
             },
         ],
