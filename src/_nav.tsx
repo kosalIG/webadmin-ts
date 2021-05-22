@@ -135,6 +135,20 @@ const nav: Array<NavProps> = [
             },
         ],
     },
+    {
+        id: 11,
+        path: '/setting',
+        name: 'Setting',
+        icon: <FundViewOutlined />,
+        children: [
+            {
+                id: 1,
+                path: '/setting/Currency',
+                name: 'Currency',
+                icon: <DoubleRightOutlined />,
+            },
+        ],
+    },
 ];
 
 export default nav;
