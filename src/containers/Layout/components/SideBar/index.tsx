@@ -10,7 +10,7 @@ interface SideBarProps {
 
 const Index: React.FC<SideBarProps> = ({ nav, pathname }) => {
     return (
-        <div style={{ height: `90vh`, overflow: 'auto' }}>
+        <div style={{ height: `80vh`, overflow: 'auto' }}>
             <Menu theme="dark" mode="inline" defaultSelectedKeys={pathname === '/' ? ['/dashboard'] : [pathname]}>
                 {nav.map((n) =>
                     n.children ? (

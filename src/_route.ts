@@ -38,6 +38,12 @@ const PromotionReferral = React.lazy(() => import('containers/PromotionReferral'
 const WalletPromotion = React.lazy(() => import('containers/WalletPromotion'));
 const WalletPromotionDetail = React.lazy(() => import('containers/WalletPromotionDetail'));
 const WalletWithdraw = React.lazy(() => import('containers/WalletWithdraw'));
+
+//Report
+const ReportTotalOrder = React.lazy(() => import('containers/ReportTotalOrder'));
+const ReportTotalOrderDetail = React.lazy(() => import('containers/ReportTotalOrderDetail'));
+const ReportPayment = React.lazy(() => import('containers/ReportPayment'));
+const ReportActivity = React.lazy(() => import('containers/ReportActivity'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -184,6 +190,7 @@ const route: PropRoute[] = [
         name: 'Referral',
         component: PromotionReferral,
     },
+    // Wallet
     {
         id: 'walletPromotion',
         path: '/wallet/promotion',
@@ -204,6 +211,35 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Wallet Withdraw',
         component: WalletWithdraw,
+    },
+    // Report
+    {
+        id: 'reportTotalOrder',
+        path: '/report/total-order',
+        exact: true,
+        name: 'Total Order',
+        component: ReportTotalOrder,
+    },
+    {
+        id: 'reportTotalOrderDetail',
+        path: '/report/total-order/:id',
+        exact: true,
+        name: 'Total Order',
+        component: ReportTotalOrderDetail,
+    },
+    {
+        id: 'reportPayment',
+        path: '/report/payment',
+        exact: true,
+        name: 'Payment',
+        component: ReportPayment,
+    },
+    {
+        id: 'reportActivity',
+        path: '/report/activity',
+        exact: true,
+        name: 'Activity',
+        component: ReportActivity,
     },
 ];
 
