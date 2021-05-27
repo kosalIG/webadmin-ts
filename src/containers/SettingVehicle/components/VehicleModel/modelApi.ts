@@ -35,7 +35,6 @@ export function useModal({ form, dataObj, callback }: UseModalProps): UseModal {
     function onShowModal(): void {
         setVisible(true);
         if (dataObj) {
-            console.log(dataObj);
             form.setFieldsValue({ ...dataObj });
         }
 
