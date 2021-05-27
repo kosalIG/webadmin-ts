@@ -143,6 +143,12 @@ const nav: Array<NavProps> = [
         children: [
             {
                 id: 1,
+                path: '/setting/vehicle',
+                name: 'Vehicle',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 2,
                 path: '/setting/Currency',
                 name: 'Currency',
                 icon: <DoubleRightOutlined />,

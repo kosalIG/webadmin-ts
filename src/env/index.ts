@@ -43,6 +43,12 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 const servicePayment = new ApolloClient({
     cache: new InMemoryCache({ addTypename: false }),
     link: concat(authMiddleware, new HttpLink({ uri: qwiqPayment })),
+    defaultOptions: {
+        query: {
+            fetchPolicy: 'network-only',
+            errorPolicy: 'all',
+        },
+    },
 });
 
 // SERVICE ORDER ==========================================================

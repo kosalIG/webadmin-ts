@@ -47,6 +47,7 @@ const ReportActivity = React.lazy(() => import('containers/ReportActivity'));
 
 // Setting
 const SettingCurrency = React.lazy(() => import('containers/SettingCurrency'));
+const SettingVehicle = React.lazy(() => import('containers/SettingVehicle'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -252,6 +253,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Currency',
         component: SettingCurrency,
+    },
+    {
+        id: 'settingVehicle',
+        path: '/setting/vehicle',
+        exact: true,
+        name: 'Vehicle',
+        component: SettingVehicle,
     },
 ];
 
