@@ -49,6 +49,7 @@ const ReportActivity = React.lazy(() => import('containers/ReportActivity'));
 const SettingCurrency = React.lazy(() => import('containers/SettingCurrency'));
 const SettingVehicle = React.lazy(() => import('containers/SettingVehicle'));
 const SettingCancelReason = React.lazy(() => import('containers/SettingCancelReason'));
+const SettingPaymentMethod = React.lazy(() => import('containers/SettingPaymentMethod'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -268,6 +269,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Cancel Reason',
         component: SettingCancelReason,
+    },
+    {
+        id: 'settingPaymentMethod',
+        path: '/setting/payment-method',
+        exact: true,
+        name: 'Payment Method',
+        component: SettingPaymentMethod,
     },
 ];
 

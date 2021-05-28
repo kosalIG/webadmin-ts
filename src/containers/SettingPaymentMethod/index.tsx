@@ -6,11 +6,11 @@ import { getList } from './api';
 import AddNew from './components/AddNew';
 
 const Index: React.FC = () => {
-    const { dataObj, loading, onFilters, onRefetch } = getList();
+    const { dataObj, loading, onRefetch } = getList();
     const { columns } = useColumn({ onRefetch });
 
     return (
-        <Card title="Setting - Cancel Reason" type="inner">
+        <Card title="Setting - Payment Method" type="inner">
             <AddNew onRefetch={onRefetch} />
             <Table
                 bordered
@@ -19,8 +19,7 @@ const Index: React.FC = () => {
                 size="middle"
                 columns={columns}
                 rowKey={(rec: any) => rec.id}
-                onChange={(_, filter: any) => onFilters(filter)}
-                dataSource={dataObj?.results?.map((items: any, idx) => ({ ...items, idx: idx + 1 }))}
+                dataSource={dataObj?.data?.map((items: any, idx) => ({ ...items, idx: idx + 1 }))}
             />
             <Pagination metadata={dataObj?.metadata} onPagin={(offset, limit) => onRefetch({ offset, limit })} />
         </Card>

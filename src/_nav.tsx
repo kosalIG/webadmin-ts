@@ -149,14 +149,20 @@ const nav: Array<NavProps> = [
             },
             {
                 id: 2,
+                path: '/setting/cancel-reason',
+                name: 'Cancel Reason',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 3,
                 path: '/setting/Currency',
                 name: 'Currency',
                 icon: <DoubleRightOutlined />,
             },
             {
-                id: 3,
-                path: '/setting/cancel-reason',
-                name: 'Cancel Reason',
+                id: 4,
+                path: '/setting/payment-method',
+                name: 'Payment Method',
                 icon: <DoubleRightOutlined />,
             },
         ],
