@@ -153,6 +153,12 @@ const nav: Array<NavProps> = [
                 name: 'Currency',
                 icon: <DoubleRightOutlined />,
             },
+            {
+                id: 3,
+                path: '/setting/cancel-reason',
+                name: 'Cancel Reason',
+                icon: <DoubleRightOutlined />,
+            },
         ],
     },
 ];

@@ -48,6 +48,7 @@ const ReportActivity = React.lazy(() => import('containers/ReportActivity'));
 // Setting
 const SettingCurrency = React.lazy(() => import('containers/SettingCurrency'));
 const SettingVehicle = React.lazy(() => import('containers/SettingVehicle'));
+const SettingCancelReason = React.lazy(() => import('containers/SettingCancelReason'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -260,6 +261,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Vehicle',
         component: SettingVehicle,
+    },
+    {
+        id: 'settingCancelReason',
+        path: '/setting/cancel-reason',
+        exact: true,
+        name: 'Cancel Reason',
+        component: SettingCancelReason,
     },
 ];
 
