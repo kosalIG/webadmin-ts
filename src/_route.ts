@@ -44,6 +44,18 @@ const ReportTotalOrder = React.lazy(() => import('containers/ReportTotalOrder'))
 const ReportTotalOrderDetail = React.lazy(() => import('containers/ReportTotalOrderDetail'));
 const ReportPayment = React.lazy(() => import('containers/ReportPayment'));
 const ReportActivity = React.lazy(() => import('containers/ReportActivity'));
+
+// Setting
+const SettingCurrency = React.lazy(() => import('containers/SettingCurrency'));
+const SettingVehicle = React.lazy(() => import('containers/SettingVehicle'));
+const SettingCancelReason = React.lazy(() => import('containers/SettingCancelReason'));
+const SettingPaymentMethod = React.lazy(() => import('containers/SettingPaymentMethod'));
+const SettingColor = React.lazy(() => import('containers/SettingColor'));
+const SettingFeedBackCategory = React.lazy(() => import('containers/SettingFeedBackCategory'));
+const SettingStoreControl = React.lazy(() => import('containers/SettingStoreControl'));
+const SettingCommissionCharge = React.lazy(() => import('containers/SettingCommissionCharge'));
+const SettingAdminConfig = React.lazy(() => import('containers/SettingAdminConfig'));
+const SettingReferral = React.lazy(() => import('containers/SettingReferral'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -240,6 +252,78 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Activity',
         component: ReportActivity,
+    },
+
+    // Setting
+    {
+        id: 'settingCurrency',
+        path: '/setting/currency',
+        exact: true,
+        name: 'Currency',
+        component: SettingCurrency,
+    },
+    {
+        id: 'settingVehicle',
+        path: '/setting/vehicle',
+        exact: true,
+        name: 'Vehicle',
+        component: SettingVehicle,
+    },
+    {
+        id: 'settingCancelReason',
+        path: '/setting/cancel-reason',
+        exact: true,
+        name: 'Cancel Reason',
+        component: SettingCancelReason,
+    },
+    {
+        id: 'settingPaymentMethod',
+        path: '/setting/payment-method',
+        exact: true,
+        name: 'Payment Method',
+        component: SettingPaymentMethod,
+    },
+    {
+        id: 'settingColor',
+        path: '/setting/color',
+        exact: true,
+        name: 'Color',
+        component: SettingColor,
+    },
+    {
+        id: 'settingFeedBackCategory',
+        path: '/setting/feedback-category',
+        exact: true,
+        name: 'Feedback Category',
+        component: SettingFeedBackCategory,
+    },
+    {
+        id: 'settingStoreControl',
+        path: '/setting/store-control',
+        exact: true,
+        name: 'Store Control',
+        component: SettingStoreControl,
+    },
+    {
+        id: 'settingCommissionCharge',
+        path: '/setting/commission-charge',
+        exact: true,
+        name: 'Commission Charge',
+        component: SettingCommissionCharge,
+    },
+    {
+        id: 'settingAdminConfig',
+        path: '/setting/admin-config',
+        exact: true,
+        name: 'Admin Config',
+        component: SettingAdminConfig,
+    },
+    {
+        id: 'settingReferral',
+        path: '/setting/referral-setting',
+        exact: true,
+        name: 'Referral Setting',
+        component: SettingReferral,
     },
 ];
 

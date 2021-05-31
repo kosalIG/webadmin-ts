@@ -11,6 +11,7 @@ import {
     DoubleRightOutlined,
     WalletOutlined,
     FundViewOutlined,
+    SettingFilled,
 } from '@ant-design/icons';
 import { NavProps } from 'util/interface';
 
@@ -131,6 +132,74 @@ const nav: Array<NavProps> = [
                 id: 3,
                 path: '/report/activity',
                 name: 'Activity',
+                icon: <DoubleRightOutlined />,
+            },
+        ],
+    },
+    {
+        id: 11,
+        path: '/setting',
+        name: 'Setting',
+        icon: <SettingFilled />,
+        children: [
+            {
+                id: 1,
+                path: '/setting/vehicle',
+                name: 'Vehicle',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 2,
+                path: '/setting/cancel-reason',
+                name: 'Cancel Reason',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 3,
+                path: '/setting/Currency',
+                name: 'Currency',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 4,
+                path: '/setting/payment-method',
+                name: 'Payment Method',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 5,
+                path: '/setting/color',
+                name: 'Color',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 6,
+                path: '/setting/feedback-category',
+                name: 'Feedback Category',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 7,
+                path: '/setting/store-control',
+                name: 'Store Control',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 8,
+                path: '/setting/referral-setting',
+                name: 'Referral',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 9,
+                path: '/setting/commission-charge',
+                name: 'Commission Charge',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 10,
+                path: '/setting/admin-config',
+                name: 'Admin Config',
                 icon: <DoubleRightOutlined />,
             },
         ],
