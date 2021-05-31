@@ -54,6 +54,7 @@ const SettingColor = React.lazy(() => import('containers/SettingColor'));
 const SettingFeedBackCategory = React.lazy(() => import('containers/SettingFeedBackCategory'));
 const SettingStoreControl = React.lazy(() => import('containers/SettingStoreControl'));
 const SettingCommissionCharge = React.lazy(() => import('containers/SettingCommissionCharge'));
+const SettingAdminConfig = React.lazy(() => import('containers/SettingAdminConfig'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -308,6 +309,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Commission Charge',
         component: SettingCommissionCharge,
+    },
+    {
+        id: 'settingAdminConfig',
+        path: '/setting/admin-config',
+        exact: true,
+        name: 'Admin Config',
+        component: SettingAdminConfig,
     },
 ];
 

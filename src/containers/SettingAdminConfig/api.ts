@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { message } from 'antd';
-import { GET_COMMISSION_CHARGE, UPSERT_COMMISSION, DELETE_COMMISSION, SET_DEFAULT_COMMISSION } from './gql';
+import { GET_LIST, ADD_NEW, DELETE, EDIT } from './gql';
 import { DataObj, GetList, UseModalProps, UseModal, MetaData } from './interface';
+import { serviceAdmin } from 'env';
 
 export function getList(): GetList {
-    const [qString, setQstring] = useState({ status: 'ACTIVE', limit: 10, offset: 0 });
+    const [qString, setQstring] = useState({ type: [], status: [], limit: 10, offset: 0 });
 
-    const { data, refetch, loading } = useQuery(GET_COMMISSION_CHARGE, {
-        variables: { filter: { ...qString } },
+    const { data, loading, refetch } = useQuery(GET_LIST, {
+        client: serviceAdmin,
+        variables: {
+            filter: {
+                ...qString,
+            },
+        },
     });
 
-    const { getCommissionCharges } = data || {};
-    const dataObj: DataObj = getCommissionCharges || {};
+    const { adminConfigList } = data || {};
+    const dataObj: DataObj = adminConfigList || {};
 
     function onPagin(pagin: MetaData) {
         setQstring({ ...qString, ...pagin });
@@ -22,7 +28,31 @@ export function getList(): GetList {
         refetch({ filter: { ...qString, ...pagin } });
     }
 
-    return { dataObj, loading, onPagin, onRefetch };
+    // Handle filter
+    function handleFilter(filters: any) {
+        const preQ: any = {};
+
+        // Status filter
+        if (filters?.status) {
+            preQ.status = filters?.status[0];
+        }
+        if (!filters?.status) {
+            preQ.status = [];
+        }
+
+        // user type filter
+        if (filters?.type) {
+            preQ.type = filters?.type[0];
+        }
+        if (!filters?.type) {
+            preQ.type = [];
+        }
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { type, status, ...newQString } = qString;
+        setQstring({ ...newQString, ...preQ, limit: 10, offset: 0 });
+    }
+
+    return { dataObj, loading, onPagin, onRefetch, handleFilter };
 }
 
 export function useModal({ form, dataObj }: UseModalProps): UseModal {
@@ -52,19 +82,10 @@ interface AddNew {
 }
 
 export function useAddNew({ callback }: { callback: () => void }): AddNew {
-    const [upsertCommissionCharge, { data, loading }] = useMutation(UPSERT_COMMISSION);
+    const [createAdminConfig, { data, loading }] = useMutation(ADD_NEW, { client: serviceAdmin });
 
     function addNew(value: any) {
-        const { maxChargePerDay, ...newVal } = value;
-        upsertCommissionCharge({
-            variables: {
-                input: {
-                    ...newVal,
-                    maxChargePerDay: maxChargePerDay || 0,
-                    createdBy: '123',
-                },
-            },
-        });
+        createAdminConfig({ variables: { input: { ...value } } });
     }
 
     useEffect(() => {
@@ -83,19 +104,10 @@ interface Edit {
 }
 
 export function useEdit({ callback }: { callback: () => void }): Edit {
-    const [upsertCommissionCharge, { data, loading }] = useMutation(UPSERT_COMMISSION);
+    const [updateAdminConfig, { data, loading }] = useMutation(EDIT, { client: serviceAdmin });
 
     function onEdit(value: any) {
-        const { maxChargePerDay, ...newVal } = value;
-        upsertCommissionCharge({
-            variables: {
-                input: {
-                    ...newVal,
-                    maxChargePerDay: maxChargePerDay || 0,
-                    createdBy: '123',
-                },
-            },
-        });
+        updateAdminConfig({ variables: { input: { ...value } } });
     }
 
     useEffect(() => {
@@ -113,7 +125,7 @@ export interface UseDeleete {
 }
 
 export function useDelete({ callback }: { callback: () => void }): UseDeleete {
-    const [deleteCommissionCharge, { data, loading }] = useMutation(DELETE_COMMISSION);
+    const [deleteAdminConfig, { data, loading }] = useMutation(DELETE, { client: serviceAdmin });
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -125,26 +137,8 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
     if (loading) message.loading('deleting...', 0);
 
     const handleDelete = (id: string) => {
-        deleteCommissionCharge({ variables: { id } });
+        deleteAdminConfig({ variables: { id } });
     };
 
     return { handleDelete };
-}
-export function useSetDefault({ callback }: { callback: () => void }): { onSetDefault: (id: string) => void } {
-    const [setDefaultCommissionCharge, { data, loading }] = useMutation(SET_DEFAULT_COMMISSION);
-    useEffect(() => {
-        if (data) {
-            message.destroy();
-            callback();
-            message.success('Set default successfully');
-        }
-    }, [data]);
-
-    if (loading) message.loading('loading...');
-
-    const onSetDefault = (id: string) => {
-        setDefaultCommissionCharge({ variables: { id } });
-    };
-
-    return { onSetDefault };
 }

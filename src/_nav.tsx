@@ -190,6 +190,12 @@ const nav: Array<NavProps> = [
                 name: 'Commission Charge',
                 icon: <DoubleRightOutlined />,
             },
+            {
+                id: 10,
+                path: '/setting/admin-config',
+                name: 'Admin Config',
+                icon: <DoubleRightOutlined />,
+            },
         ],
     },
 ];
