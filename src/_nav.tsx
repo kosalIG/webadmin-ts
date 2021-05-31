@@ -185,6 +185,12 @@ const nav: Array<NavProps> = [
                 icon: <DoubleRightOutlined />,
             },
             {
+                id: 8,
+                path: '/setting/referral-setting',
+                name: 'Referral',
+                icon: <DoubleRightOutlined />,
+            },
+            {
                 id: 9,
                 path: '/setting/commission-charge',
                 name: 'Commission Charge',
