@@ -53,6 +53,7 @@ const SettingPaymentMethod = React.lazy(() => import('containers/SettingPaymentM
 const SettingColor = React.lazy(() => import('containers/SettingColor'));
 const SettingFeedBackCategory = React.lazy(() => import('containers/SettingFeedBackCategory'));
 const SettingStoreControl = React.lazy(() => import('containers/SettingStoreControl'));
+const SettingCommissionCharge = React.lazy(() => import('containers/SettingCommissionCharge'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -300,6 +301,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Store Control',
         component: SettingStoreControl,
+    },
+    {
+        id: 'settingCommissionCharge',
+        path: '/setting/commission-charge',
+        exact: true,
+        name: 'Commission Charge',
+        component: SettingCommissionCharge,
     },
 ];
 

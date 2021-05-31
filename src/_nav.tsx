@@ -11,6 +11,7 @@ import {
     DoubleRightOutlined,
     WalletOutlined,
     FundViewOutlined,
+    SettingFilled,
 } from '@ant-design/icons';
 import { NavProps } from 'util/interface';
 
@@ -139,7 +140,7 @@ const nav: Array<NavProps> = [
         id: 11,
         path: '/setting',
         name: 'Setting',
-        icon: <FundViewOutlined />,
+        icon: <SettingFilled />,
         children: [
             {
                 id: 1,
@@ -181,6 +182,12 @@ const nav: Array<NavProps> = [
                 id: 7,
                 path: '/setting/store-control',
                 name: 'Store Control',
+                icon: <DoubleRightOutlined />,
+            },
+            {
+                id: 9,
+                path: '/setting/commission-charge',
+                name: 'Commission Charge',
                 icon: <DoubleRightOutlined />,
             },
         ],
