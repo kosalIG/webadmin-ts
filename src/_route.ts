@@ -52,6 +52,7 @@ const SettingCancelReason = React.lazy(() => import('containers/SettingCancelRea
 const SettingPaymentMethod = React.lazy(() => import('containers/SettingPaymentMethod'));
 const SettingColor = React.lazy(() => import('containers/SettingColor'));
 const SettingFeedBackCategory = React.lazy(() => import('containers/SettingFeedBackCategory'));
+const SettingStoreControl = React.lazy(() => import('containers/SettingStoreControl'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -292,6 +293,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Feedback Category',
         component: SettingFeedBackCategory,
+    },
+    {
+        id: 'settingStoreControl',
+        path: '/setting/store-control',
+        exact: true,
+        name: 'Store Control',
+        component: SettingStoreControl,
     },
 ];
 

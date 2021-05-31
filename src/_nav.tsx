@@ -177,6 +177,12 @@ const nav: Array<NavProps> = [
                 name: 'Feedback Category',
                 icon: <DoubleRightOutlined />,
             },
+            {
+                id: 7,
+                path: '/setting/store-control',
+                name: 'Store Control',
+                icon: <DoubleRightOutlined />,
+            },
         ],
     },
 ];
