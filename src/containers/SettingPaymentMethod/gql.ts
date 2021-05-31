@@ -18,6 +18,7 @@ export const GET_PAYMENT_TYPE = gql`
         }
     }
 `;
+
 // Create
 export const UPSERT_PAYMENT_TYPE = gql`
     mutation UpsertPaymentType($input: PaymentMethodInput!) {

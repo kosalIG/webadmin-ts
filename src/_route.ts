@@ -50,6 +50,7 @@ const SettingCurrency = React.lazy(() => import('containers/SettingCurrency'));
 const SettingVehicle = React.lazy(() => import('containers/SettingVehicle'));
 const SettingCancelReason = React.lazy(() => import('containers/SettingCancelReason'));
 const SettingPaymentMethod = React.lazy(() => import('containers/SettingPaymentMethod'));
+const SettingColor = React.lazy(() => import('containers/SettingColor'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -276,6 +277,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Payment Method',
         component: SettingPaymentMethod,
+    },
+    {
+        id: 'settingColor',
+        path: '/setting/color',
+        exact: true,
+        name: 'Color',
+        component: SettingColor,
     },
 ];
 

@@ -165,6 +165,12 @@ const nav: Array<NavProps> = [
                 name: 'Payment Method',
                 icon: <DoubleRightOutlined />,
             },
+            {
+                id: 5,
+                path: '/setting/color',
+                name: 'Color',
+                icon: <DoubleRightOutlined />,
+            },
         ],
     },
 ];
