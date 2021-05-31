@@ -171,6 +171,12 @@ const nav: Array<NavProps> = [
                 name: 'Color',
                 icon: <DoubleRightOutlined />,
             },
+            {
+                id: 6,
+                path: '/setting/feedback-category',
+                name: 'Feedback Category',
+                icon: <DoubleRightOutlined />,
+            },
         ],
     },
 ];

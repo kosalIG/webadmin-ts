@@ -51,6 +51,7 @@ const SettingVehicle = React.lazy(() => import('containers/SettingVehicle'));
 const SettingCancelReason = React.lazy(() => import('containers/SettingCancelReason'));
 const SettingPaymentMethod = React.lazy(() => import('containers/SettingPaymentMethod'));
 const SettingColor = React.lazy(() => import('containers/SettingColor'));
+const SettingFeedBackCategory = React.lazy(() => import('containers/SettingFeedBackCategory'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -284,6 +285,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Color',
         component: SettingColor,
+    },
+    {
+        id: 'settingFeedBackCategory',
+        path: '/setting/feedback-category',
+        exact: true,
+        name: 'Feedback Category',
+        component: SettingFeedBackCategory,
     },
 ];
 
