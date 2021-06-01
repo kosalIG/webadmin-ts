@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { gql } from '@apollo/client';
-import { useAxioss } from 'util/instance';
+import { useAxios, AxiosProps } from 'util/useAxios';
 import { TotalData, TotalRegisterUser } from './interface';
 
 export const RATING_DASHBOARD = gql`
@@ -119,13 +119,18 @@ export const GET_ORDER_DASHBOARD = gql`
 `;
 
 export function useGetTotalDriver(): TotalData {
-    const { data, onAxios } = useAxioss();
+    const [data, setData] = useState<any>({});
+    const { instance } = useAxios();
     useEffect(() => {
         getTotalDriver();
     }, []);
 
-    function getTotalDriver() {
-        onAxios({ url: '/admin/dashboard' });
+    async function getTotalDriver() {
+        const config: AxiosProps = { url: '/admin/dashboard' };
+        const { result } = await instance({ config });
+        if (result) {
+            setData(result);
+        }
     }
 
     const { totalAvailableDriver, totalDriver, ...registerUser } = data || {};
