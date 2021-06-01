@@ -25,6 +25,7 @@
     "@types/xlsx": "^0.0.36",
     "antd": "^4.9.4",
     "antd-img-crop": "^3.14.1",
+    "apollo-link-timeout": "^4.0.0",
     "axios": "^0.21.1",
     "chart.js": "2.9.4",
     "dateformat": "^4.5.1",

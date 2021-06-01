@@ -1,16 +1,22 @@
-import { useAxioss } from 'util/instance';
+import { useAxios, AxiosProps } from 'util/useAxios';
 import dateformat from 'dateformat';
 import { GetUserProps, GetUser, RecordsProps, Qstring, TextNav } from './interface';
+import { useState } from 'react';
 
 // User Register
 const useGetUserRegister = ({ dateType }: GetUserProps): GetUser => {
-    const { data, loading, onAxios } = useAxioss();
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState<any>({});
+    const { instance } = useAxios();
 
     const getUser = async (params: Qstring) => {
-        onAxios({
-            url: '/admin/dashboard/total-register',
-            params,
-        });
+        setLoading(true);
+        const config: AxiosProps = { url: '/admin/dashboard/total-register', params };
+        const { result } = await instance({ config });
+        if (result) {
+            setData(result);
+        }
+        setLoading(false);
     };
 
     // DAY
