@@ -100,7 +100,7 @@ export interface UseDeleete {
 }
 
 export function useDelete({ callback }: { callback: () => void }): UseDeleete {
-    const [deleteOrderReason, { data, loading }] = useMutation(DELETE_CANCEL_RIDER, { client: serviceOrder });
+    const [deleteOrderReason, { data, loading, error }] = useMutation(DELETE_CANCEL_RIDER, { client: serviceOrder });
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -108,6 +108,12 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
             message.success('Delete successfully');
         }
     }, [data]);
+
+    useEffect(() => {
+        if (error) {
+            message.destroy();
+        }
+    }, [error]);
 
     if (loading) message.loading('deleting...');
 

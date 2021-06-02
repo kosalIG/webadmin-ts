@@ -44,15 +44,14 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 // Graphgl fetchPolicy
 const defaultOptions: any = {
     watchQuery: {
-        fetchPolicy: 'network-only',
+        fetchPolicy: 'no-cache',
         errorPolicy: 'ignore',
+        notifyOnNetworkStatusChange: true,
     },
     query: {
-        fetchPolicy: 'network-only',
+        fetchPolicy: 'no-cache',
         errorPolicy: 'all',
-    },
-    mutate: {
-        errorPolicy: 'all',
+        notifyOnNetworkStatusChange: true,
     },
 };
 
@@ -95,7 +94,6 @@ const serviceFeedback = new ApolloClient({
 const serviceWallet = new ApolloClient({
     cache: new InMemoryCache({ addTypename: false }),
     link: from([authMiddleware, errorLink, timeoutHttpLink(qwiqWallet)]),
-
     defaultOptions,
 });
 

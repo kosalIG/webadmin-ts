@@ -56,6 +56,9 @@ const SettingStoreControl = React.lazy(() => import('containers/SettingStoreCont
 const SettingCommissionCharge = React.lazy(() => import('containers/SettingCommissionCharge'));
 const SettingAdminConfig = React.lazy(() => import('containers/SettingAdminConfig'));
 const SettingReferral = React.lazy(() => import('containers/SettingReferral'));
+
+// Notifications
+const Notifications = React.lazy(() => import('containers/Notifications'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -324,6 +327,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Referral Setting',
         component: SettingReferral,
+    },
+    {
+        id: 'notifications',
+        path: '/notification',
+        exact: true,
+        name: 'Notifications',
+        component: Notifications,
     },
 ];
 
