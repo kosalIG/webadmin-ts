@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditIcon } from './globleStyled';
 
-const TopUp: React.FC<{ navkey?: string; onClick?: () => void }> = ({ onClick }) => {
+const Index: React.FC<{ navkey?: string; onClick?: () => void }> = ({ onClick }) => {
     return (
         <div onClick={onClick}>
             <EditIcon />
@@ -9,4 +9,4 @@ const TopUp: React.FC<{ navkey?: string; onClick?: () => void }> = ({ onClick })
     );
 };
 
-export default TopUp;
+export default Index;
