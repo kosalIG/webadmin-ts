@@ -213,6 +213,7 @@ function usegetVehicleType(): { getVehicleType: () => void; data: any } {
 
 function useGetVehicleModel() {
     const [modelRecords, setModelRecords] = useState([]);
+
     async function getVehicleModel(id: string) {
         const config: AxiosProps = { url: `/vehicle-model/${id}` };
         const { result } = await instance({
@@ -221,11 +222,13 @@ function useGetVehicleModel() {
         });
         if (result) setModelRecords(result);
     }
+
     return { getVehicleModel, modelRecords };
 }
 
 function useGetColor() {
     const [colorRecords, setcolorRecords] = useState([]);
+
     async function getColor() {
         const config: AxiosProps = { url: '/color' };
         const { result } = await instance({
@@ -234,5 +237,6 @@ function useGetColor() {
         });
         if (result) setcolorRecords(result);
     }
+
     return { getColor, colorRecords };
 }
