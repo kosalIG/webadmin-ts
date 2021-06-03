@@ -6,13 +6,13 @@ import { DevIcons, Icon } from './styled';
 import { UseUploadProps } from './interface';
 import { useUpload } from './useUpload';
 
-const Index: React.FC<UseUploadProps> = ({ onUploadSuccess, children }) => {
+const Index: React.FC<UseUploadProps> = ({ onUploadSuccess, children, width, height, aspect }) => {
     const { loading, propsImage, onPreview } = useUpload({ onUploadSuccess });
     return (
         <div>
-            <div style={{ position: 'relative', width: 100 }}>
+            <div style={{ position: 'relative', maxWidth: width || 100, height: height }}>
                 {children}
-                <ImgCrop aspect={1} rotate>
+                <ImgCrop aspect={aspect || 1} rotate>
                     <Upload
                         {...propsImage}
                         className="avatar-uploader"

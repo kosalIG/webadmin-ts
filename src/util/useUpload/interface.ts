@@ -1,9 +1,12 @@
 export interface UseUploadProps {
+    width?: number;
+    height?: number;
+    aspect?: number;
     onUploadSuccess: (file: any) => void;
 }
 
 export interface UseUpload {
-    onPreview: (file: any) => void;
     propsImage: any;
     loading: boolean;
+    onPreview: (file: any) => void;
 }
