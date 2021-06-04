@@ -60,3 +60,12 @@ export const CANCEL_TRIP = gql`
         cancelTripBySystem(input: $input)
     }
 `;
+
+// FINISH TRIP
+export const FINISH_TRIP = gql`
+    mutation FinishTripBySystem($input: ParamSystemInput!) {
+        finishTripBySystem(input: $input) {
+            id
+        }
+    }
+`;

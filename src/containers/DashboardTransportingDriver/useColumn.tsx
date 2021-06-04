@@ -1,5 +1,6 @@
 import React from 'react';
 import { ColumnsType } from 'antd/es/table';
+import { View } from 'components/ActionIcons';
 import moment from 'moment';
 
 interface Column {
@@ -11,6 +12,10 @@ interface UserColumn {
 }
 
 export default function useColumn(): UserColumn {
+    function act(id: string) {
+        return <View to={`/dashboard/transport-driver/${id}`} />;
+    }
+
     const column: ColumnsType<Column> = [
         { title: '#', dataIndex: 'idx', width: 60, className: 'center' },
         {
@@ -43,9 +48,7 @@ export default function useColumn(): UserColumn {
             width: 100,
             fixed: 'right',
             className: 'center',
-            render: function view() {
-                return <div>view</div>;
-            },
+            render: act,
         },
     ];
     return { column };
