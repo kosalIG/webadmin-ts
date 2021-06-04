@@ -19,7 +19,7 @@ export default function useColumn(): { columns: any[] } {
     }
 
     function act(id: string, obj: any) {
-        return <View to={`/wallet/promotion/${id}/${obj?.status}`} />;
+        return <View to={`/wallet-promotion/${id}/${obj?.status}`} />;
     }
 
     const columns = [

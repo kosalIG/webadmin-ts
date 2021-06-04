@@ -24,13 +24,18 @@ const CustomLoading = styled.div`
     transform: translate(-50%, -50%);
 `;
 const Logo = styled.h1`
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+    border-radius: 5px;
     padding: 10px;
     text-align: center;
-    color: #1890ff;
+    color: #0e71eb;
 `;
 const SubLogo = styled.div`
-    background: rgba(255, 255, 255, 0.3);
-    padding: 10px;
-    border-radius: 5px;
+    /* padding: 10px; */
+    margin-top: 5px;
+    font-weight: 700;
 `;
 export { WrapSider, WrapContent, CustomLoading, Footer, Layout, Logo, SubLogo };
