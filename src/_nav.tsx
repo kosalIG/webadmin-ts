@@ -12,6 +12,7 @@ import {
     WalletOutlined,
     FundViewOutlined,
     SettingFilled,
+    BellOutlined,
 } from '@ant-design/icons';
 import { NavProps } from 'util/interface';
 
@@ -203,6 +204,12 @@ const nav: Array<NavProps> = [
                 icon: <DoubleRightOutlined />,
             },
         ],
+    },
+    {
+        id: 12,
+        path: '/notification',
+        name: 'Notification',
+        icon: <BellOutlined />,
     },
 ];
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { Method } from 'axios';
-import { message } from 'antd';
+import message from 'antd/lib/message';
 import { serviceAuthenticate, authKey } from 'env';
 
 export interface AxiosProps {
@@ -58,6 +58,7 @@ export const useAxios = (): {
                 params,
                 data,
                 headers: { 'Content-Type': 'application/json', 'X-API-AUTH-KEY': authKey },
+                timeout: 20000,
             });
             // Destroy when success Loading MSG
             if (loadingMsg) {
@@ -76,13 +77,21 @@ export const useAxios = (): {
                 }
                 return { result };
             }
-        } catch (error) {
+        } catch (er) {
             // Destroy when error Loading MSG
             if (loadingMsg) {
                 message.destroy();
             }
             if (onError) {
                 onError();
+            }
+            const { response } = er || {};
+            const { data: { error = {} } = {} } = response || {};
+
+            if (response) {
+                message.error(`ERROR: ${error?.statusCode}, ${error?.message}`);
+            } else {
+                message.error('Data not response, Please check your connection and try again');
             }
             return {};
         }

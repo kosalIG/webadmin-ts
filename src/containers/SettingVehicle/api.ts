@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import { useAxios, AxiosProps } from 'util/useAxios';
 import { GET_PRICE, GET_CURRENCY, ADD_PRICE, UPDATE_PRICE } from './gql';
 import {
@@ -13,17 +13,16 @@ import {
     GetVehicle,
     EditVehicle,
 } from './interface';
-import { message } from 'antd';
+import message from 'antd/lib/message';
 
 export function useGetVehicle(): GetVehicle {
     const { instance } = useAxios();
     const [records, setRecords] = useState([]);
     const [vehicleRecords, setVehicleRecords] = useState<any[]>([]);
 
-    const { data, loading, refetch } = useQuery(GET_PRICE, {
-        variables: { vehicleIds: [] },
-    });
+    const [getItemPriceListByVehicleIds, { data, loading }] = useLazyQuery(GET_PRICE);
     const { getItemPriceListByVehicleIds: listPrice = [] } = data || {};
+
     useEffect(() => {
         getVehicle();
     }, []);
@@ -33,13 +32,13 @@ export function useGetVehicle(): GetVehicle {
         const { result } = await instance({ config });
         if (result) {
             const vehicleIds = result?.map((item: any) => item.id);
-            refetch({ vehicleIds });
+            getItemPriceListByVehicleIds({ variables: { vehicleIds } });
             setRecords(result);
         }
     }
 
     useEffect(() => {
-        if (listPrice && records) {
+        if (listPrice) {
             const listVehicle = records?.map((vehicle: any, idx: number) => ({
                 ...vehicle,
                 ...handlePrice(listPrice, vehicle.id),
@@ -47,7 +46,7 @@ export function useGetVehicle(): GetVehicle {
             }));
             setVehicleRecords(listVehicle);
         }
-    }, [listPrice, records]);
+    }, [listPrice]);
 
     function handlePrice(priceRecords: any[], id: string) {
         const priceData = priceRecords.find((price) => price.vehicleId === id) || {};

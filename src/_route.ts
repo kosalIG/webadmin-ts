@@ -3,7 +3,9 @@ import { PropRoute } from 'util/interface';
 // ============================================================================ COMPONENT ::
 const DashboardContainer = React.lazy(() => import('containers/DashboardContainer'));
 const DashboardPickupDriver = React.lazy(() => import('containers/DashboardPickupDriver'));
+const DashboardPickupDriverDetail = React.lazy(() => import('containers/DashboardPickupDriverDetail'));
 const DashboardTransportingDriver = React.lazy(() => import('containers/DashboardTransportingDriver'));
+const DashboardTransportingDriverDetail = React.lazy(() => import('containers/DashboardTransportingDriverDetail'));
 
 // RIDER
 const RiderContainer = React.lazy(() => import('containers/RiderContainer'));
@@ -56,6 +58,9 @@ const SettingStoreControl = React.lazy(() => import('containers/SettingStoreCont
 const SettingCommissionCharge = React.lazy(() => import('containers/SettingCommissionCharge'));
 const SettingAdminConfig = React.lazy(() => import('containers/SettingAdminConfig'));
 const SettingReferral = React.lazy(() => import('containers/SettingReferral'));
+
+// Notifications
+const Notifications = React.lazy(() => import('containers/Notifications'));
 // ============================================================================ ROUTE ::
 
 const route: PropRoute[] = [
@@ -82,11 +87,25 @@ const route: PropRoute[] = [
         component: DashboardPickupDriver,
     },
     {
+        id: 'dashboardPickupDriverDetail',
+        path: '/dashboard/pickup-driver/:id',
+        exact: true,
+        name: 'Pickup Driver Detail',
+        component: DashboardPickupDriverDetail,
+    },
+    {
         id: 'dashboardTransportDriver',
         path: '/dashboard/transport-driver',
         exact: true,
         name: 'Transport Driver',
         component: DashboardTransportingDriver,
+    },
+    {
+        id: 'dashboardTransportingDriverDetail',
+        path: '/dashboard/transport-driver/:id',
+        exact: true,
+        name: 'Transport Driver Detail',
+        component: DashboardTransportingDriverDetail,
     },
     // RIDER
     {
@@ -324,6 +343,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Referral Setting',
         component: SettingReferral,
+    },
+    {
+        id: 'notifications',
+        path: '/notification',
+        exact: true,
+        name: 'Notifications',
+        component: Notifications,
     },
 ];
 

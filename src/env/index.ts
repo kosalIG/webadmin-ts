@@ -1,4 +1,7 @@
-import { ApolloClient, HttpLink, ApolloLink, InMemoryCache, concat } from '@apollo/client';
+import { ApolloClient, HttpLink, ApolloLink, InMemoryCache, from } from '@apollo/client';
+import ApolloLinkTimeout from 'apollo-link-timeout';
+import { onError } from '@apollo/client/link/error';
+import message from 'antd/lib/message';
 
 // AUTH KEY
 const authKey =
@@ -26,7 +29,7 @@ export const qwiqAdmin = `${baseUrl}/service-admin/${v}`;
 const s3Url = 'https://qwiq-dev.s3.ap-southeast-1.amazonaws.com/';
 const googlekey = 'AIzaSyAMVYqdtOVbI7syYUe6i3dN3oqyA2Vh1c4';
 
-// Graph QL Header
+// Graphql Header
 const user = JSON.parse(localStorage.getItem('user') || '{}');
 const authMiddleware = new ApolloLink((operation, forward) => {
     // add the authorization to the headers
@@ -35,50 +38,77 @@ const authMiddleware = new ApolloLink((operation, forward) => {
             'Kong-Authorization': user?.token || null,
         },
     });
-
     return forward(operation);
 });
+
+// Graphgl fetchPolicy
+const defaultOptions: any = {
+    watchQuery: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'ignore',
+        notifyOnNetworkStatusChange: true,
+    },
+    query: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'all',
+        notifyOnNetworkStatusChange: true,
+    },
+};
+
+// Graphgl global Error handling
+const errorLink = onError(({ graphQLErrors }) => {
+    if (graphQLErrors) {
+        message.error(graphQLErrors[0]?.message);
+    } else {
+        message.error('Data not response, Please check your connection and try again');
+    }
+});
+
+// Graphgl set global timeout
+const timeoutLink = new ApolloLinkTimeout(20000);
+const timeoutHttpLink = (uri: string) => timeoutLink.concat(new HttpLink({ uri }));
 
 // SERVICE PAYMENT ==========================================================
 const servicePayment = new ApolloClient({
     cache: new InMemoryCache({ addTypename: false }),
-    link: concat(authMiddleware, new HttpLink({ uri: qwiqPayment })),
-    defaultOptions: {
-        query: {
-            fetchPolicy: 'network-only',
-            errorPolicy: 'all',
-        },
-    },
+    link: from([authMiddleware, errorLink, timeoutHttpLink(qwiqPayment)]),
+    defaultOptions,
 });
 
 // SERVICE ORDER ==========================================================
 const serviceOrder = new ApolloClient({
     cache: new InMemoryCache({ addTypename: false }),
-    link: concat(authMiddleware, new HttpLink({ uri: qwiqOrder })),
+    link: from([authMiddleware, errorLink, timeoutHttpLink(qwiqOrder)]),
+
+    defaultOptions,
 });
 
 // SERVICE ORDER ==========================================================
 const serviceFeedback = new ApolloClient({
     cache: new InMemoryCache({ addTypename: false }),
-    link: concat(authMiddleware, new HttpLink({ uri: qwiqFeedback })),
+    link: from([authMiddleware, errorLink, timeoutHttpLink(qwiqFeedback)]),
+    defaultOptions,
 });
 
 // SERVICE WALLET ==========================================================
 const serviceWallet = new ApolloClient({
     cache: new InMemoryCache({ addTypename: false }),
-    link: concat(authMiddleware, new HttpLink({ uri: qwiqWallet })),
+    link: from([authMiddleware, errorLink, timeoutHttpLink(qwiqWallet)]),
+    defaultOptions,
 });
 
 // SERVICE LOCATION ==========================================================
 const serviceLocation = new ApolloClient({
     cache: new InMemoryCache({ addTypename: false }),
-    link: concat(authMiddleware, new HttpLink({ uri: qwiqLocation })),
+    link: from([authMiddleware, errorLink, timeoutHttpLink(qwiqLocation)]),
+    defaultOptions,
 });
 
 // SERVICE ADMIN ==========================================================
 const serviceAdmin = new ApolloClient({
     cache: new InMemoryCache({ addTypename: false }),
-    link: concat(authMiddleware, new HttpLink({ uri: qwiqAdmin })),
+    link: from([authMiddleware, errorLink, timeoutHttpLink(qwiqAdmin)]),
+    defaultOptions,
 });
 
 export {

@@ -12,7 +12,7 @@ import {
     UPDATE_PROMOTION,
 } from './gql';
 import { Data, UseGetPromotion, Metadata, UseGetWhitelistApi } from './interface';
-import { message } from 'antd';
+import message from 'antd/lib/message';
 
 export function useGetPromotion(): UseGetPromotion {
     // STATE

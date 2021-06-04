@@ -6,7 +6,7 @@ export function useColumn(referenceType: string): { column: any[] } {
             width: 80,
             className: 'center',
             title: '#',
-            dataIndex: 'key',
+            dataIndex: 'idx',
         },
         {
             width: 200,
