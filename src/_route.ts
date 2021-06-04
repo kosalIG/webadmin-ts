@@ -3,6 +3,7 @@ import { PropRoute } from 'util/interface';
 // ============================================================================ COMPONENT ::
 const DashboardContainer = React.lazy(() => import('containers/DashboardContainer'));
 const DashboardPickupDriver = React.lazy(() => import('containers/DashboardPickupDriver'));
+const DashboardPickupDriverDetail = React.lazy(() => import('containers/DashboardPickupDriverDetail'));
 const DashboardTransportingDriver = React.lazy(() => import('containers/DashboardTransportingDriver'));
 
 // RIDER
@@ -83,6 +84,13 @@ const route: PropRoute[] = [
         exact: true,
         name: 'Pickup Driver',
         component: DashboardPickupDriver,
+    },
+    {
+        id: 'dashboardPickupDriverDetail',
+        path: '/dashboard/pickup-driver/:id',
+        exact: true,
+        name: 'Pickup Driver Detail',
+        component: DashboardPickupDriverDetail,
     },
     {
         id: 'dashboardTransportDriver',
