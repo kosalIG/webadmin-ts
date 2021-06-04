@@ -12,6 +12,7 @@ export interface PropRoute {
     exact: boolean | false;
     name: string;
     component: React.FC;
+    key?: string;
 }
 
 export interface UserLogin {

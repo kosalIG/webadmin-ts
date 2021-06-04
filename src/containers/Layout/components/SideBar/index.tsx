@@ -9,9 +9,15 @@ interface SideBarProps {
 }
 
 const Index: React.FC<SideBarProps> = ({ nav, pathname }) => {
+    const arrPathName = pathname.split('/')?.[1];
     return (
         <div style={{ height: `80vh`, overflow: 'auto' }}>
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={pathname === '/' ? ['/dashboard'] : [pathname]}>
+            <Menu
+                theme="dark"
+                mode="inline"
+                selectedKeys={pathname === '/' ? ['/dashboard'] : [`/${arrPathName}`]}
+                defaultSelectedKeys={['/']}
+            >
                 {nav.map((n) =>
                     n.children ? (
                         <SubMenu key={n.path} icon={n.icon} title={n.name}>

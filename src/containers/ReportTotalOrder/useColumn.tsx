@@ -35,7 +35,7 @@ export default function useColumn(): { columns: any[] } {
     }
 
     function act(id: any) {
-        return <View to={`/report/total-order/${id}`} />;
+        return <View to={`/report-total-order/${id}`} />;
     }
 
     const columns = [
