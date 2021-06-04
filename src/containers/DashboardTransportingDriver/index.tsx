@@ -19,7 +19,7 @@ const Index: React.FC = () => {
     const { getOrderList } = data || {};
     const { results, metadata } = getOrderList || {};
     return (
-        <Card type="inner" title="Pickup Transporting">
+        <Card type="inner" title="Transporting">
             <Table
                 scroll={{ x: 1400 }}
                 size="middle"
