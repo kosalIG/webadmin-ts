@@ -6,6 +6,7 @@ import Table from './Table';
 import { DriverData, UpdateDriver } from '../../interface';
 
 import Edit from './PersonalModal';
+import { useAppConsummer } from 'util/appContext';
 interface PersonalProps {
     driverDetail: DriverData | null;
     updateDriver: UpdateDriver;
@@ -27,6 +28,9 @@ const Flex = styled.div`
 `;
 
 const Index: React.FC<PersonalProps> = ({ driverDetail, updateDriver }) => {
+    const { user } = useAppConsummer();
+    const isUpdate = user?.permissions.find((p) => p === 'WEB:DRIVER:UPDATE');
+
     return (
         <div style={{ marginTop: 36 }}>
             <Divider style={{ margin: 0 }} plain orientation="left">
@@ -34,7 +38,7 @@ const Index: React.FC<PersonalProps> = ({ driverDetail, updateDriver }) => {
             </Divider>
             <Flex>
                 <Personal>Personal Information</Personal>
-                <Edit driverDetail={driverDetail} updateDriver={updateDriver} />
+                {isUpdate && <Edit driverDetail={driverDetail} updateDriver={updateDriver} />}
             </Flex>
             <div>
                 <Table driverObj={driverDetail} />

@@ -6,7 +6,7 @@ const Index: React.FC<{ id: string; getModel: () => void }> = ({ id, getModel })
     const { deleteVehicle } = useDelete({ callback: getModel });
     return (
         <div>
-            <Delete onConfirm={() => deleteVehicle(id)} />
+            <Delete navkey="WEB:VEHICLE:DELETE" onConfirm={() => deleteVehicle(id)} />
         </div>
     );
 };

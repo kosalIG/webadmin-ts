@@ -13,7 +13,7 @@ export interface UseModalProps {
 export interface UseModal {
     visible: boolean;
     onOk: () => void;
-    onShowModal?: () => void;
+    onShowModal: () => void;
     onCancel: () => void;
 }
 

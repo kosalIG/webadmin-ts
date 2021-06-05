@@ -41,7 +41,7 @@ export function useAddNew({ form, onRefetch }: { form: any; onRefetch: (val: any
     const [visible, setVisible] = useState(false);
 
     // APPROVAL
-    const [createPromotion, { data, loading }] = useMutation(ADD_PROMOTION_REFERRAL);
+    const [createPromotion, { data, loading }] = useMutation(ADD_PROMOTION_REFERRAL, { onError: () => null });
 
     useEffect(() => {
         if (data) {
@@ -100,7 +100,7 @@ export function useEdit({
     const [visible, setVisible] = useState(false);
 
     // APPROVAL
-    const [updatePromotion, { data, loading }] = useMutation(UPDATE_PROMOTION_REFERRAL);
+    const [updatePromotion, { data, loading }] = useMutation(UPDATE_PROMOTION_REFERRAL, { onError: () => null });
 
     useEffect(() => {
         if (data) {
@@ -150,7 +150,7 @@ export function useEdit({
 }
 
 export function useDelete(): { deletePromotion: (variables: any) => void; data: any } {
-    const [deletePromotion, { data, error }] = useMutation(DELETE_REFERRAL);
+    const [deletePromotion, { data, error }] = useMutation(DELETE_REFERRAL, { onError: () => null });
     useEffect(() => {
         if (error) {
             message.destroy();

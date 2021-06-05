@@ -42,7 +42,10 @@ interface AddNew {
 }
 
 export function useAddNew({ callback }: { callback: () => void }): AddNew {
-    const [createStoreControl, { data, loading }] = useMutation(ADD_STORE_CONTROL, { client: serviceAdmin });
+    const [createStoreControl, { data, loading }] = useMutation(ADD_STORE_CONTROL, {
+        client: serviceAdmin,
+        onError: () => null,
+    });
 
     function addNew(value: any) {
         createStoreControl({ variables: { ...value, createdBy: '123' } });
@@ -64,7 +67,10 @@ interface Edit {
 }
 
 export function useEdit({ callback }: { callback: () => void }): Edit {
-    const [updateOrderReason, { data, loading }] = useMutation(UPDATE_STORE_CONTROL, { client: serviceAdmin });
+    const [updateOrderReason, { data, loading }] = useMutation(UPDATE_STORE_CONTROL, {
+        client: serviceAdmin,
+        onError: () => null,
+    });
 
     function onEdit(value: any) {
         updateOrderReason({ variables: { ...value, updatedBy: '123' } });
@@ -85,7 +91,10 @@ export interface UseDeleete {
 }
 
 export function useDelete({ callback }: { callback: () => void }): UseDeleete {
-    const [deleteStoreControl, { data, loading }] = useMutation(DELETE_STORE_CONTROL, { client: serviceAdmin });
+    const [deleteStoreControl, { data, error, loading }] = useMutation(DELETE_STORE_CONTROL, {
+        client: serviceAdmin,
+        onError: () => null,
+    });
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -93,6 +102,12 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
             message.success('Delete successfully');
         }
     }, [data]);
+
+    useEffect(() => {
+        if (error) {
+            message.destroy();
+        }
+    }, [error]);
 
     if (loading) message.loading('deleting...', 0);
 

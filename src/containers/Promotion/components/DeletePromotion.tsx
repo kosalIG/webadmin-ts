@@ -17,7 +17,7 @@ const Index: React.FC<{ id: string; onRefetch: () => void }> = ({ id, onRefetch 
         message.loading('deleting...');
         deletePromotion({ variables: { id } });
     };
-    return <Delete onConfirm={() => handleDelete()} />;
+    return <Delete navkey="WEB:PROMOTION:DELETE" onConfirm={() => handleDelete()} />;
 };
 
 export default Index;

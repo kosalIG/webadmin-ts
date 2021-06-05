@@ -1,24 +1,25 @@
 import React from 'react';
-import { Button, Modal, Form } from 'antd';
+import { Modal, Form } from 'antd';
+import { AddNew } from 'components/ActionIcons';
+
 import SelectUser from './SelectUser';
 import { useAddUser } from '../../api';
-import { BtnAddUser } from '../../styled';
 
 const Index: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
     const [form] = Form.useForm();
     const { visible, loading, onShow, onCancel, onOk, addUser } = useAddUser({ form, onSuccess });
 
     return (
-        <BtnAddUser>
-            <Button type="primary" onClick={onShow}>
+        <div>
+            <AddNew navkey="WEB:GROUP:CREATE" onClick={onShow} type="primary">
                 Add New
-            </Button>
+            </AddNew>
             <Modal confirmLoading={loading} title="Add User" visible={visible} onCancel={onCancel} onOk={onOk}>
                 <Form onFinish={addUser} form={form}>
                     <SelectUser />
                 </Form>
             </Modal>
-        </BtnAddUser>
+        </div>
     );
 };
 

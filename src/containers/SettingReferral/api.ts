@@ -24,7 +24,7 @@ interface Edit {
 }
 
 export function useEdit({ callback }: { callback: () => void }): Edit {
-    const [updateReferral, { data, loading }] = useMutation(UPDATE_REFERRAL);
+    const [updateReferral, { data, loading }] = useMutation(UPDATE_REFERRAL, { onError: () => null });
 
     function onEdit(value: any) {
         updateReferral({ variables: { input: { ...value } } });

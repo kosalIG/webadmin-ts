@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { NavProps } from 'util/interface';
+import { DashboardOutlined } from '@ant-design/icons';
 const { SubMenu } = Menu;
 interface SideBarProps {
     nav: NavProps[];
@@ -18,6 +19,9 @@ const Index: React.FC<SideBarProps> = ({ nav, pathname }) => {
                 selectedKeys={pathname === '/' ? ['/dashboard'] : [`/${arrPathName}`]}
                 defaultSelectedKeys={['/']}
             >
+                <Menu.Item key="/dashboard" icon={<DashboardOutlined />}>
+                    <Link to="dashboard">Dashboard </Link>
+                </Menu.Item>
                 {nav.map((n) =>
                     n.children ? (
                         <SubMenu key={n.path} icon={n.icon} title={n.name}>

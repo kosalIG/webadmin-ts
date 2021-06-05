@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { DriverData, RequestWithDrawProps } from '../../interface';
 import VerifyButton from './VerifyButton';
 import WithDraw from './WithDraw';
+import { useAppConsummer } from 'util/appContext';
 
 const Index: React.FC<{
     driverDetail: DriverData | null;
@@ -12,6 +13,10 @@ const Index: React.FC<{
     requestWithDraw: RequestWithDrawProps;
 }> = ({ driverDetail, verifyLoading, requestWithDraw, verifyDriver }) => {
     const { push } = useHistory();
+
+    const { user } = useAppConsummer();
+    const isUpdate = user?.permissions.find((p) => p === 'WEB:DRIVER:UPDATE');
+
     return (
         <div style={{ marginBottom: 10 }}>
             <Row justify="space-between">
@@ -19,12 +24,16 @@ const Index: React.FC<{
                     <Button onClick={() => push('/driver')}>Back</Button>
                 </div>
                 <Space>
-                    <VerifyButton
-                        onVerify={verifyDriver}
-                        loading={verifyLoading}
-                        verify={driverDetail?.verifyDriverLicense}
-                    />
-                    <WithDraw requestWithDraw={requestWithDraw} />
+                    {isUpdate && (
+                        <>
+                            <VerifyButton
+                                onVerify={verifyDriver}
+                                loading={verifyLoading}
+                                verify={driverDetail?.verifyDriverLicense}
+                            />
+                            <WithDraw requestWithDraw={requestWithDraw} />
+                        </>
+                    )}
                 </Space>
             </Row>
         </div>

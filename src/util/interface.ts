@@ -1,5 +1,7 @@
 export interface NavProps {
-    id: number;
+    id?: string;
+    allow?: boolean;
+    order: number;
     path: string;
     name: string;
     icon?: React.ReactNode;

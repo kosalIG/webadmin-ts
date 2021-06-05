@@ -3,6 +3,7 @@ import { Tooltip, Button, Modal, Form } from 'antd';
 import { UsergroupAddOutlined } from '@ant-design/icons';
 import FormList from '../FormList';
 import { useAddNew } from './useFunction';
+import { useAppConsummer } from 'util/appContext';
 
 const layout = {
     labelCol: { span: 11 },
@@ -12,11 +13,17 @@ const AddNew: React.FC<{ id: any; onRefetch: (val?: any) => void }> = ({ id, onR
     const [form] = Form.useForm();
     const { visible, loading, onCancel, onFinish, onOK, onShowModal } = useAddNew({ form, id, onRefetch });
 
+    const { user } = useAppConsummer();
+    const result = user?.permissions.find((p) => p === 'WEB:COUPON:CREATE');
+
     return (
         <div>
-            <Tooltip placement="bottom" title="Add new whitelist">
-                <Button onClick={onShowModal} size="small" type="primary" icon={<UsergroupAddOutlined />} />
-            </Tooltip>
+            {result && (
+                <Tooltip placement="bottom" title="Add new whitelist">
+                    <Button onClick={onShowModal} size="small" type="primary" icon={<UsergroupAddOutlined />} />
+                </Tooltip>
+            )}
+
             <Modal
                 title="Add New - Whitelist"
                 width={800}

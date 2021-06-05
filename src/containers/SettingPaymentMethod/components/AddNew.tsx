@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Form } from 'antd';
+import { Form } from 'antd';
+import { AddNew } from 'components/ActionIcons';
 import FormUI from './FormUI';
 import { useModal, useAddNew } from '../api';
 
@@ -7,7 +8,7 @@ interface AddNewProps {
     onRefetch: (pagin: any) => void;
 }
 
-const AddNew: React.FC<AddNewProps> = ({ onRefetch }) => {
+const Index: React.FC<AddNewProps> = ({ onRefetch }) => {
     const [form] = Form.useForm();
     const { visible, onCancel, onOk, onShowModal } = useModal({ form });
     const { loading, imageFile, onUploadSuccess, addNew } = useAddNew({ visible, callback });
@@ -19,9 +20,9 @@ const AddNew: React.FC<AddNewProps> = ({ onRefetch }) => {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
-            <Button onClick={onShowModal} type="primary">
+            <AddNew navkey="WEB:PAYMENT:CREATE" onClick={onShowModal} type="primary">
                 Add New
-            </Button>
+            </AddNew>
             <FormUI
                 title="Add New"
                 form={form}
@@ -37,4 +38,4 @@ const AddNew: React.FC<AddNewProps> = ({ onRefetch }) => {
     );
 };
 
-export default AddNew;
+export default Index;

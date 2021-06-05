@@ -82,7 +82,7 @@ interface AddNew {
 }
 
 export function useAddNew({ callback }: { callback: () => void }): AddNew {
-    const [createAdminConfig, { data, loading }] = useMutation(ADD_NEW, { client: serviceAdmin });
+    const [createAdminConfig, { data, loading }] = useMutation(ADD_NEW, { client: serviceAdmin, onError: () => null });
 
     function addNew(value: any) {
         createAdminConfig({ variables: { input: { ...value } } });
@@ -104,7 +104,7 @@ interface Edit {
 }
 
 export function useEdit({ callback }: { callback: () => void }): Edit {
-    const [updateAdminConfig, { data, loading }] = useMutation(EDIT, { client: serviceAdmin });
+    const [updateAdminConfig, { data, loading }] = useMutation(EDIT, { client: serviceAdmin, onError: () => null });
 
     function onEdit(value: any) {
         updateAdminConfig({ variables: { input: { ...value } } });
@@ -125,7 +125,11 @@ export interface UseDeleete {
 }
 
 export function useDelete({ callback }: { callback: () => void }): UseDeleete {
-    const [deleteAdminConfig, { data, loading }] = useMutation(DELETE, { client: serviceAdmin });
+    const [deleteAdminConfig, { data, error, loading }] = useMutation(DELETE, {
+        client: serviceAdmin,
+        onError: () => null,
+    });
+
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -133,6 +137,12 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
             message.success('Delete successfully');
         }
     }, [data]);
+
+    useEffect(() => {
+        if (data) {
+            message.destroy();
+        }
+    }, [error]);
 
     if (loading) message.loading('deleting...', 0);
 

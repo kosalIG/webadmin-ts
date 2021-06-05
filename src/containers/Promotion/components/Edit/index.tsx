@@ -16,7 +16,7 @@ const Index: React.FC<{ onRefetch: (meta?: Metadata) => void; dataObj?: any }> =
 
     return (
         <div>
-            <Edit onClick={() => onShowModal()} />
+            <Edit navkey="WEB:PROMOTION:UPDATE" onClick={() => onShowModal()} />
             <Modal
                 title="Edit Promotion"
                 visible={visible}

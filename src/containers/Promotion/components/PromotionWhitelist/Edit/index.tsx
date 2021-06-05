@@ -16,7 +16,7 @@ const Index: React.FC<{ obj: any; onRefetch: (val?: any) => void }> = ({ obj, on
 
     return (
         <div>
-            <Edit onClick={onShowModal} />
+            <Edit navkey="WEB:PROMOTION:UPDATE" onClick={onShowModal} />
             <Modal
                 confirmLoading={loading}
                 visible={visible}

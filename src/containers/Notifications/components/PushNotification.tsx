@@ -16,7 +16,7 @@ const PushNotification: React.FC<{ status?: string; id: string; onRefetch: (para
                     <CheckCircleOutlined />
                 </span>
             ) : (
-                <Push onConfirm={() => onPushNotification(id)} />
+                <Push navkey="WEB:NOTIFICATION:PUSH_NOTIFICATION" onConfirm={() => onPushNotification(id)} />
             )}
         </div>
     );

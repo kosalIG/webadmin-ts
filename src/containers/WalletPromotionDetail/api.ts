@@ -73,6 +73,7 @@ export function useApproval({ onRefetch, onCancel }: ApprovalProps): Approval {
     const { id } = useParams<any>();
     const [approveSavingToWallet, { data, loading }] = useMutation(APPROVE_WALLET_PROMOTION, {
         client: serviceWallet,
+        onError: () => null,
     });
 
     function onApproval(ids: string[]) {
@@ -120,6 +121,7 @@ export function useReject({ onRefetch, onCancel }: RejectProps): Reject {
     const { id } = useParams<any>();
     const [rejectSavingToWallet, { data, loading }] = useMutation(REJECT_WALLET_PROMOTION, {
         client: serviceWallet,
+        onError: () => null,
     });
 
     function onReject(ids: string[]) {

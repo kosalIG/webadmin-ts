@@ -58,7 +58,7 @@ interface AddNew {
 }
 
 export function useAddNew({ callback }: { callback: () => void }): AddNew {
-    const [upsertCurrency, { data, loading }] = useMutation(ADD_CURRENCY);
+    const [upsertCurrency, { data, loading }] = useMutation(ADD_CURRENCY, { onError: () => null });
 
     function addNew(value: any) {
         upsertCurrency({ variables: { ...value, createdBy: '123' } });
@@ -80,7 +80,7 @@ interface UseEdit {
 }
 
 export function useEdit({ callback }: { callback: () => void }): UseEdit {
-    const [upsertCurrency, { data, loading }] = useMutation(EDIT_CURRENCY);
+    const [upsertCurrency, { data, loading }] = useMutation(EDIT_CURRENCY, { onError: () => null });
 
     function onEdit(value: any) {
         upsertCurrency({ variables: { ...value, createdBy: '123' } });
@@ -97,7 +97,8 @@ export function useEdit({ callback }: { callback: () => void }): UseEdit {
 }
 
 export function useDelete({ callback }: { callback: () => void }): UseDeleete {
-    const [deleteCurrency, { data, loading }] = useMutation(DELETE_CURRENCY);
+    const [deleteCurrency, { data, error, loading }] = useMutation(DELETE_CURRENCY, { onError: () => null });
+
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -106,7 +107,13 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
         }
     }, [data]);
 
-    if (loading) message.loading('deleting...');
+    useEffect(() => {
+        if (error) {
+            message.destroy();
+        }
+    }, [error]);
+
+    if (loading) message.loading('deleting...', 0);
 
     const handleDelete = (id: string) => {
         deleteCurrency({ variables: { id } });
@@ -116,7 +123,8 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
 }
 
 export function useSetDefault({ callback }: { callback: () => void }): { onSetDefault: (id: string) => void } {
-    const [setDefaultCurrency, { data, loading }] = useMutation(SET_DEFAULT);
+    const [setDefaultCurrency, { data, error, loading }] = useMutation(SET_DEFAULT, { onError: () => null });
+
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -125,7 +133,13 @@ export function useSetDefault({ callback }: { callback: () => void }): { onSetDe
         }
     }, [data]);
 
-    if (loading) message.loading('loading...');
+    useEffect(() => {
+        if (error) {
+            message.destroy();
+        }
+    }, [error]);
+
+    if (loading) message.loading('loading...', 0);
 
     const onSetDefault = (id: string) => {
         setDefaultCurrency({ variables: { id } });

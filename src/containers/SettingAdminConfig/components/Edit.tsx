@@ -27,7 +27,7 @@ const Index: React.FC<EditProps> = ({ dataObj, onRefetch }) => {
 
     return (
         <div>
-            <Edit onClick={onShowModal} />
+            <Edit navkey="WEB:ADMIN_CONFIG:UPDATE" onClick={onShowModal} />
             <FormUI
                 isEdit
                 title="Edit"

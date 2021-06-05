@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Form } from 'antd';
+import { Form } from 'antd';
+import { AddNew } from 'components/ActionIcons';
 import { useModal, useAddNew } from './modelApi';
 import VehicleModelFormUI from './ModelFormUI';
 import { VehicleModelAddNewProps } from './interface';
@@ -16,9 +17,15 @@ const VehicleModelAddNew: React.FC<VehicleModelAddNewProps> = ({ vehicleId, getM
 
     return (
         <div>
-            <Button onClick={onShowModal} style={{ width: '550px', margin: `10px 0 0` }} type="dashed">
+            <AddNew
+                noStyle
+                navkey="WEB:VEHICLE:CREATE"
+                onClick={onShowModal}
+                style={{ width: '550px', margin: `10px 0 0` }}
+                type="dashed"
+            >
                 Add New
-            </Button>
+            </AddNew>
             <VehicleModelFormUI
                 title="Add New - Vehicle Model"
                 visible={visible}

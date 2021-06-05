@@ -1,3 +1,5 @@
+import { ModalProps } from 'antd';
+
 export interface Metadata {
     limit: number;
     offset: number;
@@ -20,11 +22,11 @@ export interface UseModalProps {
 export interface UseModal {
     visible: boolean;
     onOk: () => void;
-    onShowModal?: () => void;
+    onShowModal: () => void;
     onCancel: () => void;
 }
 
-export interface FormUIProps extends UseModal {
+export interface FormUIProps extends ModalProps {
     form: any;
     title: string;
     loading: boolean;
