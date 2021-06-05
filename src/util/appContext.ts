@@ -1,8 +1,32 @@
 import React from 'react';
-import { AppContext } from './interface';
+export interface AppContext {
+    imageOption: any;
+    user: User | null;
+    isAuth: boolean;
+    login: (data: any) => void;
+    logout: () => void;
+}
+
+export interface User {
+    id: string;
+    uid: string;
+    token: string;
+    kongToken: string;
+    type: Type;
+    avatar: string;
+    fullName: string;
+    firstName: string;
+    lastName: string;
+    mobileNumbe: string;
+    email: string;
+    permissions: string[];
+}
+
+type Type = 'ADMIN' | any;
+
 // Provider
 const AppCont = React.createContext({} as AppContext);
 
 // Consummer
-const appCons = (): AppContext => React.useContext(AppCont);
-export { AppCont, appCons };
+const useAppConsummer = (): AppContext => React.useContext(AppCont);
+export { AppCont, useAppConsummer };

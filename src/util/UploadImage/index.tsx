@@ -1,6 +1,6 @@
 import React from 'react';
 import { Upload, Button } from 'antd';
-import { appCons } from 'util/appContext';
+import { useAppConsummer } from 'util/appContext';
 import { s3Url } from 'env';
 import { UploadOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
@@ -14,7 +14,7 @@ const Img = styled.img`
 
 const Index: React.FC<UploadProps> = ({ file, onUploadSuccess }) => {
     const { loading, imageFile, onSuccess, setloading } = useUpload({ file, onUploadSuccess });
-    const { imageOption } = appCons();
+    const { imageOption } = useAppConsummer();
 
     // IMAGE
     const propsImage = {

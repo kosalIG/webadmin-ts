@@ -1,16 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import axios from 'axios';
-import { AppCont } from 'util/appContext';
-import { UserLogin } from 'util/interface';
+import { AppCont, User } from 'util/appContext';
 import { serviceAuthenticate, authKey } from 'env';
 
 interface Hoc {
-    user?: UserLogin | null;
+    user: User | null;
     isAuth: boolean;
 }
 function wrapComponent(Components: React.FC<Hoc>): React.FC {
     const childComponent = () => {
-        const [user, setUser] = useState<any>(null);
+        const [user, setUser] = useState<User | null>(null);
         const [isAuth, setIsAuth] = useState<boolean>(false);
 
         useMemo(() => {
@@ -34,7 +33,7 @@ function wrapComponent(Components: React.FC<Hoc>): React.FC {
         }, [user?.kongToken]);
 
         // Login
-        function login(data: any): void {
+        function login(data: User): void {
             localStorage.setItem('user', JSON.stringify(data));
             setUser(data);
             setIsAuth(true);

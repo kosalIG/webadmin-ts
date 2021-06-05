@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Divider, Button, Avatar, Menu } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { appCons } from 'util/appContext';
+import { useAppConsummer } from 'util/appContext';
+import { s3Url } from 'env';
 
 const Container = styled.div`
     background-color: #fff;
@@ -17,20 +18,22 @@ const Container = styled.div`
 const Padding = styled.div`
     padding: 15px;
 `;
-const H3 = styled.h3`
-    margin-bottom: -5px !important;
+const H3 = styled.h2`
+    margin-bottom: -3px !important;
 `;
 
 const MenuDropDown: React.FC = () => {
-    const { logout } = appCons();
+    const { logout, user } = useAppConsummer();
     return (
         <Container>
             <Padding style={{ textAlign: 'center' }}>
                 <div style={{ padding: 10 }}>
-                    <Avatar size={75}>K</Avatar>
+                    <Avatar src={user?.avatar && s3Url + user?.avatar} size={75}>
+                        {user?.firstName?.charAt(0)?.toUpperCase()}
+                    </Avatar>
                 </div>
-                <H3>Phan kosal</H3>
-                <div>kosalarrupe@gmail.com</div>
+                <H3>{user?.fullName || 'n/a'}</H3>
+                <div>{user?.email || 'n/a'}</div>
             </Padding>
             <Divider style={{ margin: `0px 0px` }} />
             <Menu>

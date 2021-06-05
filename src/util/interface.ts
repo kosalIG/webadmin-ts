@@ -20,11 +20,3 @@ export interface UserLogin {
     fullName: string;
     gender: string;
 }
-
-export interface AppContext {
-    imageOption: any;
-    user?: UserLogin | null;
-    isAuth: boolean;
-    login: (data: any) => void;
-    logout: () => void;
-}
