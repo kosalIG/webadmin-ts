@@ -17,7 +17,8 @@ const Index: React.FC<{ id: string; onRefetch: () => void }> = ({ id, onRefetch 
         message.loading('deleting...');
         deletePromotionWhitelist({ variables: { id } });
     };
-    return <Delete onConfirm={() => handleDelete()} />;
+
+    return <Delete navkey="WEB:COUPON:DELETE" onConfirm={() => handleDelete()} />;
 };
 
 export default Index;

@@ -15,7 +15,7 @@ const Index: React.FC<{ onRefetch: (meta?: Metadata) => void; dataObj?: any }> =
 
     return (
         <div>
-            <Copy onClick={() => onShowModal()} />
+            <Copy navkey="WEB:COUPON:CREATE" onClick={() => onShowModal()} />
             <Modal
                 title="Add New - Coupon"
                 visible={visible}

@@ -16,7 +16,7 @@ const PushNotification: React.FC<{ status?: string; id: string; onRefetch: (para
                     <DeleteOutlined />
                 </span>
             ) : (
-                <Delete onConfirm={() => onDeleteNotification(id)} />
+                <Delete navkey="WEB:NOTIFICATION:DELETE" onConfirm={() => onDeleteNotification(id)} />
             )}
         </div>
     );

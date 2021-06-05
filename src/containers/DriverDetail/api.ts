@@ -108,7 +108,7 @@ export function useGetDriverDetail(): UseGetDriverDetail {
     }
 
     // Verify
-    const [approveReferral] = useMutation(APPROVE_REFERRAL);
+    const [approveReferral] = useMutation(APPROVE_REFERRAL, { onError: () => null });
     async function verifyDriver() {
         setverifyLoading(true);
         const config: AxiosProps = { url: '/user/verifyDriverLicense/' + id, method: 'POST' };
@@ -136,6 +136,7 @@ export function useGetDriverDetail(): UseGetDriverDetail {
 
     // Request to withdraw
     const [requestWithdrawByAdmin, { data, loading: withDrawLoading }] = useMutation(REQUEST_WITHDRAW, {
+        onError: () => null,
         client: serviceWallet,
     });
 

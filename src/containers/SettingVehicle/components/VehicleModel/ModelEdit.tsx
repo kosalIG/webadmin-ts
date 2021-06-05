@@ -26,7 +26,7 @@ const VehicleModelEdit: React.FC<VehicleModelAddNewProps> = ({ vehicleId, dataOb
 
     return (
         <div>
-            <Edit onClick={onShowModal} />
+            <Edit navkey="WEB:VEHICLE:UPDATE" onClick={onShowModal} />
             <VehicleModelFormUI
                 title="Edit - Vehicle Model"
                 visible={visible}

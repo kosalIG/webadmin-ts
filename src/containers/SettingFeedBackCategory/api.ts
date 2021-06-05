@@ -51,7 +51,10 @@ interface AddNew {
 
 export function useAddNew({ visible, callback }: { callback: () => void; visible: boolean }): AddNew {
     const [imageFile, setImageFile] = useState<string | null>(null);
-    const [upsertFeedbackCategory, { data, loading }] = useMutation(ADD_FEEDBACK_CATEGORY, { client: serviceFeedback });
+    const [upsertFeedbackCategory, { data, loading }] = useMutation(ADD_FEEDBACK_CATEGORY, {
+        client: serviceFeedback,
+        onError: () => null,
+    });
 
     function addNew(value: any) {
         upsertFeedbackCategory({ variables: { createdBy: '123', ...value, icon: imageFile || '' } });
@@ -88,6 +91,7 @@ export function useEdit({ callback, visible, icon }: { callback: () => void; vis
     const [imageFile, setImageFile] = useState<string | null>(null);
     const [upsertFeedbackCategory, { data, loading }] = useMutation(EDIT_FEEDBACK_CATEGORY, {
         client: serviceFeedback,
+        onError: () => null,
     });
 
     function onEdit(value: any) {
@@ -122,9 +126,11 @@ export interface UseDeleete {
 }
 
 export function useDelete({ callback }: { callback: () => void }): UseDeleete {
-    const [deleteFeedbackCategory, { data, loading }] = useMutation(DELETE_FEEDBACK_CATEGORY, {
+    const [deleteFeedbackCategory, { data, error, loading }] = useMutation(DELETE_FEEDBACK_CATEGORY, {
         client: serviceFeedback,
+        onError: () => null,
     });
+
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -132,6 +138,12 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
             message.success('Delete successfully');
         }
     }, [data]);
+
+    useEffect(() => {
+        if (error) {
+            message.destroy();
+        }
+    }, [error]);
 
     if (loading) message.loading('deleting...', 0);
 

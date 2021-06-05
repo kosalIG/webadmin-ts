@@ -1,8 +1,11 @@
 import React from 'react';
+import { PropRoute, NavProps } from './interface';
 export interface AppContext {
     imageOption: any;
     user: User | null;
     isAuth: boolean;
+    permissionRoute: PropRoute[];
+    permissionNav: NavProps[];
     login: (data: any) => void;
     logout: () => void;
 }

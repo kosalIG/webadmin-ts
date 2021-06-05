@@ -4,6 +4,7 @@ import { UsergroupAddOutlined } from '@ant-design/icons';
 import TableWhitelist from 'util/TableWhitelist';
 import ReadExcel from 'util/ReadExcel';
 import { useAddPromotionWhitelist } from '../usePromotionWhitelist';
+import { useAppConsummer } from 'util/appContext';
 
 const Index: React.FC<{ id: number; onRefetch: (val: any) => void }> = ({ id, onRefetch }) => {
     const {
@@ -16,9 +17,13 @@ const Index: React.FC<{ id: number; onRefetch: (val: any) => void }> = ({ id, on
         addWhitelist,
         onShowModal,
     } = useAddPromotionWhitelist(id, onRefetch);
+
+    const { user } = useAppConsummer();
+    const result = user?.permissions.find((p) => p === 'WEB:PROMOTION:CREATE');
+
     return (
         <div>
-            <Button onClick={onShowModal} size="small" type="primary" icon={<UsergroupAddOutlined />} />
+            {result && <Button onClick={onShowModal} size="small" type="primary" icon={<UsergroupAddOutlined />} />}
             <Modal
                 confirmLoading={loading}
                 onOk={onOk}

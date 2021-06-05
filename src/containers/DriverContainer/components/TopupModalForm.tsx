@@ -34,7 +34,7 @@ const TopupModalForm: React.FC<TopupModalFormProps> = ({ onFormFinish, fullName 
 
     return (
         <div>
-            <TopUp onClick={() => setvisible(true)} navkey="WEB:DRIVER:READ_DETAIL" />
+            <TopUp onClick={() => setvisible(true)} navkey="WEB:DRIVER:TOP_UP" />
             <Modal width={400} title="TOP UP" visible={visible} onCancel={onCancel} onOk={onSubmit}>
                 <Form onFinish={onFinish} form={form}>
                     <Form.Item label="Full name">{fullName || ''}</Form.Item>

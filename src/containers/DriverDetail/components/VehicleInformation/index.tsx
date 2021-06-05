@@ -5,6 +5,7 @@ import { color } from 'styles/constants';
 import Table from './Table';
 import { DriverData, UpdateDriver, VehicleModel } from '../../interface';
 import VehicleUpdate from './VehicleModal';
+import { useAppConsummer } from 'util/appContext';
 interface VehicleProps {
     driverDetail: DriverData | null;
     updateDriver: UpdateDriver;
@@ -28,6 +29,10 @@ const Flex = styled.div`
 const Index: React.FC<VehicleProps> = ({ driverDetail, updateDriver, vehicleModel }) => {
     const colorName =
         updateDriver?.colorRecords?.find((item: any) => item.id === driverDetail?.driverInfo?.colorId) || {};
+
+    const { user } = useAppConsummer();
+    const isUpdate = user?.permissions.find((p) => p === 'WEB:DRIVER:UPDATE');
+
     return (
         <div>
             <Divider style={{ margin: 0 }} plain orientation="left">
@@ -35,7 +40,13 @@ const Index: React.FC<VehicleProps> = ({ driverDetail, updateDriver, vehicleMode
             </Divider>
             <Flex>
                 <Personal>Vehicle Information</Personal>
-                <VehicleUpdate driverDetail={driverDetail} updateDriver={updateDriver} vehicleModel={vehicleModel} />
+                {isUpdate && (
+                    <VehicleUpdate
+                        driverDetail={driverDetail}
+                        updateDriver={updateDriver}
+                        vehicleModel={vehicleModel}
+                    />
+                )}
             </Flex>
             <div>
                 <Table colorName={colorName} driverObj={driverDetail} />

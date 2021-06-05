@@ -46,6 +46,7 @@ function useColum(): { columns: any[] } {
                 return (
                     <Div>
                         <View
+                            navkey="WEB:RATING:READ"
                             to={{
                                 pathname: `/rating/${id}`,
                                 state: {

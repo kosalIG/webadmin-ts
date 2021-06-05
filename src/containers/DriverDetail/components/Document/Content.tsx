@@ -5,6 +5,7 @@ import UploadImage from 'util/useUpload';
 import { s3Url } from 'env';
 
 import { Text, TextBold } from './styled';
+import { useAppConsummer } from 'util/appContext';
 
 interface ContentProps {
     title: string;
@@ -14,13 +15,29 @@ interface ContentProps {
     onUpdateBack: (file: string) => void;
 }
 const Index: React.FC<ContentProps> = ({ title, frontSrc, backSrc, onUpdateFront, onUpdateBack }) => {
+    const { user } = useAppConsummer();
+    const isUpdate = user?.permissions.find((p) => p === 'WEB:DRIVER:UPDATE');
+
     return (
         <div style={{ marginTop: 20 }}>
             <Text>{title}</Text>
             <Row gutter={[36, 12]}>
                 <Col xl={12} lg={24} md={24} sm={24} xs={24}>
                     <TextBold>Front Side</TextBold>
-                    <UploadImage aspect={2} width={300} height={170} onUploadSuccess={onUpdateFront}>
+                    {isUpdate ? (
+                        <UploadImage aspect={2} width={300} height={170} onUploadSuccess={onUpdateFront}>
+                            <Avatar
+                                style={{ minWidth: 300, minHeight: 170 }}
+                                shape="square"
+                                src={frontSrc && s3Url + frontSrc}
+                                icon={
+                                    <div style={{ fontSize: 170 }}>
+                                        <IdcardOutlined />
+                                    </div>
+                                }
+                            />
+                        </UploadImage>
+                    ) : (
                         <Avatar
                             style={{ minWidth: 300, minHeight: 170 }}
                             shape="square"
@@ -31,11 +48,24 @@ const Index: React.FC<ContentProps> = ({ title, frontSrc, backSrc, onUpdateFront
                                 </div>
                             }
                         />
-                    </UploadImage>
+                    )}
                 </Col>
                 <Col xl={12} lg={24} md={24} sm={24} xs={24}>
                     <TextBold>Back Side</TextBold>
-                    <UploadImage aspect={2} width={300} height={170} onUploadSuccess={onUpdateBack}>
+                    {isUpdate ? (
+                        <UploadImage aspect={2} width={300} height={170} onUploadSuccess={onUpdateBack}>
+                            <Avatar
+                                style={{ minWidth: 300, minHeight: 170 }}
+                                shape="square"
+                                src={backSrc && s3Url + backSrc}
+                                icon={
+                                    <div style={{ fontSize: 170 }}>
+                                        <IdcardOutlined />
+                                    </div>
+                                }
+                            />
+                        </UploadImage>
+                    ) : (
                         <Avatar
                             style={{ minWidth: 300, minHeight: 170 }}
                             shape="square"
@@ -46,7 +76,7 @@ const Index: React.FC<ContentProps> = ({ title, frontSrc, backSrc, onUpdateFront
                                 </div>
                             }
                         />
-                    </UploadImage>
+                    )}
                 </Col>
             </Row>
         </div>

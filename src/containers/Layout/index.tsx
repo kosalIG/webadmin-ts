@@ -3,16 +3,17 @@ import { useState } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import Loading from 'components/Loading';
 import { Avatar } from 'antd';
+import { useAppConsummer } from 'util/appContext';
 
-import route from '_route';
-import nav from '_nav';
 import { Header, SideBar } from './components';
 import { WrapSider, WrapContent, CustomLoading, Footer, Layout, Logo, SubLogo } from './style';
 import logoImage from 'images/admin-logo/logo.jpg';
+const DashboardContainer = React.lazy(() => import('containers/DashboardContainer'));
 
 const Index: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const { pathname } = useLocation();
+    const { permissionRoute, permissionNav } = useAppConsummer();
 
     return (
         <Layout style={{ overflow: 'hidden' }}>
@@ -21,7 +22,7 @@ const Index: React.FC = () => {
                     <Avatar src={logoImage} />
                     <SubLogo>QWIQ ADMIN</SubLogo>
                 </Logo>
-                <SideBar pathname={pathname} nav={nav} />
+                <SideBar pathname={pathname} nav={permissionNav} />
             </WrapSider>
             <Layout>
                 <Header />
@@ -36,7 +37,9 @@ const Index: React.FC = () => {
                         <Switch>
                             <React.Fragment>
                                 <div style={{ minHeight: `82vh` }}>
-                                    {route.map((r) => (
+                                    <Route exact path="/" component={DashboardContainer} />
+                                    <Route exact path="/dashboard" component={DashboardContainer} />
+                                    {permissionRoute.map((r) => (
                                         <Route key={r.id} exact={r.exact} path={r.path} component={r.component} />
                                     ))}
                                     {/* <Redirect from="/" to="/dashboard" /> */}

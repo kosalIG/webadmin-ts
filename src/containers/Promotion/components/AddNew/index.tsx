@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Modal, Form, Divider } from 'antd';
 import TableWhitelist from 'util/TableWhitelist';
 import ReadExcel from 'util/ReadExcel';
+import { AddNew } from 'components/ActionIcons';
 
 import { useAddNew } from './useAddNew';
 import FormUi from '../FormUI';
@@ -26,11 +27,9 @@ const Index: React.FC<{ onRefetch: (meta?: Metadata) => void }> = ({ onRefetch }
 
     return (
         <div>
-            <div style={{ marginBottom: 10, display: 'flex', justifyContent: 'flex-end' }}>
-                <Button onClick={onShowModal} type="primary">
-                    Add new
-                </Button>
-            </div>
+            <AddNew navkey="WEB:PROMOTION:CREATE" onClick={onShowModal} type="primary">
+                Add new
+            </AddNew>
             <Modal
                 title="Add Promotion"
                 visible={visible}

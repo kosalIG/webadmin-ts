@@ -58,7 +58,10 @@ interface AddNew {
 }
 
 export function useAddNew({ callback }: { callback: () => void }): AddNew {
-    const [createOrderReason, { data, loading }] = useMutation(CREAT_CANCEL_RIDER, { client: serviceOrder });
+    const [createOrderReason, { data, loading }] = useMutation(CREAT_CANCEL_RIDER, {
+        client: serviceOrder,
+        onError: () => null,
+    });
 
     function addNew(value: any) {
         createOrderReason({ variables: { ...value, createdBy: '123' } });
@@ -80,7 +83,10 @@ interface Edit {
 }
 
 export function useEdit({ callback }: { callback: () => void }): Edit {
-    const [updateOrderReason, { data, loading }] = useMutation(EDIT_CANCEL_RIDER, { client: serviceOrder });
+    const [updateOrderReason, { data, loading }] = useMutation(EDIT_CANCEL_RIDER, {
+        client: serviceOrder,
+        onError: () => null,
+    });
 
     function onEdit(value: any) {
         updateOrderReason({ variables: { ...value, updatedBy: '123' } });
@@ -100,7 +106,10 @@ export interface UseDeleete {
 }
 
 export function useDelete({ callback }: { callback: () => void }): UseDeleete {
-    const [deleteOrderReason, { data, loading, error }] = useMutation(DELETE_CANCEL_RIDER, { client: serviceOrder });
+    const [deleteOrderReason, { data, loading, error }] = useMutation(DELETE_CANCEL_RIDER, {
+        client: serviceOrder,
+        onError: () => null,
+    });
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -115,7 +124,7 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
         }
     }, [error]);
 
-    if (loading) message.loading('deleting...');
+    if (loading) message.loading('deleting...', 0);
 
     const handleDelete = (id: string) => {
         deleteOrderReason({ variables: { id } });

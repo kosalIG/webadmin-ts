@@ -22,7 +22,7 @@ const Index: React.FC<EditProps> = ({ dataObj, getList }) => {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
-            <Edit onClick={onShowModal} />
+            <Edit navkey="WEB:COLOR:UPDATE" onClick={onShowModal} />
             <FormUI
                 title="Edit"
                 visible={visible}

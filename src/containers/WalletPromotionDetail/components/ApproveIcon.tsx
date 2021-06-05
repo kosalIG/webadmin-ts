@@ -18,12 +18,12 @@ const Index: React.FC<ApproveButton> = ({ id, fullName, amount, onRefetch }) => 
 
     return (
         <div>
-            <Approval onClick={onShowModal} />
+            <Approval navkey="WEB:WALLET_PROMOTION:APPROVE" onClick={onShowModal} />
             <Modal
                 visible={visible}
                 title="Confirm - Approval"
                 subTilte="approve"
-                fullName={fullName}
+                fullName={fullName || ''}
                 amount={amount || 0}
                 onOk={() => onOk(ids)}
                 onCancel={onCancel}

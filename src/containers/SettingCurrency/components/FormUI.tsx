@@ -8,17 +8,10 @@ const layout = {
     wrapperCol: { span: 20 },
 };
 
-const FormUI: React.FC<FormUIProps> = ({ form, title, visible, loading, isEdit, onOk, onCancel, onFinish }) => {
+const FormUI: React.FC<FormUIProps> = ({ form, title, loading, isEdit, onFinish, ...props }) => {
     return (
         <div>
-            <Modal
-                confirmLoading={loading}
-                visible={visible}
-                onCancel={onCancel}
-                onOk={onOk}
-                width={500}
-                title={`${title} - Currency`}
-            >
+            <Modal confirmLoading={loading} width={500} title={`${title} - Currency`} {...props}>
                 <Form
                     onFinish={onFinish}
                     form={form}
@@ -74,8 +67,8 @@ const FormUI: React.FC<FormUIProps> = ({ form, title, visible, loading, isEdit, 
                                 Choose round
                             </Select.Option>
                             <Select.Option value="DEFAULT">Default</Select.Option>
-                            <Select.Option value="UP">UP</Select.Option>
-                            <Select.Option value="DOWN">DOWN</Select.Option>
+                            <Select.Option value="UP">Up</Select.Option>
+                            <Select.Option value="DOWN">Down</Select.Option>
                         </Select>
                     </Form.Item>
                     {isEdit && (
