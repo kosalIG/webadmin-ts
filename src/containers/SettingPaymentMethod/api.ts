@@ -49,7 +49,7 @@ interface AddNew {
 
 export function useAddNew({ visible, callback }: { callback: () => void; visible: boolean }): AddNew {
     const [imageFile, setImageFile] = useState<string | null>(null);
-    const [upsertPaymentType, { data, loading }] = useMutation(UPSERT_PAYMENT_TYPE);
+    const [upsertPaymentType, { data, loading }] = useMutation(UPSERT_PAYMENT_TYPE, { onError: () => null });
 
     function addNew(value: any) {
         upsertPaymentType({ variables: { input: { ...value, icon: imageFile, createdBy: '123' } } });
@@ -84,7 +84,7 @@ interface Edit {
 
 export function useEdit({ callback, visible, icon }: { callback: () => void; visible: boolean; icon: string }): Edit {
     const [imageFile, setImageFile] = useState<string | null>(null);
-    const [upsertPaymentType, { data, loading }] = useMutation(UPSERT_PAYMENT_TYPE);
+    const [upsertPaymentType, { data, loading }] = useMutation(UPSERT_PAYMENT_TYPE, { onError: () => null });
 
     function onEdit(value: any) {
         upsertPaymentType({ variables: { input: { ...value, icon: imageFile, createdBy: '123' } } });
@@ -118,7 +118,7 @@ export interface UseDeleete {
 }
 
 export function useDelete({ callback }: { callback: () => void }): UseDeleete {
-    const [deletePaymentType, { data, loading }] = useMutation(DELETE_PAYMENT);
+    const [deletePaymentType, { data, error, loading }] = useMutation(DELETE_PAYMENT, { onError: () => null });
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -127,7 +127,13 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
         }
     }, [data]);
 
-    if (loading) message.loading('deleting...');
+    useEffect(() => {
+        if (error) {
+            message.destroy();
+        }
+    }, [error]);
+
+    if (loading) message.loading('deleting...', 0);
 
     const handleDelete = (id: string) => {
         deletePaymentType({ variables: { id } });

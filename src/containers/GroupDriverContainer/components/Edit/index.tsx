@@ -2,7 +2,6 @@ import React from 'react';
 import { Form, Modal } from 'antd';
 import { Edit } from 'components/ActionIcons';
 import { useAddNew } from '../../api';
-import { BtnContainer } from '../style';
 import EditForm from '../Form';
 
 const Index: React.FC<{ data: any; onSuccess: () => void }> = ({ data, onSuccess }) => {
@@ -13,8 +12,8 @@ const Index: React.FC<{ data: any; onSuccess: () => void }> = ({ data, onSuccess
         onSuccess,
     });
     return (
-        <BtnContainer>
-            <Edit onClick={onShow} />
+        <div>
+            <Edit navkey="WEB:GROUP:UPDATE" onClick={onShow} />
             <Modal
                 confirmLoading={loading}
                 title="Edit Group"
@@ -25,7 +24,7 @@ const Index: React.FC<{ data: any; onSuccess: () => void }> = ({ data, onSuccess
             >
                 <EditForm form={form} imageFile={imageFile} onFormFinish={updateGroup} onUploadSuccess={setImageFile} />
             </Modal>
-        </BtnContainer>
+        </div>
     );
 };
 

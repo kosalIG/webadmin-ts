@@ -4,8 +4,8 @@ import Number from 'components/InputNumber';
 const { Option } = Select;
 
 const layout = {
-    labelCol: { span: 10 },
-    wrapperCol: { span: 24 },
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
 };
 
 interface FormUIProps extends ModalProps {

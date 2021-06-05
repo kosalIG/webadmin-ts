@@ -30,7 +30,7 @@ const EditNotification: React.FC<AddNotificationProps> = ({ onRefetch, dataObj }
             {dataObj?.sendStatus === 'SENT' ? (
                 <EditOutlined style={{ cursor: 'not-allowed' }} />
             ) : (
-                <Edit onClick={onShowModal} />
+                <Edit navkey="WEB:NOTIFICATION:UPDATE" onClick={onShowModal} />
             )}
             <FormUI
                 form={form}

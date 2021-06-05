@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { message } from 'antd';
+import message from 'antd/lib/message';
 import { ADD_COUPON, GET_ALL_COUPON, UPDATE_COUPON, UPDATE_STATUS } from './gql';
 import { Data, UseGetPromotion, Metadata } from './interface';
 import { DELETE_PROMOTION, PUSH_NOTIFI } from './gql';
@@ -58,17 +58,17 @@ export function useGetPromotion(): UseGetPromotion {
 
 export function useAddCoupon(): { createPromotion: (data: any) => void; loading: boolean; data: any } {
     // Add Promotion
-    const [createPromotion, { data, loading }] = useMutation(ADD_COUPON);
+    const [createPromotion, { data, loading }] = useMutation(ADD_COUPON, { onError: () => null });
     return { createPromotion, loading, data };
 }
 
 export function useUpdateCoupon(): { updatePromotion: (data: any) => void; loading: boolean; data: any } {
-    const [updatePromotion, { data, loading }] = useMutation(UPDATE_COUPON);
+    const [updatePromotion, { data, loading }] = useMutation(UPDATE_COUPON, { onError: () => null });
     return { updatePromotion, loading, data };
 }
 
 export function useDelete(): { deletePromotion: (variables: any) => void; data: any } {
-    const [deletePromotion, { data, error }] = useMutation(DELETE_PROMOTION);
+    const [deletePromotion, { data, error }] = useMutation(DELETE_PROMOTION, { onError: () => null });
     useEffect(() => {
         if (error) {
             message.destroy();
@@ -79,7 +79,7 @@ export function useDelete(): { deletePromotion: (variables: any) => void; data: 
 }
 
 export function usePushNotification(): { pushNotificationOfPromotion: (id: any) => void; data: any } {
-    const [pushNotificationOfPromotion, { data, error }] = useMutation(PUSH_NOTIFI);
+    const [pushNotificationOfPromotion, { data, error }] = useMutation(PUSH_NOTIFI, { onError: () => null });
     useEffect(() => {
         if (error) {
             message.destroy();
@@ -90,7 +90,7 @@ export function usePushNotification(): { pushNotificationOfPromotion: (id: any) 
 }
 
 export function useExpandCouponStatus(): { updatePromotionCouponStatus: (id: any) => void; data: any } {
-    const [updatePromotionCouponStatus, { data, error }] = useMutation(UPDATE_STATUS);
+    const [updatePromotionCouponStatus, { data, error }] = useMutation(UPDATE_STATUS, { onError: () => null });
     useEffect(() => {
         if (error) {
             message.destroy();

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { appCons } from 'util/appContext';
+import { useAppConsummer } from 'util/appContext';
 import { UseUploadProps, UseUpload } from './interface';
 
 export function useUpload({ onUploadSuccess }: UseUploadProps): UseUpload {
     const [loading, setLoading] = useState(false);
-    const { imageOption } = appCons();
+    const { imageOption } = useAppConsummer();
 
     async function onSuccess(item: any) {
         const { originalfilename } = item[0];

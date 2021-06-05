@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Modal, Form } from 'antd';
+import { Modal, Form } from 'antd';
+import { AddNew } from 'components/ActionIcons';
 
 import { useAddNew } from './useAddNew';
 import FormUI from '../FormUI';
@@ -14,11 +15,9 @@ const Index: React.FC<{ onRefetch: (meta?: Metadata) => void }> = ({ onRefetch }
 
     return (
         <div>
-            <div style={{ marginBottom: 10, display: 'flex', justifyContent: 'flex-end' }}>
-                <Button onClick={onShowModal} type="primary">
-                    Add new
-                </Button>
-            </div>
+            <AddNew navkey="WEB:COUPON:CREATE" onClick={onShowModal} type="primary">
+                Add new
+            </AddNew>
             <Modal
                 title="Add New - Coupon"
                 visible={visible}

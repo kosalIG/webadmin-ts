@@ -19,7 +19,7 @@ const Index: React.FC = () => {
                     pagination={false}
                     bordered
                     rowKey={(item: any) => item.id}
-                    dataSource={records?.map((item: any, idx) => ({ ...item, idx: idx + 1 }))}
+                    dataSource={records?.map((item: any, idx) => ({ ...item, idx: idx + 1 })) || []}
                     loading={loading}
                     columns={columns}
                 />

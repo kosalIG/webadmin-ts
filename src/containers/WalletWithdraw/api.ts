@@ -92,6 +92,7 @@ export function useGetPromotion(): Promotion {
 export function useApproval({ onRefetch, onCancel }: ApprovalProps): Approval {
     const [approveWithdraw, { data, loading }] = useMutation(APPROVE_WALLET_WITHDRAW, {
         client: serviceWallet,
+        onError: () => null,
     });
 
     function onApproval({ id, walletId }: IDS) {
@@ -138,6 +139,7 @@ export function useApproveButton({ onRefetch }: ApproveButtonProps): ApproveButt
 export function useReject({ onRefetch, onCancel }: RejectProps): Reject {
     const [rejectWithdraw, { data, loading }] = useMutation(REJECT_WALLET_WITHDRAW, {
         client: serviceWallet,
+        onError: () => null,
     });
 
     function onReject({ id, walletId }: IDS) {

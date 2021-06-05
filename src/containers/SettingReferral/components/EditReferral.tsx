@@ -23,7 +23,7 @@ const EditReferral: React.FC<EditReferralProps> = ({ refetch, dataObj }) => {
 
     return (
         <div>
-            <Edit onClick={onShowModal} />
+            <Edit navkey="WEB:REFERRAL_SETTING:UPDATE" onClick={onShowModal} />
             <FormUI
                 title="Edit"
                 form={form}

@@ -18,7 +18,7 @@ const Index: React.FC<{ id: any }> = ({ id }) => {
         pushNotificationOfPromotion({ variables: { id } });
     };
 
-    return <Push onConfirm={() => handlePush()} />;
+    return <Push navkey="WEB:PROMOTION:PUSH_NOTIFICATION" onConfirm={() => handlePush()} />;
 };
 
 export default Index;

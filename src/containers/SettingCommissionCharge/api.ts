@@ -52,7 +52,7 @@ interface AddNew {
 }
 
 export function useAddNew({ callback }: { callback: () => void }): AddNew {
-    const [upsertCommissionCharge, { data, loading }] = useMutation(UPSERT_COMMISSION);
+    const [upsertCommissionCharge, { data, loading }] = useMutation(UPSERT_COMMISSION, { onError: () => null });
 
     function addNew(value: any) {
         const { maxChargePerDay, ...newVal } = value;
@@ -83,7 +83,7 @@ interface Edit {
 }
 
 export function useEdit({ callback }: { callback: () => void }): Edit {
-    const [upsertCommissionCharge, { data, loading }] = useMutation(UPSERT_COMMISSION);
+    const [upsertCommissionCharge, { data, loading }] = useMutation(UPSERT_COMMISSION, { onError: () => null });
 
     function onEdit(value: any) {
         const { maxChargePerDay, ...newVal } = value;
@@ -113,7 +113,7 @@ export interface UseDeleete {
 }
 
 export function useDelete({ callback }: { callback: () => void }): UseDeleete {
-    const [deleteCommissionCharge, { data, loading }] = useMutation(DELETE_COMMISSION);
+    const [deleteCommissionCharge, { data, error, loading }] = useMutation(DELETE_COMMISSION, { onError: () => null });
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -121,6 +121,12 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
             message.success('Delete successfully');
         }
     }, [data]);
+
+    useEffect(() => {
+        if (error) {
+            message.destroy();
+        }
+    }, [error]);
 
     if (loading) message.loading('deleting...', 0);
 
@@ -131,7 +137,10 @@ export function useDelete({ callback }: { callback: () => void }): UseDeleete {
     return { handleDelete };
 }
 export function useSetDefault({ callback }: { callback: () => void }): { onSetDefault: (id: string) => void } {
-    const [setDefaultCommissionCharge, { data, loading }] = useMutation(SET_DEFAULT_COMMISSION);
+    const [setDefaultCommissionCharge, { data, error, loading }] = useMutation(SET_DEFAULT_COMMISSION, {
+        onError: () => null,
+    });
+
     useEffect(() => {
         if (data) {
             message.destroy();
@@ -140,7 +149,13 @@ export function useSetDefault({ callback }: { callback: () => void }): { onSetDe
         }
     }, [data]);
 
-    if (loading) message.loading('loading...');
+    useEffect(() => {
+        if (error) {
+            message.destroy();
+        }
+    }, [error]);
+
+    if (loading) message.loading('loading...', 0);
 
     const onSetDefault = (id: string) => {
         setDefaultCommissionCharge({ variables: { id } });

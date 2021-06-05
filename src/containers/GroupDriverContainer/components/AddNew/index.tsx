@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Form, Modal } from 'antd';
+import { Form, Modal } from 'antd';
+import { AddNew } from 'components/ActionIcons';
 
 import SelectUser from '../SelectUser';
 import { useAddNew } from '../../api';
-import { BtnContainer } from '../style';
 import AddNewForm from '../Form';
 
 const Index: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
@@ -14,10 +14,10 @@ const Index: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
     });
 
     return (
-        <BtnContainer>
-            <Button onClick={onShow} type="primary">
+        <div>
+            <AddNew navkey="WEB:GROUP:CREATE" onClick={onShow} type="primary">
                 Add New
-            </Button>
+            </AddNew>
             <Modal
                 confirmLoading={loading}
                 title="Add New Group"
@@ -30,7 +30,7 @@ const Index: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
                     <SelectUser />
                 </AddNewForm>
             </Modal>
-        </BtnContainer>
+        </div>
     );
 };
 

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ApolloProvider } from '@apollo/client/react';
 import Loading from 'components/Loading';
 import { servicePayment } from 'env';
-import { appCons } from 'util/appContext';
+import { useAppConsummer } from 'util/appContext';
 
 import { wrapComponent } from './components';
 import Protect from './components/HOC/ProtectRoute';
@@ -19,7 +19,7 @@ const CustomLoading = styled.div`
     transform: translate(-50%, -50%);
 `;
 const App: React.FC = () => {
-    const { isAuth } = appCons();
+    const { isAuth } = useAppConsummer();
     return (
         <Suspense
             fallback={

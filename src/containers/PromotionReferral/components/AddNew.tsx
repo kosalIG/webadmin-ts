@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Modal, Button } from 'antd';
+import { Form, Modal } from 'antd';
+import { AddNew } from 'components/ActionIcons';
 import FormUI from './FormUI';
 import { useAddNew } from '../api';
 
@@ -8,17 +9,15 @@ const layout = {
     wrapperCol: { span: 16 },
 };
 
-const AddNew: React.FC<{ onRefetch: (val: any) => void }> = ({ onRefetch }) => {
+const Index: React.FC<{ onRefetch: (val: any) => void }> = ({ onRefetch }) => {
     const [form] = Form.useForm();
     const { visible, loading, onShow, onCancel, onFinish } = useAddNew({ form, onRefetch });
 
     return (
         <div>
-            <div style={{ marginBottom: 10, display: 'flex', justifyContent: 'flex-end' }}>
-                <Button onClick={onShow} type="primary">
-                    Add new
-                </Button>
-            </div>
+            <AddNew navkey="WEB:REFERRAL_PROMOTION:CREATE" onClick={onShow} type="primary">
+                Add new
+            </AddNew>
             <Modal
                 width={1000}
                 title="Add New - Referral"
@@ -40,4 +39,4 @@ const AddNew: React.FC<{ onRefetch: (val: any) => void }> = ({ onRefetch }) => {
     );
 };
 
-export default AddNew;
+export default Index;

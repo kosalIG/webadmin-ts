@@ -109,14 +109,14 @@ const route: PropRoute[] = [
     },
     // RIDER
     {
-        id: 'riderContainer',
+        id: 'WEB:RIDER:READ',
         path: '/rider',
         exact: true,
         name: 'Rider',
         component: RiderContainer,
     },
     {
-        id: 'riderDetail',
+        id: 'WEB:RIDER:READ_DETAIL',
         path: '/rider/:id',
         exact: true,
         name: 'Rider Detail',
@@ -125,14 +125,14 @@ const route: PropRoute[] = [
     },
     // Driver
     {
-        id: 'driver',
+        id: 'WEB:DRIVER:READ',
         path: '/driver',
         exact: true,
         name: 'Driver',
         component: DriverContainer,
     },
     {
-        id: 'driverDetail',
+        id: 'WEB:DRIVER:READ_DETAIL',
         path: '/driver/:id',
         exact: true,
         name: 'Driver Detail',
@@ -140,14 +140,14 @@ const route: PropRoute[] = [
     },
     // Group Driver
     {
-        id: 'driverGroup',
+        id: 'WEB:GROUP:READ',
         path: '/group',
         exact: true,
         name: 'Driver Group',
         component: GroupDriverContainer,
     },
     {
-        id: 'driverGroupDetail',
+        id: 'WEB:GROUP:READ_DETAIL',
         path: '/group/:id',
         exact: true,
         name: 'Driver Detail',
@@ -156,14 +156,14 @@ const route: PropRoute[] = [
 
     // Referral
     {
-        id: 'referral',
+        id: 'WEB:REFERRAL:READ',
         path: '/referral',
         exact: true,
         name: 'Referral',
         component: ReferralContainer,
     },
     {
-        id: 'referralDetail',
+        id: 'WEB:REFERRAL:READ_DETAIL',
         path: '/referral/:id/:type',
         exact: true,
         name: 'Referral',
@@ -171,7 +171,7 @@ const route: PropRoute[] = [
     },
     // Driver location
     {
-        id: 'driverLocation',
+        id: 'WEB:LOCATION:READ',
         path: '/location-driver',
         exact: true,
         name: 'Driver Location',
@@ -179,14 +179,14 @@ const route: PropRoute[] = [
     },
     // Rating
     {
-        id: 'rating',
+        id: 'WEB:RATING:READ',
         path: '/rating',
         exact: true,
         name: 'Rating',
         component: RatingContainer,
     },
     {
-        id: 'ratingDetail',
+        id: 'WEB:RATING:READ',
         path: '/rating/:id',
         exact: true,
         name: 'Rating detail',
@@ -195,28 +195,28 @@ const route: PropRoute[] = [
 
     // Promotion
     {
-        id: 'promotion',
+        id: 'WEB:PROMOTION:READ',
         path: '/promotion-promotion',
         exact: true,
         name: 'Promotion',
         component: Promotion,
     },
     {
-        id: 'promotionCoupon',
+        id: 'WEB:COUPON:READ',
         path: '/promotion-coupon',
         exact: true,
         name: 'Promotion',
         component: PromotionCoupon,
     },
     {
-        id: 'promotionCouponGenerated',
+        id: 'WEB:GENERATED_COUPON:READ',
         path: '/promotion-generated-coupon',
         exact: true,
         name: 'Coupon Genterated',
         component: PromotionCouponGenerated,
     },
     {
-        id: 'promotionReferral',
+        id: 'WEB:REFERRAL_PROMOTION:READ',
         path: '/promotion-referral',
         exact: true,
         name: 'Referral',
@@ -224,21 +224,21 @@ const route: PropRoute[] = [
     },
     // Wallet
     {
-        id: 'walletPromotion',
+        id: 'WEB:WALLET_PROMOTION:READ',
         path: '/wallet-promotion',
         exact: true,
         name: 'Wallet Promotion',
         component: WalletPromotion,
     },
     {
-        id: 'walletPromotionDetail',
+        id: 'WEB:WALLET_PROMOTION:READ_DETAIL',
         path: '/wallet-promotion/:id/:status',
         exact: true,
         name: 'Wallet Promotion',
         component: WalletPromotionDetail,
     },
     {
-        id: 'walletWithdraw',
+        id: 'WEB:WALLET_WITHDRAW:READ',
         path: '/wallet-withdwraw',
         exact: true,
         name: 'Wallet Withdraw',
@@ -246,28 +246,28 @@ const route: PropRoute[] = [
     },
     // Report
     {
-        id: 'reportTotalOrder',
+        id: 'WEB:ORDER_REASON:READ',
         path: '/report-total-order',
         exact: true,
         name: 'Total Order',
         component: ReportTotalOrder,
     },
     {
-        id: 'reportTotalOrderDetail',
+        id: 'WEB:ORDER_REASON:READ_DETAIL',
         path: '/report-total-order/:id',
         exact: true,
         name: 'Total Order',
         component: ReportTotalOrderDetail,
     },
     {
-        id: 'reportPayment',
+        id: 'WEB:PAYMENT:READ',
         path: '/report-payment',
         exact: true,
         name: 'Payment',
         component: ReportPayment,
     },
     {
-        id: 'reportActivity',
+        id: 'WEB:ACTIVITY:READ',
         path: '/report-activity',
         exact: true,
         name: 'Activity',
@@ -276,77 +276,77 @@ const route: PropRoute[] = [
 
     // Setting
     {
-        id: 'settingCurrency',
+        id: 'WEB:CURRENCY:READ',
         path: '/setting-currency',
         exact: true,
         name: 'Currency',
         component: SettingCurrency,
     },
     {
-        id: 'settingVehicle',
+        id: 'WEB:VEHICLE:READ',
         path: '/setting-vehicle',
         exact: true,
         name: 'Vehicle',
         component: SettingVehicle,
     },
     {
-        id: 'settingCancelReason',
+        id: 'WEB:CANCEL_REASON:READ',
         path: '/setting-cancel-reason',
         exact: true,
         name: 'Cancel Reason',
         component: SettingCancelReason,
     },
     {
-        id: 'settingPaymentMethod',
+        id: 'WEB:PAYMENT_TYPE:READ',
         path: '/setting-payment-method',
         exact: true,
         name: 'Payment Method',
         component: SettingPaymentMethod,
     },
     {
-        id: 'settingColor',
+        id: 'WEB:COLOR:READ',
         path: '/setting-color',
         exact: true,
         name: 'Color',
         component: SettingColor,
     },
     {
-        id: 'settingFeedBackCategory',
+        id: 'WEB:FEEDBACK:READ',
         path: '/setting-feedback-category',
         exact: true,
         name: 'Feedback Category',
         component: SettingFeedBackCategory,
     },
     {
-        id: 'settingStoreControl',
+        id: 'WEB:STORE_CONTROL:READ',
         path: '/setting-store-control',
         exact: true,
         name: 'Store Control',
         component: SettingStoreControl,
     },
     {
-        id: 'settingCommissionCharge',
+        id: 'WEB:COMMISSION:READ',
         path: '/setting-commission-charge',
         exact: true,
         name: 'Commission Charge',
         component: SettingCommissionCharge,
     },
     {
-        id: 'settingAdminConfig',
+        id: 'WEB:ADMIN_CONFIG:READ',
         path: '/setting-admin-config',
         exact: true,
         name: 'Admin Config',
         component: SettingAdminConfig,
     },
     {
-        id: 'settingReferral',
+        id: 'WEB:REFERRAL_SETTING:READ',
         path: '/setting-referral-setting',
         exact: true,
         name: 'Referral Setting',
         component: SettingReferral,
     },
     {
-        id: 'notifications',
+        id: 'WEB:NOTIFICATION:READ',
         path: '/notification',
         exact: true,
         name: 'Notifications',

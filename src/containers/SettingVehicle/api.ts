@@ -85,7 +85,7 @@ export function useAddNew({ visible, onSuccess }: AddNewProps): AddNew {
     const { instance } = useAxios();
     const [loading, setLoading] = useState(false);
     const [imgObj, setImgObj] = useState<ImgObj | null>(null);
-    const [createItemPrice] = useMutation(ADD_PRICE);
+    const [createItemPrice] = useMutation(ADD_PRICE, { onError: () => null });
 
     function onUploadSuccess(file: ImgObj) {
         setImgObj({ ...imgObj, ...file });
@@ -124,7 +124,7 @@ export function useAddNew({ visible, onSuccess }: AddNewProps): AddNew {
 }
 
 function useUpdatePricing(): { updateItemPrice: (val: any) => void } {
-    const [updateItemPrice] = useMutation(UPDATE_PRICE);
+    const [updateItemPrice] = useMutation(UPDATE_PRICE, { onError: () => null });
     return { updateItemPrice };
 }
 

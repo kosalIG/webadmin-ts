@@ -1,10 +1,11 @@
 import React from 'react';
-import { Form, Button } from 'antd';
+import { Form } from 'antd';
+import { AddNew } from 'components/ActionIcons';
 import { useAddNew, useModal } from '../api';
 import FormUI from './FormUI';
 import { Metadata } from '../interface';
 
-const AddNew: React.FC<{ onRefetch: (pagin: Metadata) => void }> = ({ onRefetch }) => {
+const Index: React.FC<{ onRefetch: (pagin: Metadata) => void }> = ({ onRefetch }) => {
     const [form] = Form.useForm();
     const { visible, onOk, onShowModal, onCancel } = useModal({ form });
     const { addNew, loading } = useAddNew({ callback });
@@ -17,9 +18,9 @@ const AddNew: React.FC<{ onRefetch: (pagin: Metadata) => void }> = ({ onRefetch 
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
-                <Button onClick={onShowModal} type="primary">
+                <AddNew navkey="WEB:CURRENCY:CREATE" onClick={onShowModal} type="primary">
                     Add New
-                </Button>
+                </AddNew>
             </div>
             <FormUI
                 onFinish={addNew}
@@ -34,4 +35,4 @@ const AddNew: React.FC<{ onRefetch: (pagin: Metadata) => void }> = ({ onRefetch 
     );
 };
 
-export default AddNew;
+export default Index;

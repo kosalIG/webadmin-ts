@@ -65,23 +65,23 @@ export function useGetPromotion(): UseGetPromotion {
 
 export function useAddPromotion(): { createPromotion: (data: any) => void; loading: boolean; data: any } {
     // Add Promotion
-    const [createPromotion, { data, loading }] = useMutation(ADD_PROMOTION);
+    const [createPromotion, { data, loading }] = useMutation(ADD_PROMOTION, { onError: () => null });
     return { createPromotion, loading, data };
 }
 
 export function useEditPromotion(): { updatePromotion: (data: any) => void; loading: boolean; data: any } {
     // Edit Promotion
-    const [updatePromotion, { data, loading }] = useMutation(UPDATE_PROMOTION);
+    const [updatePromotion, { data, loading }] = useMutation(UPDATE_PROMOTION, { onError: () => null });
     return { updatePromotion, loading, data };
 }
 
 export function useAddWhitelist(): { addPromotionWhitelist: (data: any) => void } {
-    const [addPromotionWhitelist] = useMutation(ADD_WHITELIST);
+    const [addPromotionWhitelist] = useMutation(ADD_WHITELIST, { onError: () => null });
     return { addPromotionWhitelist };
 }
 
 export function useDelete(): { deletePromotion: (variables: any) => void; data: any } {
-    const [deletePromotion, { data, error }] = useMutation(DELETE_PROMOTION);
+    const [deletePromotion, { data, error }] = useMutation(DELETE_PROMOTION, { onError: () => null });
     useEffect(() => {
         if (error) {
             message.destroy();
@@ -92,7 +92,7 @@ export function useDelete(): { deletePromotion: (variables: any) => void; data: 
 }
 
 export function usePushNotification(): { pushNotificationOfPromotion: (id: any) => void; data: any } {
-    const [pushNotificationOfPromotion, { data, error }] = useMutation(PUSH_NOTIFI);
+    const [pushNotificationOfPromotion, { data, error }] = useMutation(PUSH_NOTIFI, { onError: () => null });
     useEffect(() => {
         if (error) {
             message.destroy();
@@ -134,7 +134,7 @@ function useGetWhitelistApi(id: string | number): UseGetWhitelistApi {
 export { useGetWhitelistApi };
 
 export function useDeleteWhitelist(): { deletePromotionWhitelist: (variables: any) => void; data: any } {
-    const [deletePromotionWhitelist, { data, error }] = useMutation(DELETE_SINGLE);
+    const [deletePromotionWhitelist, { data, error }] = useMutation(DELETE_SINGLE, { onError: () => null });
     useEffect(() => {
         if (error) {
             message.destroy();
@@ -145,7 +145,7 @@ export function useDeleteWhitelist(): { deletePromotionWhitelist: (variables: an
 }
 
 export function useDeleteAllWhitelist(): { deleteAllPromotionWhitelists: (variables: any) => void; data: any } {
-    const [deleteAllPromotionWhitelists, { data, error }] = useMutation(DELETE_ALL);
+    const [deleteAllPromotionWhitelists, { data, error }] = useMutation(DELETE_ALL, { onError: () => null });
     useEffect(() => {
         if (error) {
             message.destroy();

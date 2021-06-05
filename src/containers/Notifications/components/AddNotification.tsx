@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Form } from 'antd';
+import { Form } from 'antd';
+import { AddNew } from 'components/ActionIcons';
 import FormUI from './FormUI';
 import { useModal, useAddNew } from '../api';
 import { Metadata } from '../interface';
@@ -19,11 +20,9 @@ const AddNotification: React.FC<AddNotificationProps> = ({ onRefetch }) => {
 
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
-                <Button onClick={onShowModal} type="primary">
-                    Add New
-                </Button>
-            </div>
+            <AddNew navkey="WEB:NOTIFICATION:CREATE" onClick={onShowModal} type="primary">
+                Add New
+            </AddNew>
             <FormUI
                 form={form}
                 title="Add New"

@@ -43,7 +43,7 @@ const Index: React.FC<{ getVehicle: () => void; dataObj: any }> = ({ getVehicle,
 
     return (
         <div style={{ marginBottom: 10, display: 'flex', justifyContent: 'flex-end' }}>
-            <Edit onClick={onShowModal} />
+            <Edit navkey="WEB:VEHICLE:UPDATE" onClick={onShowModal} />
             <VehicleFormUI
                 title="Edit"
                 visible={visible}

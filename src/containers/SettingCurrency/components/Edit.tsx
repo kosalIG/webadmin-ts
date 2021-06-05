@@ -17,7 +17,7 @@ const Index: React.FC<{ dataObj: any; onRefetch: (pagin?: Metadata) => void }> =
 
     return (
         <div>
-            <Edit onClick={onShowModal} />
+            <Edit navkey="WEB:CURRENCY:UPDATE" onClick={onShowModal} />
             <FormUI
                 onFinish={(value: any) => onEdit({ ...value, id: dataObj?.id })}
                 form={form}

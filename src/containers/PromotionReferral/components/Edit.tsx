@@ -15,7 +15,7 @@ const Index: React.FC<{ dataObj: any; onRefetch: (val?: any) => void }> = ({ dat
 
     return (
         <div>
-            <Edit onClick={() => onShow()} />
+            <Edit navkey="WEB:REFERRAL_PROMOTION:UPDATE" onClick={() => onShow()} />
             <Modal
                 width={1000}
                 title="Edit - Referral"

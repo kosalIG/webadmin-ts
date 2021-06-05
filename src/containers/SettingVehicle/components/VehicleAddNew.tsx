@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Form } from 'antd';
+import { Form } from 'antd';
+import { AddNew } from 'components/ActionIcons';
 import VehicleFormUI from './VehicleFormUI';
 import { useModal, useAddNew } from '../api';
 
@@ -14,10 +15,10 @@ const Index: React.FC<{ getVehicle: () => void }> = ({ getVehicle }) => {
     }
 
     return (
-        <div style={{ marginBottom: 10, display: 'flex', justifyContent: 'flex-end' }}>
-            <Button onClick={onShowModal} type="primary">
+        <div>
+            <AddNew navkey="WEB:VEHICLE:CREATE" onClick={onShowModal} type="primary">
                 Add New
-            </Button>
+            </AddNew>
             <VehicleFormUI
                 title="Add New"
                 visible={visible}

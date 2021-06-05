@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Layout, Avatar, Dropdown } from 'antd';
+import { useAppConsummer } from 'util/appContext';
 import Menu from './Menu';
+import { s3Url } from 'env';
 const { Header } = Layout;
 
 const WrapHeader = styled(Header)`
@@ -22,11 +24,14 @@ const HeaderAvatar = styled.div`
 `;
 
 const Index: React.FC = () => {
+    const { user } = useAppConsummer();
     return (
         <WrapHeader>
             <Dropdown overlay={<Menu />}>
                 <HeaderAvatar>
-                    <Avatar size={40}>A</Avatar>
+                    <Avatar src={user?.avatar && s3Url + user?.avatar} size={40}>
+                        {user?.firstName?.charAt(0)?.toUpperCase()}
+                    </Avatar>
                 </HeaderAvatar>
             </Dropdown>
         </WrapHeader>
