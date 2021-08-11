@@ -4,14 +4,17 @@ import Pagination from 'components/Pagination';
 import useColumn from './useColumn';
 import { getList } from './api';
 import AddNew from './components/AddNew';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
-    const { dataObj, loading, onRefetch } = getList();
-    const { columns } = useColumn({ onRefetch });
+    const { dataObj, loading, getPaymentTypeEnums, onRefetch } = getList();
+    const { columns } = useColumn({ paymentEnum: getPaymentTypeEnums, onRefetch });
 
     return (
         <Card title="Setting - Payment Method" type="inner">
-            <AddNew onRefetch={onRefetch} />
+            <Breadcrumbs propRoutes={['WEB:PAYMENT_TYPE:READ']} />
+
+            <AddNew paymentEnum={getPaymentTypeEnums} onRefetch={onRefetch} />
             <Table
                 bordered
                 pagination={false}

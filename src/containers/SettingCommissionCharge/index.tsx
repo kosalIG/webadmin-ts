@@ -4,6 +4,7 @@ import Pagination from 'components/Pagination';
 import useColumn from './useColumn';
 import { getList } from './api';
 import AddNew from './components/AddNew';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { dataObj, loading, onRefetch, onPagin } = getList();
@@ -11,6 +12,8 @@ const Index: React.FC = () => {
 
     return (
         <Card title="Setting - Commission Charge" type="inner">
+            <Breadcrumbs propRoutes={['WEB:COMMISSION:READ']} />
+
             <AddNew onRefetch={onRefetch} />
             <Table
                 bordered

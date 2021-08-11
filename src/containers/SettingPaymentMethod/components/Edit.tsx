@@ -6,10 +6,11 @@ import { useModal, useEdit } from '../api';
 
 interface EditProps {
     dataObj: any;
+    paymentEnum: string[];
     onRefetch: () => void;
 }
 
-const Index: React.FC<EditProps> = ({ dataObj, onRefetch }) => {
+const Index: React.FC<EditProps> = ({ paymentEnum, dataObj, onRefetch }) => {
     const [form] = Form.useForm();
     const { visible, onCancel, onOk, onShowModal } = useModal({ form, dataObj });
     const { loading, imageFile, onEdit, onUploadSuccess } = useEdit({ callback, visible, icon: dataObj?.icon });
@@ -28,6 +29,7 @@ const Index: React.FC<EditProps> = ({ dataObj, onRefetch }) => {
                 visible={visible}
                 imgFile={imageFile}
                 confirmLoading={loading}
+                paymentEnum={paymentEnum}
                 onCancel={onCancel}
                 onOk={onOk}
                 onUploadSuccess={onUploadSuccess}

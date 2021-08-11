@@ -5,12 +5,15 @@ import Pagination from 'components/Pagination';
 import Profile from './components/Profile';
 import useColumn from './useColumn';
 import { useGetRating } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 const index: React.FC = () => {
     const { dataObj, loading, state, setPagin } = useGetRating();
     const { data, metadata } = dataObj || {};
     const { columns } = useColumn();
     return (
         <Card title="Rating Detail" type="inner">
+            <Breadcrumbs propRoutes={['WEB:RATING:READ', 'WEB:RATING:READ_DETAIL']} />
+
             <Profile profile={state} />
             <Table
                 size="middle"

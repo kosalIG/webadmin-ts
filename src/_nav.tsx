@@ -125,7 +125,7 @@ const nav: Array<NavProps> = [
             {
                 id: 'WEB:WALLET_WITHDRAW:READ',
                 order: 2,
-                path: '/wallet-withdwraw',
+                path: '/wallet-withdraw',
                 name: 'Wallet Withdraw',
                 icon: <DoubleRightOutlined />,
             },

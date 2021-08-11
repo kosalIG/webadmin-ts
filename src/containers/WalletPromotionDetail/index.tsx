@@ -6,6 +6,7 @@ import useColumn from './useColumn';
 import { useGetPromotion } from './api';
 import ApproveButton from './components/ApproveButton';
 import RejectButton from './components/RejectButton';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { selection, loading, dataObj, onRefetch } = useGetPromotion();
@@ -15,6 +16,8 @@ const Index: React.FC = () => {
     const isRowKey = Boolean(selectedRowKeys?.length);
     return (
         <Card title="Wallet - Promotion Detail" type="inner">
+            <Breadcrumbs propRoutes={['WEB:WALLET_PROMOTION:READ', 'WEB:WALLET_PROMOTION:READ_DETAIL']} />
+
             <Row gutter={[10, 10]}>
                 <Col>
                     <ApproveButton

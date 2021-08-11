@@ -5,6 +5,7 @@ import Pagination from 'components/Pagination';
 import useSearch from 'util/useSearch';
 import useColumn from './useColumn';
 import { useGetRider } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { data, loading, pagination, onSearch, onDelete } = useGetRider();
@@ -16,6 +17,7 @@ const Index: React.FC = () => {
 
     return (
         <Card title="Rider" type="inner">
+            <Breadcrumbs propRoutes={['WEB:RIDER:READ']} />
             <Table
                 loading={loading}
                 size="middle"

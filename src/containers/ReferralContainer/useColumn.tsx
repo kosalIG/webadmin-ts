@@ -49,9 +49,11 @@ export function useColumn(referenceType: string): { column: any[] } {
             className: 'center',
             title: 'Action',
             dataIndex: 'receiverId',
+            fixed: 'right',
             // eslint-disable-next-line react/display-name
             render: (id: string, obj: any) => (
                 <View
+                    navkey="WEB:REFERRAL:READ_DETAIL"
                     to={{
                         pathname: `/referral/${id}/${referenceType}`,
                         state: { ...obj?.receiverInfo },

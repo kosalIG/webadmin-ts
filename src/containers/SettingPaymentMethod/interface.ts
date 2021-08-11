@@ -26,5 +26,6 @@ export interface UseModal {
 export interface GetList {
     loading: boolean;
     dataObj: DataObj;
+    getPaymentTypeEnums: string[];
     onRefetch: (pagin?: MetaData) => void;
 }

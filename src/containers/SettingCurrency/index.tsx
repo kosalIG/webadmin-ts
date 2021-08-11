@@ -5,6 +5,7 @@ import Pagination from 'components/Pagination';
 import { useGetList } from './api';
 import useColumn from './useColumn';
 import AddNew from './components/AddNew';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const index: React.FC = () => {
     const { dataObj, loading, onPagin, onRefetch } = useGetList();
@@ -12,6 +13,8 @@ const index: React.FC = () => {
 
     return (
         <Card title="Setting - Currency" type="inner">
+            <Breadcrumbs propRoutes={['WEB:CURRENCY:READ']} />
+
             <AddNew onRefetch={onRefetch} />
             <Table
                 size="middle"

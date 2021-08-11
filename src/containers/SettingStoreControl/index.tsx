@@ -3,6 +3,7 @@ import { Table, Card } from 'antd';
 import useColumn from './useColumn';
 import { getList } from './api';
 import AddNew from './components/AddNew';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { dataObj, loading, refetch } = getList();
@@ -10,6 +11,8 @@ const Index: React.FC = () => {
 
     return (
         <Card title="Setting - Store Control" type="inner">
+            <Breadcrumbs propRoutes={['WEB:STORE_CONTROL:READ']} />
+
             <AddNew onRefetch={refetch} />
             <Table
                 bordered

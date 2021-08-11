@@ -3,6 +3,7 @@ import { Card, Table } from 'antd';
 import Pagination from 'components/Pagination';
 import useColumn from './useColumn';
 import { useGetRating } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 const Index: React.FC = () => {
     const { dataObj, loading, setPagin } = useGetRating();
 
@@ -11,6 +12,8 @@ const Index: React.FC = () => {
 
     return (
         <Card title="Rating" type="inner">
+            <Breadcrumbs propRoutes={['WEB:RATING:READ']} />
+
             <Table
                 loading={loading}
                 size="middle"

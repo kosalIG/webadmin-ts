@@ -4,12 +4,15 @@ import Pagination from 'components/Pagination';
 import useColumn from './useColumn';
 import { getList } from './api';
 import AddNew from './components/AddNew';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { dataObj, loading, onRefetch } = getList();
     const { columns } = useColumn({ onRefetch });
     return (
         <Card title="Setting - FeedBack Category" type="inner">
+            <Breadcrumbs propRoutes={['WEB:FEEDBACK:READ']} />
+
             <AddNew onRefetch={onRefetch} />
             <Table
                 bordered

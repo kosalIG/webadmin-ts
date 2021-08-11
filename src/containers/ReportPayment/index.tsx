@@ -6,6 +6,7 @@ import useColumn, { groupColumn } from './useColumn';
 import { useGetList } from './api';
 import SingleExport from './components/SingleExport';
 import ExportAll from './components/ExportAll';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { dataObj, loading, onPagin } = useGetList();
@@ -13,6 +14,8 @@ const Index: React.FC = () => {
 
     return (
         <Card title="Report Payment" type="inner">
+            <Breadcrumbs propRoutes={['WEB:PAYMENT:READ']} />
+
             <DnDTable
                 name="payment"
                 loading={loading}

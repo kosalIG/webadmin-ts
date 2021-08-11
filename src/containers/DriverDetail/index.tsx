@@ -9,6 +9,7 @@ import VehicleInformation from './components/VehicleInformation';
 import Document from './components/Document';
 import TripHistory from './components/TripHistory';
 import { useGetDriverDetail } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const { TabPane } = Tabs;
 const Index: React.FC = () => {
@@ -27,6 +28,8 @@ const Index: React.FC = () => {
 
     return (
         <Card>
+            <Breadcrumbs propRoutes={['WEB:DRIVER:READ', 'WEB:DRIVER:READ_DETAIL']} />
+
             <Spin spinning={loading}>
                 <HeaderButton
                     requestWithDraw={requestWithDraw}

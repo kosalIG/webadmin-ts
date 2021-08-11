@@ -3,12 +3,15 @@ import { Table, Card } from 'antd';
 import AddNew from './components/AddNew';
 import useColumns from './useColumn';
 import { useGetlist } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { loading, records, getList } = useGetlist();
     const { columns } = useColumns({ getList });
     return (
         <Card title="Setting - Color" type="inner">
+            <Breadcrumbs propRoutes={['WEB:COLOR:READ']} />
+
             <AddNew getList={getList} />
             <Table
                 bordered
