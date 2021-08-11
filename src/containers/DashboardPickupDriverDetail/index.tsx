@@ -5,25 +5,33 @@ import CancelTrip from './components/CancelTrip';
 import UserDetail from './components/UserDetail';
 import Map from './components/Map';
 import { useGetlist } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
+import { useAppConsummer } from 'util/appContext';
 
 const Index: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const { goBack } = useHistory();
     const { getOrder, loading, vehicleIcon } = useGetlist(id);
+    const { user } = useAppConsummer();
+    const result = user?.permissions.find((p) => p === 'WEB:PICKUP_DRIVER:CANCEL_TRIP');
     return (
         <Card title="Pickup Driver - Detail" type="inner" loading={loading}>
+            <Breadcrumbs propRoutes={['dashboard', 'WEB:PICKUP_DRIVER:READ', 'WEB:PICKUP_DRIVER:READ_DETAIL']} />
+
             <Row style={{ marginBottom: 15 }} justify="space-between">
                 <Col>
                     <Button onClick={goBack}>Back</Button>
                 </Col>
                 <Col>
-                    <CancelTrip
-                        cancelTripParams={{
-                            driverId: getOrder?.driver?.id,
-                            userId: getOrder?.rider?.id,
-                            orderId: getOrder?.id,
-                        }}
-                    />
+                    {result && (
+                        <CancelTrip
+                            cancelTripParams={{
+                                driverId: getOrder?.driver?.id,
+                                userId: getOrder?.rider?.id,
+                                orderId: getOrder?.id,
+                            }}
+                        />
+                    )}
                 </Col>
             </Row>
             <Row gutter={[14, 0]}>
