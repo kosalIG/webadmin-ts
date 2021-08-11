@@ -4,6 +4,7 @@ import Pagination from 'components/Pagination';
 import { useColumn } from './useColumn';
 import { useGetGroup } from './api';
 import AddNew from './components/AddNew';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { data, loading, getGroup, setQstring } = useGetGroup();
@@ -13,6 +14,8 @@ const Index: React.FC = () => {
     return (
         <div>
             <Card title="Driver Group" type="inner">
+                <Breadcrumbs propRoutes={['WEB:GROUP:READ']} />
+
                 <AddNew onSuccess={getGroup} />
                 <Table
                     size="middle"

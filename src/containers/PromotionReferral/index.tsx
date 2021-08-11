@@ -5,6 +5,7 @@ import Pagination from 'components/Pagination';
 import useColumn from './useColumn';
 import { useGetPromotion } from './api';
 import AddNew from './components/AddNew';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { dataObj, loading, onRefetch } = useGetPromotion();
@@ -12,6 +13,8 @@ const Index: React.FC = () => {
 
     return (
         <Card title>
+            <Breadcrumbs propRoutes={['WEB:REFERRAL_PROMOTION:READ']} />
+
             <AddNew onRefetch={onRefetch} />
             <Table
                 bordered

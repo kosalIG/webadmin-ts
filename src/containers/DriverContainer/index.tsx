@@ -5,6 +5,7 @@ import Pagination from 'components/Pagination';
 import useSearch from 'util/useSearch';
 import useColumn from './useColumn';
 import { useGetDriver } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { data, loading, driverGroup, pagination, onSearch, onDelete, onChange } = useGetDriver();
@@ -16,6 +17,7 @@ const Index: React.FC = () => {
 
     return (
         <Card title="Driver" type="inner">
+            <Breadcrumbs propRoutes={['WEB:DRIVER:READ']} />
             <Table
                 loading={loading}
                 size="middle"

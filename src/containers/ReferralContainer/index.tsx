@@ -4,6 +4,7 @@ import { Card, Tabs } from 'antd';
 import { useGetReferral } from './api';
 import Table from './components/Table';
 import { useColumn } from './useColumn';
+import Breadcrumbs from 'components/Breadcrumbs';
 const { TabPane } = Tabs;
 
 const Index: React.FC = () => {
@@ -18,6 +19,7 @@ const Index: React.FC = () => {
 
     return (
         <Card title="Referral" type="inner">
+            <Breadcrumbs propRoutes={['WEB:REFERRAL:READ']} />
             <Tabs onTabClick={onTabsClick}>
                 <TabPane tab="Wallet" key="WALLET">
                     <Table onPagin={onPagin} metadata={metadata} loading={loading} column={column} records={records} />

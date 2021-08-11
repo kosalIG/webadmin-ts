@@ -13,7 +13,7 @@ interface UserColumn {
 
 export default function useColumn(): UserColumn {
     function act(id: string) {
-        return <View to={`/dashboard/pickup-driver/${id}`} />;
+        return <View navkey="WEB:DRIVER:READ_DETAIL" to={`/dashboard/pickup-driver/${id}`} />;
     }
     const column: ColumnsType<Column> = [
         { title: '#', dataIndex: 'idx', width: 60, className: 'center' },

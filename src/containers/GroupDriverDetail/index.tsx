@@ -7,6 +7,7 @@ import AddUser from './components/AddUser';
 import GroupProfile from './components/GroupProfile';
 import useColumn from './useColumn';
 import { useGetGroupDetail, useGetGroupUserList } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     // GROUP
@@ -23,6 +24,8 @@ const Index: React.FC = () => {
     const { column } = useColumn({ handleSearch, getGroupUserList });
     return (
         <Card title="Group driver detail" type="inner">
+            <Breadcrumbs propRoutes={['WEB:GROUP:READ', 'WEB:GROUP:READ_DETAIL']} />
+
             <GroupProfile data={data} loading={loading} />
             <AddUser onSuccess={getGroupUserList} />
             <Table

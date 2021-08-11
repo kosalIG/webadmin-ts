@@ -18,7 +18,8 @@ const Index: React.FC<TableProps> = ({ column, records, metadata, loading, onPag
                 size="middle"
                 pagination={false}
                 columns={column}
-                rowKey={(e: any) => e?.id}
+                rowKey={(e: any) => e?.idx}
+                scroll={{ x: 1300 }}
                 dataSource={records?.map((item: any, idx: number) => ({ ...item, idx: idx + 1 }))}
             />
             <Pagination metadata={metadata} onPagin={(offset, limit) => onPagin({ offset, limit })} />

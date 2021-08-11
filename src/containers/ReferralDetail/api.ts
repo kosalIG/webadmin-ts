@@ -3,13 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_REFERRAL_DETAIL } from './gql';
 
-function useGetUserReferral(): { totalAmount: number; records: any[]; loading: boolean } {
-    const { id, type } = useParams<any>();
-    const vari = type === 'PROMOTION' ? 'APPROVED' : 'PENDING';
+function useGetUserReferral(status: string): { totalAmount: number; records: any[]; loading: boolean } {
+    const { id } = useParams<any>();
 
     // GET DATA FROM SERVER
     const { data, loading } = useQuery(GET_REFERRAL_DETAIL, {
-        variables: { status: vari, userId: id },
+        variables: { status, userId: id },
     });
 
     // DATA RESPONSE

@@ -4,6 +4,7 @@ import Pagination from 'components/Pagination';
 import AddNotification from './components/AddNotification';
 import useColumns from './useColumn';
 import { useGetList } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { dataObj, loading, onRefetch } = useGetList();
@@ -11,6 +12,8 @@ const Index: React.FC = () => {
 
     return (
         <Card title="Notification" type="inner">
+            <Breadcrumbs propRoutes={['WEB:NOTIFICATION:READ']} />
+
             <AddNotification onRefetch={onRefetch} />
             <Table
                 bordered
