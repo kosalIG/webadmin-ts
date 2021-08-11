@@ -33,3 +33,9 @@ export const DELETE_PAYMENT = gql`
         deletePaymentType(id: $id)
     }
 `;
+
+export const GET_PAYMENT_TYPE_ENUM = gql`
+    query GetPaymentTypeEnums {
+        getPaymentTypeEnums
+    }
+`;
