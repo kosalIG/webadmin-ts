@@ -12,7 +12,7 @@ const WrapHeader = styled(Header)`
     position: fixed;
     right: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 9;
 `;
 
 const HeaderAvatar = styled.div`

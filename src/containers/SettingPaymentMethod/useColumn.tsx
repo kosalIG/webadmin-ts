@@ -6,7 +6,13 @@ import Status from 'components/Status';
 import Edit from './components/Edit';
 import Delete from './components/Delete';
 
-export default function useColumns({ onRefetch }: { onRefetch: () => void }): { columns: any[] } {
+export default function useColumns({
+    onRefetch,
+    paymentEnum,
+}: {
+    onRefetch: () => void;
+    paymentEnum: string[];
+}): { columns: any[] } {
     function vehicleIcon(url: string) {
         return <Avatar src={url ? `${s3Url}${url}` : ''} icon={<FileImageOutlined />} />;
     }
@@ -18,7 +24,7 @@ export default function useColumns({ onRefetch }: { onRefetch: () => void }): { 
     function act(id: string, dataObj: any) {
         return (
             <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                <Edit onRefetch={onRefetch} dataObj={dataObj} />
+                <Edit paymentEnum={paymentEnum} onRefetch={onRefetch} dataObj={dataObj} />
                 <Delete onRefetch={onRefetch} id={id} />
             </div>
         );

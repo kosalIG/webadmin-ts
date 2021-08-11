@@ -5,10 +5,11 @@ import FormUI from './FormUI';
 import { useModal, useAddNew } from '../api';
 
 interface AddNewProps {
+    paymentEnum: string[];
     onRefetch: (pagin: any) => void;
 }
 
-const Index: React.FC<AddNewProps> = ({ onRefetch }) => {
+const Index: React.FC<AddNewProps> = ({ paymentEnum, onRefetch }) => {
     const [form] = Form.useForm();
     const { visible, onCancel, onOk, onShowModal } = useModal({ form });
     const { loading, imageFile, onUploadSuccess, addNew } = useAddNew({ visible, callback });
@@ -29,6 +30,7 @@ const Index: React.FC<AddNewProps> = ({ onRefetch }) => {
                 visible={visible}
                 confirmLoading={loading}
                 imgFile={imageFile}
+                paymentEnum={paymentEnum}
                 onCancel={onCancel}
                 onOk={onOk}
                 onFinish={addNew}

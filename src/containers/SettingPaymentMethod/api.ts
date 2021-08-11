@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { message } from 'antd';
-import { GET_PAYMENT_TYPE, UPSERT_PAYMENT_TYPE, DELETE_PAYMENT } from './gql';
+import { GET_PAYMENT_TYPE, UPSERT_PAYMENT_TYPE, DELETE_PAYMENT, GET_PAYMENT_TYPE_ENUM } from './gql';
 import { DataObj, GetList, MetaData, UseModalProps, UseModal } from './interface';
 
 export function getList(): GetList {
@@ -16,7 +16,10 @@ export function getList(): GetList {
         refetch({ filter: { ...qString, ...pagin } });
     }
 
-    return { dataObj, loading, onRefetch };
+    const { data: paymentEnum } = useQuery(GET_PAYMENT_TYPE_ENUM);
+    const { getPaymentTypeEnums } = paymentEnum || {};
+
+    return { dataObj, loading, getPaymentTypeEnums, onRefetch };
 }
 
 export function useModal({ form, dataObj }: UseModalProps): UseModal {

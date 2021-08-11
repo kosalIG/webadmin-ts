@@ -6,6 +6,7 @@ import { useGetPromotion } from './api';
 import Pagination from 'components/Pagination';
 import AddNew from './components/AddNew';
 import PromotionWhitelist from './components/PromotionWhitelist';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const index: React.FC = () => {
     const { dataObj, loading, pagin, onFilter, onRefetch } = useGetPromotion();
@@ -13,6 +14,8 @@ const index: React.FC = () => {
 
     return (
         <Card title="Promotion" type="inner">
+            <Breadcrumbs propRoutes={['WEB:PROMOTION:READ']} />
+
             <AddNew onRefetch={onRefetch} />
             <Table
                 size="middle"

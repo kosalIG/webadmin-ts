@@ -12,11 +12,12 @@ const layout = {
 interface FormUIProps extends ModalProps {
     form: any;
     imgFile: string | null;
+    paymentEnum: string[];
     onFinish?: (data: any) => void;
     onUploadSuccess: (file: string) => void;
 }
 
-const FormUI: React.FC<FormUIProps> = ({ form, title, imgFile, onFinish, onUploadSuccess, ...props }) => {
+const FormUI: React.FC<FormUIProps> = ({ form, paymentEnum, title, imgFile, onFinish, onUploadSuccess, ...props }) => {
     return (
         <Modal width={500} title={`${title} - Payment Method`} {...props}>
             <Form onFinish={onFinish} form={form} initialValues={{ status: '', type: '' }} {...layout}>
@@ -49,8 +50,11 @@ const FormUI: React.FC<FormUIProps> = ({ form, title, imgFile, onFinish, onUploa
                         <Option disabled value="">
                             -- Select Type --
                         </Option>
-                        <Option value="PIPAY">PIPAY</Option>
-                        <Option value="CASH">CASH</Option>
+                        {paymentEnum?.map((item) => (
+                            <Option key={item} value={item}>
+                                {item}
+                            </Option>
+                        ))}
                     </Select>
                 </Form.Item>
                 <Form.Item

@@ -45,6 +45,7 @@ export function useHoc(): AppContext {
         setIsAuth(true);
 
         findRoute(data?.permissions);
+        findNav(data?.permissions);
     }
 
     // Login out

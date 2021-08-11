@@ -4,6 +4,7 @@ import Pagination from 'components/Pagination';
 
 import { useGetList } from './api';
 import useColumn from './useColumn';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const index: React.FC = () => {
     const { dataObj, loading, onPagin } = useGetList();
@@ -11,6 +12,8 @@ const index: React.FC = () => {
 
     return (
         <Card title="Activiy Report" type="inner">
+            <Breadcrumbs propRoutes={['WEB:ACTIVITY:READ']} />
+
             <Table
                 size="middle"
                 loading={loading}

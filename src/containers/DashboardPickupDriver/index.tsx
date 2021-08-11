@@ -6,6 +6,7 @@ import { serviceOrder } from 'env';
 import Pagination from 'components/Pagination';
 import useColumn from './useColumn';
 import { GET_ORDER_TRIP } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const [qString, setqString] = useState({ limit: 10, offset: 0, tripStatus: ['ON_PICKUP'] });
@@ -15,12 +16,12 @@ const Index: React.FC = () => {
         client: serviceOrder,
         variables: { ...qString },
     });
-
     const { getOrderList } = data || {};
     const { results, metadata } = getOrderList || {};
 
     return (
         <Card type="inner" title="Pickup Drivers">
+            <Breadcrumbs propRoutes={['dashboard']} />
             <Table
                 scroll={{ x: 1400 }}
                 size="middle"

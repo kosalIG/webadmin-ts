@@ -4,12 +4,15 @@ import Pagination from 'components/Pagination';
 import useColumn from './useColumn';
 import { useGetPromotion } from './api';
 import Filter from './components/Filter';
+import Breadcrumbs from 'components/Breadcrumbs';
 const Index: React.FC = () => {
     const { qString, dataObj, handleDate, handleChange, onRefetch } = useGetPromotion();
     const { columns } = useColumn();
 
     return (
         <Card title="Wallet- Promotion" type="inner">
+            <Breadcrumbs propRoutes={['WEB:WALLET_PROMOTION:READ']} />
+
             <Filter qString={qString} handleDate={handleDate} />
             <Table
                 size="middle"

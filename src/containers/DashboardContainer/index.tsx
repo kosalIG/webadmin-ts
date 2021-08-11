@@ -12,6 +12,7 @@ import RatingStar from './components/RatingStar';
 import InactiveDriver from './components/InactiveDriver';
 import RegisterUser from './components/RegisterUserOnDoughnut';
 import UserFeedback from './components/UserFeedback';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const Index: React.FC = () => {
     const { data } = useQuery(GET_PAYMENT_DASHBOARD);
@@ -30,6 +31,7 @@ const Index: React.FC = () => {
 
     return (
         <Row gutter={[12, 12]}>
+            <Breadcrumbs propRoutes={['dashboard']} />
             <Col lg={24} md={24} xs={24}>
                 <DriverCard
                     totalOnlineDrivers={getOrderDashboard?.totalOnlineDrivers}

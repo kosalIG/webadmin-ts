@@ -20,7 +20,7 @@ const Index: React.FC<SideBarProps> = ({ nav, pathname }) => {
                 defaultSelectedKeys={['/']}
             >
                 <Menu.Item key="/dashboard" icon={<DashboardOutlined />}>
-                    <Link to="dashboard">Dashboard </Link>
+                    <Link to="/dashboard">Dashboard </Link>
                 </Menu.Item>
                 {nav.map((n) =>
                     n.children ? (

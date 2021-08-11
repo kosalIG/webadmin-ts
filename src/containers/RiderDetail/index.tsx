@@ -6,6 +6,7 @@ import { UserOutlined, PhoneOutlined, MailOutlined, HistoryOutlined } from '@ant
 
 import TripHistory from './components/TripHistory';
 import { useGetRiderDetail, GET_TRIP_HISTORY } from './api';
+import Breadcrumbs from 'components/Breadcrumbs';
 
 const { Title, Text } = Typography;
 
@@ -22,6 +23,7 @@ const Index: React.FC = () => {
 
     return (
         <Card loading={loading} title="Rider Detail" type="inner">
+            <Breadcrumbs propRoutes={['WEB:RIDER:READ', 'WEB:RIDER:READ_DETAIL']} />
             <Row gutter={[12, 18]}>
                 <Col flex="150px">
                     <Avatar icon={<UserOutlined />} size={140} src={''} style={{ width: `100%` }} />

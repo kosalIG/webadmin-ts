@@ -8,7 +8,6 @@ import { User } from './interface';
 const Index: React.FC = () => {
     const { isAuth, login } = useAppConsummer();
     const { loading, data, onLogin } = useLogin();
-
     function handleLogin(data: User) {
         // login();
         onLogin(data);
