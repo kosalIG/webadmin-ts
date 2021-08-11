@@ -32,7 +32,7 @@ const Index: React.FC<MapProps> = ({ orderDropoffs, orderDetail, vehicleIcon }) 
             />
 
             {/* DROP OFF POSITION */}
-            {orderDropoffs.length ? (
+            {orderDropoffs?.length ? (
                 orderDropoffs?.map((item) => (
                     <Marker
                         key={item.sequence}

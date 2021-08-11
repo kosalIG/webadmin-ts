@@ -21,7 +21,7 @@ const Index: React.FC = () => {
 
     return (
         <Card type="inner" title="Pickup Drivers">
-            <Breadcrumbs propRoutes={['dashboard']} />
+            <Breadcrumbs propRoutes={['dashboard', 'WEB:PICKUP_DRIVER:READ']} />
             <Table
                 scroll={{ x: 1400 }}
                 size="middle"
