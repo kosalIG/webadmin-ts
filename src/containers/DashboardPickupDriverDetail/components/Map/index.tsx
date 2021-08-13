@@ -1,5 +1,5 @@
 import React from 'react';
-import { Marker, useJsApiLoader } from '@react-google-maps/api';
+import { Marker, useLoadScript } from '@react-google-maps/api';
 import { googlekey, s3Url } from 'env';
 import RenderMap from './RenderMap';
 import { MapProps } from '../../interface';
@@ -13,7 +13,8 @@ const Index: React.FC<MapProps> = ({ orderDropoffs, orderDetail, vehicleIcon }) 
     const { pickupLat, pickupLng, dropoffLat, dropoffLng } = orderDetail || {};
     const windows: any = window;
 
-    const { isLoaded, loadError } = useJsApiLoader({
+    const { isLoaded, loadError } = useLoadScript({
+        id: '001',
         googleMapsApiKey: googlekey,
         libraries: libra,
     });

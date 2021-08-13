@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { EyeOutlined } from '@ant-design/icons';
 import DriverCardUI from './DriverCardUI';
 import { DashboardCard } from '../../interface';
+import { useAppConsummer } from 'util/appContext';
 
 const Links = styled(Link)`
     color: white;
@@ -28,6 +29,10 @@ const Index: React.FC<DashboardCard> = ({
     totalAvailableDriver,
     totalDriver,
 }) => {
+    const { user } = useAppConsummer();
+    const cancel = user?.permissions.find((p) => p === 'WEB:TRANSPORT_DRIVER:CANCEsL_TRIP');
+    const finish = user?.permissions.find((p) => p === 'WEB:TRANSPORT_DRIVER:FINISH_TRIP');
+
     return (
         <Row gutter={[12, 12]}>
             <DriverCardUI
@@ -44,10 +49,14 @@ const Index: React.FC<DashboardCard> = ({
             <DriverCardUI
                 background="warning"
                 topText={
-                    <Links to="/dashboard/pickup-driver">
-                        <EyeOutlineds />
-                        View detail
-                    </Links>
+                    cancel ? (
+                        <Links to="/dashboard/pickup-driver">
+                            <EyeOutlineds />
+                            View detail
+                        </Links>
+                    ) : (
+                        'Pickup Drivers'
+                    )
                 }
                 bottomText="Total Pickup Drivers"
                 contentText={totalOnPickupDrivers || 0}
@@ -55,10 +64,14 @@ const Index: React.FC<DashboardCard> = ({
             <DriverCardUI
                 background="danger"
                 topText={
-                    <Links to="/dashboard/transport-driver">
-                        <EyeOutlineds />
-                        View detail
-                    </Links>
+                    finish ? (
+                        <Links to="/dashboard/transport-driver">
+                            <EyeOutlineds />
+                            View detail
+                        </Links>
+                    ) : (
+                        'Transporting Drivers'
+                    )
                 }
                 bottomText="Total Transporting Drivers"
                 contentText={totalOnTransitDrivers || 0}
