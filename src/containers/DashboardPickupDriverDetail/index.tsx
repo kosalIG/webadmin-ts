@@ -13,7 +13,7 @@ const Index: React.FC = () => {
     const { goBack } = useHistory();
     const { getOrder, loading, vehicleIcon } = useGetlist(id);
     const { user } = useAppConsummer();
-    const result = user?.permissions.find((p) => p === 'WEB:PICKUP_DRIVER:CANCEL_TRIP');
+    const result = user?.permissions?.find((p) => p === 'WEB:PICKUP_DRIVER:CANCEL_TRIP');
     return (
         <Card title="Pickup Driver - Detail" type="inner" loading={loading}>
             <Breadcrumbs propRoutes={['dashboard', 'WEB:PICKUP_DRIVER:READ', 'WEB:PICKUP_DRIVER:READ_DETAIL']} />

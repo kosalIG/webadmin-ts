@@ -80,7 +80,7 @@ export function useGetDriverDetail(): UseGetDriverDetail {
     const [verifyLoading, setverifyLoading] = useState(false);
 
     const [driverDetail, setDriverDetail] = useState<DriverData | null>(null);
-    const { id } = useParams<{ id: string }>() || {};
+    const params = useParams<{ id: string }>();
 
     // GET VEHICLE
     const { getVehicleType, data: vehicleRecords } = usegetVehicleType();
@@ -92,7 +92,7 @@ export function useGetDriverDetail(): UseGetDriverDetail {
     const { getColor, colorRecords } = useGetColor();
 
     useEffect(() => {
-        getDriverDetail(id);
+        getDriverDetail(params?.id);
         getVehicleType();
         getColor();
     }, []);
@@ -111,24 +111,24 @@ export function useGetDriverDetail(): UseGetDriverDetail {
     const [approveReferral] = useMutation(APPROVE_REFERRAL, { onError: () => null });
     async function verifyDriver() {
         setverifyLoading(true);
-        const config: AxiosProps = { url: '/user/verifyDriverLicense/' + id, method: 'POST' };
+        const config: AxiosProps = { url: '/user/verifyDriverLicense/' + params?.id, method: 'POST' };
         const { result } = await instance({ config, loadingMsg: 'loading ...', successMsg: 'verify successfully' });
         if (result) {
-            getDriverDetail(id);
-            approveReferral({ variables: { userId: id, createdBy: '123' } });
+            getDriverDetail(params?.id);
+            approveReferral({ variables: { userId: params?.id, createdBy: '123' } });
         }
         setverifyLoading(false);
     }
 
     // Get driver balance
     const { data: balance, refetch } = useQuery(GET_BALANCE, {
-        variables: { id },
+        variables: { id: params?.id },
     });
     const { totalBalance } = balance?.getBalance || {};
 
     // Get driver online
     const { data: online } = useQuery(GET_ONLINE, {
-        variables: { id },
+        variables: { id: params?.id },
         client: serviceOrder,
     });
 
@@ -141,19 +141,22 @@ export function useGetDriverDetail(): UseGetDriverDetail {
     });
 
     function onWithDraw(val: any) {
-        requestWithdrawByAdmin({ variables: { input: { userId: id, ...val } } });
+        requestWithdrawByAdmin({ variables: { input: { userId: params?.id, ...val } } });
     }
 
     useEffect(() => {
         if (data) {
             message.success('Requested to withdraw successfully');
-            refetch({ id });
+            refetch({ id: params?.id });
         }
     }, [data]);
     const requestWithDraw: RequestWithDrawProps = { withDrawLoading, data, onWithDraw };
 
     // Update driver
-    const { onUpdateDriver, loading: updateLoading, data: updateData } = useUpdateDriver(() => getDriverDetail(id), id);
+    const { onUpdateDriver, loading: updateLoading, data: updateData } = useUpdateDriver(
+        () => getDriverDetail(params?.id),
+        params?.id,
+    );
     const updateDriver: UpdateDriver = { onUpdateDriver, updateLoading, updateData, vehicleRecords, colorRecords };
 
     // Return
