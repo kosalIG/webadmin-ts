@@ -30,10 +30,6 @@ const FormUI: React.FC<FormUIProps> = ({ form, paymentEnum, title, imgFile, onFi
                             required: true,
                             message: 'The Name is reqired',
                         },
-                        {
-                            pattern: new RegExp('^[a-z0-9A-Z ]*$'),
-                            message: 'The Name is not valid',
-                        },
                     ]}
                 >
                     <Input placeholder="Name" />
