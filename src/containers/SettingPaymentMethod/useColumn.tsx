@@ -40,6 +40,7 @@ export default function useColumns({
         },
         { title: 'Payment Method', dataIndex: 'type', width: 150 },
         { title: 'Name', dataIndex: 'name' },
+        { title: 'Description', dataIndex: 'description' },
         {
             title: 'Status',
             dataIndex: 'status',

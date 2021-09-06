@@ -3,6 +3,7 @@ import { Modal, Form, Select, Input, ModalProps } from 'antd';
 import Upload from 'util/UploadImage';
 
 const { Option } = Select;
+const { TextArea } = Input;
 
 const layout = {
     labelCol: { span: 6 },
@@ -73,6 +74,9 @@ const FormUI: React.FC<FormUIProps> = ({ form, paymentEnum, title, imgFile, onFi
                         <Option value="ACTIVE">ACTIVE</Option>
                         <Option value="INACTIVE">INACTIVE</Option>
                     </Select>
+                </Form.Item>
+                <Form.Item label="Description" name="description">
+                    <TextArea placeholder="Description" />
                 </Form.Item>
                 <Form.Item label="Icon" required>
                     <Upload file={imgFile || null} onUploadSuccess={(imgFile: string) => onUploadSuccess(imgFile)} />

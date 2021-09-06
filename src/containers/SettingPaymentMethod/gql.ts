@@ -9,6 +9,7 @@ export const GET_PAYMENT_TYPE = gql`
                 icon
                 type
                 status
+                description
             }
             metadata {
                 total
