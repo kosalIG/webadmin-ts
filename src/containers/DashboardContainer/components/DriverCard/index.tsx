@@ -30,7 +30,7 @@ const Index: React.FC<DashboardCard> = ({
     totalDriver,
 }) => {
     const { user } = useAppConsummer();
-    const cancel = user?.permissions.find((p) => p === 'WEB:TRANSPORT_DRIVER:CANCEsL_TRIP');
+    const cancel = user?.permissions.find((p) => p === 'WEB:TRANSPORT_DRIVER:CANCEL_TRIP');
     const finish = user?.permissions.find((p) => p === 'WEB:TRANSPORT_DRIVER:FINISH_TRIP');
 
     return (
